@@ -7,14 +7,12 @@ int FitnessCalculation::getFitness(Individuals* pIndividual) // VERIFICAR BIEN
 
     int tmpFitness =0;
 
-    for(size_t i=0; i< Constants::_SkillsQuantity; i)
+    for(size_t i=0; i< Constants::SKILLSQUANTITY; i++)
     {
         BitVector* d = pIndividual->getGenes();
-        cout << "dasd" << endl;
+
+        cout << "fitness calculation" << endl;
         size_t numeroBinario = pIndividual->getGenes()->getByIndex(i);
-        cout << "ho" << endl;
-
-
 
         int skillValue = BnToDec(numeroBinario);
 

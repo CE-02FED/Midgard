@@ -6,18 +6,18 @@ Evolution::Evolution()
 
 Population Evolution::evolvePopulation(Population pPopulation)
 {
-    Population* newPopulation = new Population(Constants::_MaxPopulation, false);
+    Population* newPopulation = new Population(Constants::MAXPOPULATION, false);
     for (int i =0;i<pPopulation.getPopulationSize()/2;i++)
     {
         Individuals FatherA = fathersSelection(pPopulation);
         Individuals FatherB = fathersSelection(pPopulation);
         Individuals* newIndividualsArray = CrossOver(FatherA, FatherB);
 
-        Individuals newA = newIndividualsArray[0];
-        Individuals newB = newIndividualsArray[1];
+        Individuals& newA = newIndividualsArray[0];
+        Individuals& newB = newIndividualsArray[1];
 
-        newPopulation->insertIndividualList(newA);
-        newPopulation->insertIndividualList(newB);
+        newPopulation->insertIndividualList(&newA);
+        newPopulation->insertIndividualList(&newB);
         // Añadir el nueevo individuo a la nueva poblacion
     }
 
@@ -36,7 +36,7 @@ Individuals Evolution::fathersSelection(Population pPopulation)
     {
         int tmpNum = rand()%pPopulation.getPopulationSize();
         Individuals* tmpIndividual = pPopulation.getIndividualbyIndex(tmpNum);
-        fathers->insertIndividualList(*tmpIndividual);
+        fathers->insertIndividualList(tmpIndividual);
     }
 
     Individuals bestIndividual = fathers->getFittest();
@@ -46,11 +46,11 @@ Individuals Evolution::fathersSelection(Population pPopulation)
 
 void Evolution::Mutation(Individuals* pIndividual)
 {
-    for(int i=0;i < Constants::_SkillsQuantity ; i++)
+    for(int i=0;i < Constants::SKILLSQUANTITY ; i++)
     {
         if (rand()%50 <= _mutationRate)
         {
-            pIndividual->getGenes()->Flip(rand()%cantidadBits*Constants::_SkillsQuantity);
+            pIndividual->getGenes()->Flip(rand()%cantidadBits*Constants::SKILLSQUANTITY);
         }
     }
 }
@@ -73,7 +73,7 @@ Individuals* Evolution::CrossOver(Individuals pFatherA, Individuals pFatherB)
     *tmpIndividuoB = pFatherB; //se le asignan los genes del padre al hijo B
 
             // Loop through genes
-    for (int Indice = 0; Indice < Constants::_SkillsQuantity ; Indice++)
+    for (int Indice = 0; Indice < Constants::SKILLSQUANTITY ; Indice++)
     {
         int tmpPuntoCruce = rand()%cantidadBits;
         size_t maskA = Mask << tmpPuntoCruce;

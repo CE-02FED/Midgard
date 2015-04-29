@@ -1,13 +1,15 @@
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
+#include "ios"
 
 
 class Constants
 {
 public:
-    const static int _SkillsQuantity = 10;
-    const static int _MaxSkill = 255;
-    const static int _MaxPopulation= 300;
+    const static int SKILLSQUANTITY = 10;
+    const static int MAXSKILL = 255;
+    const static int MAXPOPULATION= 50;
+    const static size_t DEFAULTELEMENTSIZE = 8;
 
 
 

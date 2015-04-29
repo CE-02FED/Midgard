@@ -55,9 +55,7 @@ void lista_enlazada<k>::add_Dato_Atras(k pdata)
     }
     else
     {
-
         _contador++;
-
         _cola->setNext(nuevo_nodo);
         _cola = nuevo_nodo;
     }

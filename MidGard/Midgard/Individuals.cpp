@@ -3,12 +3,27 @@
 
 Individuals::Individuals()
 {
-
-    this->cantidadCualidades = Constants::_SkillsQuantity;
+    this->cantidadCualidades = Constants::SKILLSQUANTITY;
     genes = new BitVector(cantidadCualidades);
-
-
 }
+
+Individuals::Individuals(int pID)
+{
+    this->cantidadCualidades = Constants::SKILLSQUANTITY;
+    genes = new BitVector(cantidadCualidades);
+    this->_ID = pID;
+}
+
+void Individuals::setIndividualID(int pID)
+{
+    this->_ID = pID;
+}
+
+int Individuals::getIndividualID()
+{
+    return this->_ID;
+}
+
 
 
 void Individuals::createIndividual()
@@ -37,20 +52,21 @@ void Individuals::setGene(BitVector* pBitVector)
     this->genes = pBitVector;
 }
 
-BitVector* Individuals::getGenes(){ cout << genes->Size() << endl;return this->genes;}
+BitVector* Individuals::getGenes()
+{
+
+    return genes;
+}
 
 
 
 int Individuals::getFitness() {
-    cout << "entro a GetFitness" << endl;
-    int d =0;
-    if ( d== 0) {                                  // error con _Fitness
-        cout << "tata" << endl;
-        d = FitnessCalculation::getFitness(this);
-        cout << "hol"<< endl;
-    }
-    cout << "_PopulationSize" << endl;
 
+    if ( _Fitness== 0) {          // error con _Fitness
+
+        cout << "fitness individual" << endl;
+        _Fitness = FitnessCalculation::getFitness(this);
+    }
     return _Fitness;
 }
 

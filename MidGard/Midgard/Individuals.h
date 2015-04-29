@@ -10,7 +10,7 @@ class Individuals
 {
 private:
     int _Fitness=0;
-
+    int _ID;
     BitVector* genes;
     int cantidadCualidades;
     //FitnessCalculation* FitnessCalc;
@@ -18,6 +18,11 @@ private:
 
 public:
     Individuals();
+    Individuals(int pID);
+    int getIndividualID();
+    void setIndividualID(int pID);
+
+
     BitVector *generateCromosoma();
     void createIndividual();
     void setGene(BitVector *pBitVector);

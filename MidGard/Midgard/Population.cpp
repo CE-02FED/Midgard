@@ -3,27 +3,26 @@ int Population::_ID =0;
 
 Population::Population(int pSizePopulation, bool pStart)
 {
-    _IndividualList = new lista_enlazada<Individuals>();
+   // _IndividualList = new lista_enlazada<Individuals>();
 
-     _PopulationSize = pSizePopulation;
-
-    _CantidadCualidades = Constants::_SkillsQuantity;
+     _PopulationSize = (int*) malloc(sizeof(int));
+     *_PopulationSize = Constants::MAXPOPULATION;
+    _CantidadCualidades = Constants::SKILLSQUANTITY;
 
     // Inicializa la poblacion
-    _Individuals [_PopulationSize] = new Individuals();
-
-
+    _Individuals [*_PopulationSize] = (Individuals*)calloc(*_PopulationSize,sizeof(Individuals));
 
     if (pStart)
     {
-        for(int i =0; i < _PopulationSize; i++) // Loop para crear los individuos de la poblacion
+        for(int i =0; i < Constants::MAXPOPULATION; i++) // Loop para crear los individuos de la poblacion
         {
             Individuals* newIndividual = new Individuals();
             newIndividual->createIndividual();
-            insertIndividualList(*newIndividual);            
+            insertIndividualList(newIndividual);
             // INGRESAR EL INDIVIDUO AL ARRAY O A LA LISTA
         }
     }
+
 }
 
 
@@ -39,11 +38,13 @@ Individuals* Population::getIndividualList(int pIndex)
 
 }
 
-void Population::insertIndividualList(Individuals pIndividual)
+void Population::insertIndividualList(Individuals* pIndividual)
 {
+    pIndividual->setIndividualID(_ID);
+    _Individuals[_ID] = pIndividual;
 
-    _IndividualList->add_Dato_Atras(pIndividual);
 
+    //_IndividualList->add_Dato_Atras(pIndividual);
 
     _ID++;
 
@@ -51,21 +52,22 @@ void Population::insertIndividualList(Individuals pIndividual)
 
 int Population::getPopulationSize()
 {
-    return this->_PopulationSize;
+    return Constants::MAXPOPULATION;
 }
 
 Individuals Population::getFittest()
 {
         Individuals* fittest = _Individuals[0];
+
+
         // Loop through individuals to find fittest
-        for (int i = 0; i < _PopulationSize; i++) {
+        for (int i = 0; i < Constants::MAXPOPULATION; i++) {
 
             if (fittest->getFitness() <= getIndividualbyIndex(i)->getFitness()) {
                 fittest = getIndividualbyIndex(i);                
-
             }
-
         }
+
 
 
         return *fittest;
@@ -73,8 +75,8 @@ Individuals Population::getFittest()
 
 int Population::getTotalFitness()
 {
-    int totalFitness =0;
-    for (int i = 0; i < _PopulationSize; i++) {
+    int totalFitness = 0;
+    for (int i = 0; i < Constants::MAXPOPULATION; i++) {
         totalFitness += _Individuals[i]->getFitness();
     }
     return totalFitness;
