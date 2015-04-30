@@ -4,6 +4,7 @@ CONFIG -= app_bundle
 CONFIG -= qt
 CONFIG += C++11
 CONFIG += thread
+QMAKE_CXXFLAGS += -fpermissive
 
 
 SOURCES += main.cpp \

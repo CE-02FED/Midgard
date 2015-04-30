@@ -9,7 +9,6 @@
 #define ochoBits 00000000
 #define cantidadBits 8
 
-using namespace std ;
 
 class BitVector
 {
@@ -29,10 +28,10 @@ public:
     void Flip  ();                    // cambia todos los bits (les da vuelta)
 
     void andOperator(int pIndex, size_t pMask);
-    void orOperator(int pIndex,size_t pMask);
+    void orOperator(int pIndex, unsigned char *pMask);
 
 
-    size_t getByIndex(int pIndex);
+    unsigned char getByIndex(int pIndex);
 
     void insertByIndex(int pIndex,size_t pBinData);
 
@@ -49,7 +48,7 @@ public:
 
   private:
 
-    unsigned char * _BitVectorData; // dato
+    unsigned char*  _BitVectorData; // dato
     size_t          _BitVectorSize; // Indica el tamaño del array de bits
 
 

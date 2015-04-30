@@ -1,12 +1,38 @@
 #include <iostream>
 #include "BitVector.h"
+#include "math.h"
 #include "Population.h"
 #include "Evolution.h"
+#include <stdlib.h>
+#include <stdio.h>
+
+
+
 using namespace std;
 
 
 int main()
 {
+   /* BitVector* d = new BitVector(10);
+
+
+    for (int i =0; i< 10 ; i++)
+    {
+        if (i=5){
+            d->insertByIndex(i,22);
+            cout << i << endl;
+        }
+        d->insertByIndex(i,66);
+    }
+
+    for (int i=0; i< 10; i++)
+    {
+        cout << to_string(d->getByIndex(i))<< endl;
+    }
+}*/
+
+
+
 
     Population* myPop = new Population(50, true);
 
@@ -18,16 +44,19 @@ int main()
             while (generationCount <300)
             {
                 generationCount++;
-                cout << "Generation: " << generationCount << " Fittest: " << myPop->getFittest().getFitness() << endl;
+
+                cout << "Generation: " << generationCount << " Fittest: " << (myPop->getFittest()->getFitness()) << endl;
+                cout << "fittest ID: " << endl;
+
                 *myPop = evolution->evolvePopulation(*myPop);
 
             }
             cout <<"Solution found!" << endl;
             cout <<"Generation: " << generationCount << endl;
-            cout << "Genes:"<< endl;
-            cout << myPop->getFittest().getFitness()<< endl;
+            cout << myPop->getFittest()->getFitness()<< endl;
 
         }
+
 
 
 

@@ -7,6 +7,7 @@
 #include "Constants.h"
 
 #define Mask 00000000
+#define partesDelaPoblacion 2
 
 
 class Evolution

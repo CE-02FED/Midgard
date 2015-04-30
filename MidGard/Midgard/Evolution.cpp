@@ -7,7 +7,9 @@ Evolution::Evolution()
 Population Evolution::evolvePopulation(Population pPopulation)
 {
     Population* newPopulation = new Population(Constants::MAXPOPULATION, false);
-    for (int i =0;i<pPopulation.getPopulationSize()/2;i++)
+    newPopulation->insertIndividualList(pPopulation.getFittest());
+
+    for (int i =0;i<(Constants::MAXPOPULATION/partesDelaPoblacion)+1;i++)
     {
         Individuals FatherA = fathersSelection(pPopulation);
         Individuals FatherB = fathersSelection(pPopulation);
@@ -18,10 +20,10 @@ Population Evolution::evolvePopulation(Population pPopulation)
 
         newPopulation->insertIndividualList(&newA);
         newPopulation->insertIndividualList(&newB);
-        // Añadir el nueevo individuo a la nueva poblacion
+
     }
 
-    for(int i =0;i <  newPopulation->getPopulationSize();i++)
+    for(int i =0;i < (newPopulation->getPopulationSize())+1;i++)
     {
         Mutation(newPopulation->getIndividualbyIndex(i));
     }
@@ -35,7 +37,7 @@ Individuals Evolution::fathersSelection(Population pPopulation)
     for(int i=0;i<_PoolFathersSize;i++)
     {
         int tmpNum = rand()%pPopulation.getPopulationSize();
-        Individuals* tmpIndividual = pPopulation.getIndividualbyIndex(tmpNum);
+        Individuals* tmpIndividual = pPopulation.getFittest();
         fathers->insertIndividualList(tmpIndividual);
     }
 
@@ -50,7 +52,7 @@ void Evolution::Mutation(Individuals* pIndividual)
     {
         if (rand()%50 <= _mutationRate)
         {
-            pIndividual->getGenes()->Flip(rand()%cantidadBits*Constants::SKILLSQUANTITY);
+            pIndividual->getGenes()->Flip(rand()%cantidadBits);
         }
     }
 }

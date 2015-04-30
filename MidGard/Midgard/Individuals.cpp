@@ -1,17 +1,23 @@
 #include "Individuals.h"
 
 
+
 Individuals::Individuals()
 {
     this->cantidadCualidades = Constants::SKILLSQUANTITY;
-    genes = new BitVector(cantidadCualidades);
+    _Genes = new BitVector(cantidadCualidades);
+    this->createIndividual();
+    this->_Fitness=0;
+
 }
 
 Individuals::Individuals(int pID)
 {
     this->cantidadCualidades = Constants::SKILLSQUANTITY;
-    genes = new BitVector(cantidadCualidades);
+    _Genes = new BitVector(cantidadCualidades);
     this->_ID = pID;
+    this->createIndividual();
+    this->_Fitness=0;
 }
 
 void Individuals::setIndividualID(int pID)
@@ -25,12 +31,10 @@ int Individuals::getIndividualID()
 }
 
 
-
 void Individuals::createIndividual()
 {
-    BitVector* Cromosoma = new BitVector(cantidadCualidades);
+    _Genes = generateCromosoma();
 
-    Cromosoma = generateCromosoma();
 }
 
 
@@ -40,22 +44,24 @@ BitVector *Individuals::generateCromosoma()
 
     for(int i =0; i< cantidadCualidades; i++)
     {
-       int Skill = rand()%255;
-       int tmpGen = DecToBn(Skill,1);
-       tmpCromosoma->insertByIndex(i,tmpGen); // se agrega cualidad de derecha a izquierda
+       int Skill = rand()%256;
+
+       tmpCromosoma->insertByIndex(i,Skill); // se agrega cualidad de derecha a izquierda
+       //std::cout<< "in Generate Cromosoma skill: " << std::to_string(tmpCromosoma->getByIndex(i)) << std::endl;
+
     }
     return tmpCromosoma;
 }
 
 void Individuals::setGene(BitVector* pBitVector)
 {
-    this->genes = pBitVector;
+    this->_Genes = pBitVector;
 }
 
 BitVector* Individuals::getGenes()
 {
 
-    return genes;
+    return _Genes;
 }
 
 
@@ -63,23 +69,12 @@ BitVector* Individuals::getGenes()
 int Individuals::getFitness() {
 
     if ( _Fitness== 0) {          // error con _Fitness
-
-        cout << "fitness individual" << endl;
-        _Fitness = FitnessCalculation::getFitness(this);
+        _Fitness = FitnessCalculation::getFitness(this->_Genes);
     }
+
     return _Fitness;
 }
 
-size_t Individuals::DecToBn(int pNum, int exp)
-{
-    if ( pNum == 0 ) return 0;
-    if ( pNum == 1 ) return 1;
 
-    if ( pNum % 2 == 0 )
-       return 0 + DecToBn(pNum / 2,exp*10) ;
-    else
-        return 1 + DecToBn(pNum / 2, exp*10);
-
-}
 
 

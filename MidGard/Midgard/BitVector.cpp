@@ -3,15 +3,16 @@
 BitVector::BitVector (int pSize)  // constructor
 {
   _BitVectorSize = pSize;
-  _BitVectorData = new unsigned char [_BitVectorSize];
+  _BitVectorData = (unsigned char*) calloc(pSize,cantidadBits);
+
   if (_BitVectorData == 0)
   {
-    cout << "** BitVector memory allocation failure -- terminating program.\n"<< endl;
+    std::cout << "** BitVector memory allocation failure -- terminating program.\n"<< std::endl;
     exit (EXIT_FAILURE);
   }
 
-  for (size_t i = 0; i < _BitVectorSize; ++i){
-    _BitVectorData[i] = (size_t)ochoBits;
+  for (int i = 0; i < _BitVectorSize; ++i){
+    _BitVectorData[i] = 0x00;
 
   }
 }
@@ -22,7 +23,7 @@ BitVector::BitVector (int pSize)  // constructor
        _BitVectorData = new unsigned char [_BitVectorSize];
        if (_BitVectorData == 0)
        {
-         cout << "** BitVector memory allocation failure -- terminating program.\n"<< endl;
+         std::cout << "** BitVector memory allocation failure -- terminating program.\n"<< std::endl;
          exit (EXIT_FAILURE);
        }
 
@@ -54,7 +55,7 @@ BitVector& BitVector::operator = (const BitVector& pRightAssignment)  //assignme
   return *this;
 }
 
-void BitVector::orOperator(int pIndex, size_t pMask)
+void BitVector::orOperator(int pIndex, unsigned char* pMask)
 {
      _BitVectorData[getBitVectorPosicion(pIndex)] |= bitMask(pIndex);
 }
@@ -95,12 +96,17 @@ void BitVector::Flip()
 
 void BitVector::insertByIndex(int pIndex,size_t pBinData)
 {
-    _BitVectorData[pIndex] =pBinData;
+    //std::cout << "BeforeInsert: "<< pBinData<< std::endl;
+    _BitVectorData[pIndex] = pBinData;
+
+    //std::cout << "afterINsert: "<<  std::to_string(_BitVectorData[pIndex])<< std::endl;
 }
 
-size_t BitVector::getByIndex(int pIndex)
+unsigned char BitVector::getByIndex(int pIndex)
 {
-    return (size_t)_BitVectorData[pIndex];
+
+    return  _BitVectorData[pIndex];
+
 
 }
 
@@ -120,11 +126,13 @@ size_t BitVector::getBitVectorPosicion (int pIndex) const
 {
   // retorna El indice / 8
   // mover hacia la derecha 3 espaciaos es equivalente y mas eficiente que dividir entre 8
+
+
   pIndex = pIndex >> 3;
 
   if (pIndex >= _BitVectorSize*cantidadBits)
   {
-    cout << "** BitVector error: pIndex out of range\n"<< endl;
+    std::cout << "** BitVector error: pIndex out of range\n"<< std::endl;
     exit (EXIT_FAILURE);
   }
   return pIndex;
@@ -132,6 +140,7 @@ size_t BitVector::getBitVectorPosicion (int pIndex) const
 
 unsigned char* BitVector::getArray()
 {
+
     return this->_BitVectorData;
 }
 

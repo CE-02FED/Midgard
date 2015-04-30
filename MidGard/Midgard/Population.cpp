@@ -10,7 +10,9 @@ Population::Population(int pSizePopulation, bool pStart)
     _CantidadCualidades = Constants::SKILLSQUANTITY;
 
     // Inicializa la poblacion
-    _Individuals [*_PopulationSize] = (Individuals*)calloc(*_PopulationSize,sizeof(Individuals));
+    //_Individuals [*_PopulationSize] = (Individuals*)calloc(*_PopulationSize,sizeof(Individuals));
+
+    _IndividualList = new lista_enlazada<Individuals>();
 
     if (pStart)
     {
@@ -28,7 +30,8 @@ Population::Population(int pSizePopulation, bool pStart)
 
 Individuals* Population::getIndividualbyIndex(int pIndex)
 {
-    return _Individuals[pIndex];
+    return & _IndividualList->getDatabyIndice(pIndex);
+    //return _Individuals[pIndex];
 }
 
 
@@ -41,10 +44,7 @@ Individuals* Population::getIndividualList(int pIndex)
 void Population::insertIndividualList(Individuals* pIndividual)
 {
     pIndividual->setIndividualID(_ID);
-    _Individuals[_ID] = pIndividual;
-
-
-    //_IndividualList->add_Dato_Atras(pIndividual);
+    _IndividualList->add_Dato_Atras(pIndividual);
 
     _ID++;
 
@@ -55,29 +55,34 @@ int Population::getPopulationSize()
     return Constants::MAXPOPULATION;
 }
 
-Individuals Population::getFittest()
+Individuals* Population::getFittest()
 {
-        Individuals* fittest = _Individuals[0];
+        //Individuals* fittest = _Individuals[0];
+
+        Individuals* fittest = &_IndividualList->getHead()->getData();
 
 
         // Loop through individuals to find fittest
         for (int i = 0; i < Constants::MAXPOPULATION; i++) {
 
             if (fittest->getFitness() <= getIndividualbyIndex(i)->getFitness()) {
-                fittest = getIndividualbyIndex(i);                
+                fittest = getIndividualbyIndex(i);
             }
+
         }
 
 
 
-        return *fittest;
+
+
+        return fittest;
     }
 
 int Population::getTotalFitness()
 {
     int totalFitness = 0;
     for (int i = 0; i < Constants::MAXPOPULATION; i++) {
-        totalFitness += _Individuals[i]->getFitness();
+        totalFitness += _IndividualList->getDatabyIndice(i).getFitness();
     }
     return totalFitness;
 

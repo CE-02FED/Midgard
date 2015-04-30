@@ -2,21 +2,18 @@
 
 FitnessCalculation::FitnessCalculation(){}
 
-int FitnessCalculation::getFitness(Individuals* pIndividual) // VERIFICAR BIEN
+int FitnessCalculation::getFitness(BitVector* pIndividualGenes) // VERIFICAR BIEN
 {
 
     int tmpFitness =0;
 
     for(size_t i=0; i< Constants::SKILLSQUANTITY; i++)
     {
-        BitVector* d = pIndividual->getGenes();
 
-        cout << "fitness calculation" << endl;
-        size_t numeroBinario = pIndividual->getGenes()->getByIndex(i);
-
-        int skillValue = BnToDec(numeroBinario);
+        unsigned char* skillValue = pIndividualGenes->getByIndex(i);
 
         tmpFitness+= skillValue;
+
 
     }
     return tmpFitness;
@@ -30,7 +27,7 @@ int FitnessCalculation::BnToDec(size_t pNum)
 {
     if(!veriBase(pNum))
     {
-        cout << "No es un numero binario" <<endl;
+        std::cout << "No es un numero binario" << std::endl;
         exit (EXIT_FAILURE);
     }
 
@@ -43,7 +40,15 @@ int FitnessCalculation::BnToDec(size_t pNum)
         pNum= pNum/10;
         exp+=1;
     }
-     return result;
+
+
+
+     std::string stringBinario = std::to_string(result);
+
+
+
+
+     return atoi(stringBinario.c_str());
 }
 
 bool FitnessCalculation::veriBase(size_t pNum)

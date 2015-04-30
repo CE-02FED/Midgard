@@ -4,14 +4,17 @@
 #include "BitVector.h"
 #include "Constants.h"
 #include "math.h"
+#include <stdlib.h>
+#include <ctime>
+#include <cstdlib>
 
 class FitnessCalculation;
 class Individuals
 {
 private:
-    int _Fitness=0;
+    int* _Fitness=0;
     int _ID;
-    BitVector* genes;
+    BitVector* _Genes;
     int cantidadCualidades;
     //FitnessCalculation* FitnessCalc;
     bool veriBase(size_t pNum);
