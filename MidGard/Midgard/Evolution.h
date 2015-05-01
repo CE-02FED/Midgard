@@ -13,8 +13,8 @@
 class Evolution
 {
 private:
-    double _mutationRate = 0.1;
-    double _uniformRate = 0.5;
+    double _mutationRate = 2.0;
+    double _uniformRate = 0.9;
     bool _PreserveTheBest = true; // Mantiene al mejor individuo
     int _PoolFathersSize = 10; // Cantidad de miembros de un grupo para seleccionar los padres
 

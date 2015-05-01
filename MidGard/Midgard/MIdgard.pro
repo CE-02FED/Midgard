@@ -30,5 +30,9 @@ HEADERS += \
     Constants.h \
     docXML.h \
     lista_enlazada.h \
-    nodo.h
+    nodo.h \
+    randomclass.h \
+    Cola.h \
+    NodoArbolBinario.h \
+    ArbolBinario.h
 

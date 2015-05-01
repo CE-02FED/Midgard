@@ -7,6 +7,7 @@
 #include <stdlib.h>
 #include <ctime>
 #include <cstdlib>
+#include "randomclass.h"
 
 class FitnessCalculation;
 class Individuals

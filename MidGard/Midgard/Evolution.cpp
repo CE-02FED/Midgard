@@ -9,7 +9,8 @@ Population Evolution::evolvePopulation(Population pPopulation)
     Population* newPopulation = new Population(Constants::MAXPOPULATION, false);
     newPopulation->insertIndividualList(pPopulation.getFittest());
 
-    for (int i =0;i<(Constants::MAXPOPULATION/partesDelaPoblacion)+1;i++)
+
+    for (int i =0;i<(Constants::MAXPOPULATION);i++)
     {
         Individuals FatherA = fathersSelection(pPopulation);
         Individuals FatherB = fathersSelection(pPopulation);
@@ -23,7 +24,7 @@ Population Evolution::evolvePopulation(Population pPopulation)
 
     }
 
-    for(int i =0;i < (newPopulation->getPopulationSize())+1;i++)
+    for(int i =0;i < (Constants::MAXPOPULATION);i++)
     {
         Mutation(newPopulation->getIndividualbyIndex(i));
     }
@@ -50,9 +51,9 @@ void Evolution::Mutation(Individuals* pIndividual)
 {
     for(int i=0;i < Constants::SKILLSQUANTITY ; i++)
     {
-        if (rand()%50 <= _mutationRate)
+        if (rand()%100 <= _mutationRate)
         {
-            pIndividual->getGenes()->Flip(rand()%cantidadBits);
+            pIndividual->getGenes()->Flip(rand()%80);
         }
     }
 }
@@ -68,11 +69,14 @@ Individuals* Evolution::CrossOver(Individuals pFatherA, Individuals pFatherB)
     Individuals* tmpIndividuoA = new Individuals();
     Individuals* tmpIndividuoB = new Individuals();
 
-    *newIndividualA = pFatherA; // se le asigan los genes del padre al hijo A
-    *newIndividualB =pFatherB; // se le asignan los genes del padre al hijo B
+    std::cout << "Father A Fitness: " <<std::to_string(pFatherA.getFitness()) << endl;
+    std::cout << "Father B Fitness: " <<std::to_string(pFatherB.getFitness()) << endl;
 
-    *tmpIndividuoA = pFatherA; //se le asignan los genes del padre al hijo A
-    *tmpIndividuoB = pFatherB; //se le asignan los genes del padre al hijo B
+    newIndividualA->setGene(pFatherA.getGenes()); // se le asigan los genes del padre al hijo A
+    newIndividualB->setGene(pFatherB.getGenes()); // se le asignan los genes del padre al hijo B
+
+    tmpIndividuoA->setGene( pFatherA.getGenes()); //se le asignan los genes del padre al hijo A
+    tmpIndividuoB->setGene( pFatherB.getGenes()); //se le asignan los genes del padre al hijo B
 
             // Loop through genes
     for (int Indice = 0; Indice < Constants::SKILLSQUANTITY ; Indice++)
@@ -95,6 +99,10 @@ Individuals* Evolution::CrossOver(Individuals pFatherA, Individuals pFatherB)
 
 
     }
+
+    std::cout << "HijoA Fitness: " <<std::to_string(tmpIndividuoA->getFitness()) << endl;
+    std::cout << "HijoB Fitness: " <<std::to_string(tmpIndividuoB->getFitness()) << endl;
+
     Individuals* GroupNewIndividuals[] = {newIndividualA,tmpIndividuoA};
 
     return *GroupNewIndividuals;
