@@ -10,10 +10,7 @@ public:
     const static int MAXSKILL = 255;
     const static int MAXPOPULATION= 10;
     const static size_t DEFAULTELEMENTSIZE = 8;
-
-
-
-
+    const static int START = 0;
 };
 
 
