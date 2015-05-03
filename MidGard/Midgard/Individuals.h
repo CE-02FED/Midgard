@@ -5,17 +5,14 @@
 #include "Constants.h"
 #include "math.h"
 #include <stdlib.h>
-#include <ctime>
-#include <cstdlib>
-#include "randomclass.h"
 
 class FitnessCalculation;
 class Individuals
 {
 private:
-    int* _Fitness=0;
-    int _ID;
-    BitVector* _Genes;
+    int* _Fitness;
+    int* _ID;
+    BitVector* genes;
     int cantidadCualidades;
     //FitnessCalculation* FitnessCalc;
     bool veriBase(size_t pNum);
