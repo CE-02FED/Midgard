@@ -3,16 +3,14 @@
 #include "FitnessCalculation.h"
 #include "BitVector.h"
 #include "Constants.h"
-#include "math.h"
-#include <stdlib.h>
-#include <ctime>
-#include <cstdlib>
-#include "randomclass.h"
+
+
+#define maxSkill 255
 
 class FitnessCalculation;
 class Individuals
 {
-private:
+protected:
     int* _Fitness=0;
     int _ID;
     BitVector* _Genes;
@@ -31,11 +29,9 @@ public:
     void createIndividual();
     void setGene(BitVector *pBitVector);
     BitVector* getGenes();
-
-    size_t DecToBn(int pNum, int exp);
-    int BnToDec(unsigned long pNum);
-
     int getFitness();
+
+    int getCantidadCualidades();
 
 };
 

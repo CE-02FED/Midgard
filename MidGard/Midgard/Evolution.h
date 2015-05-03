@@ -3,11 +3,13 @@
 
 #include "Individuals.h"
 #include "Population.h"
-#include "random"
+#include "randomClass.h"
 #include "Constants.h"
 
-#define Mask 00000000
+#define Mask 1
 #define partesDelaPoblacion 2
+#define mutationLowLimit 0.0
+#define mutationHightLimit 10.5
 
 
 class Evolution

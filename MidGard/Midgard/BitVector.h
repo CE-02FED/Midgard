@@ -30,7 +30,7 @@ public:
     size_t getBitVectorPosicion (int pIndex) const; // se encargan de localizar en que espacio del bit vector se encuentra el bit en particular
 
     // la mascara necesaria para localizar el bit en particular
-    const unsigned char bitMask       (int pIndex) ;// retorna el valor del bit indicado por el indice
+    unsigned char const bitMask       (int pIndex) ;// retorna el valor del bit indicado por el indice
     unsigned char *getArray();
 
   private:

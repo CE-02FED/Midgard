@@ -5,23 +5,21 @@ Population::Population(int pSizePopulation, bool pStart)
 {
    // _IndividualList = new lista_enlazada<Individuals>();
 
-     _PopulationSize = (int*) malloc(sizeof(int));
-     *_PopulationSize = Constants::MAXPOPULATION;
+     //_PopulationSize = (int*) malloc(sizeof(int));
+    _PopulationSize = pSizePopulation;
     _CantidadCualidades = Constants::SKILLSQUANTITY;
 
-    // Inicializa la poblacion
-    //_Individuals [*_PopulationSize] = (Individuals*)calloc(*_PopulationSize,sizeof(Individuals));
 
     _IndividualList = new lista_enlazada<Individuals>();
 
     if (pStart)
     {
-        for(int i =0; i < Constants::MAXPOPULATION; i++) // Loop para crear los individuos de la poblacion
+        for(int i =0; i < _PopulationSize; i++) // Loop para crear los individuos de la poblacion
         {
             Individuals* newIndividual = new Individuals();
             newIndividual->createIndividual();
             insertIndividualList(newIndividual);
-            // INGRESAR EL INDIVIDUO AL ARRAY O A LA LISTA
+            // INGRESAR EL INDIVIDUO A LA LISTA
         }
     }
 
@@ -31,18 +29,15 @@ Population::Population(int pSizePopulation, bool pStart)
 Individuals* Population::getIndividualbyIndex(int pIndex)
 {
     return & _IndividualList->getDatabyIndice(pIndex);
-    //return _Individuals[pIndex];
-}
-
-
-Individuals* Population::getIndividualList(int pIndex)
-{
-    //Individuals tmp = _IndividualList[pIndex];
 
 }
+
+
+
 
 void Population::insertIndividualList(Individuals* pIndividual)
 {
+
     pIndividual->setIndividualID(_ID);
     _IndividualList->add_Dato_Atras(pIndividual);
 
@@ -63,15 +58,14 @@ Individuals* Population::getFittest()
 
 
         // Loop through individuals to find fittest
-        for (int i = 0; i < Constants::MAXPOPULATION; i++) {
+        for (int i = 0; i < (this->_PopulationSize); i++)
+        {
 
-            if (fittest->getFitness() <= getIndividualbyIndex(i)->getFitness()) {
+            if (fittest->getFitness() <= getIndividualbyIndex(i)->getFitness())
+            {
                 fittest = getIndividualbyIndex(i);
             }
-
         }
-
-
 
 
 

@@ -10,9 +10,10 @@ Population Evolution::evolvePopulation(Population pPopulation)
     newPopulation->insertIndividualList(pPopulation.getFittest());
 
 
-    for (int i =0;i<(Constants::MAXPOPULATION);i++)
+    for (int i =0;i<((Constants::MAXPOPULATION)/2);i++)
     {
         Individuals FatherA = fathersSelection(pPopulation);
+
         Individuals FatherB = fathersSelection(pPopulation);
         Individuals* newIndividualsArray = CrossOver(FatherA, FatherB);
 
@@ -20,12 +21,15 @@ Population Evolution::evolvePopulation(Population pPopulation)
         Individuals& newB = newIndividualsArray[1];
 
         newPopulation->insertIndividualList(&newA);
+
         newPopulation->insertIndividualList(&newB);
 
     }
 
-    for(int i =0;i < (Constants::MAXPOPULATION);i++)
+
+    for(int i =0;i < newPopulation->getPopulationSize();i++)
     {
+
         Mutation(newPopulation->getIndividualbyIndex(i));
     }
     return *newPopulation;
@@ -35,12 +39,15 @@ Individuals Evolution::fathersSelection(Population pPopulation)
 {
     Population* fathers = new Population(_PoolFathersSize,false);
 
+
     for(int i=0;i<_PoolFathersSize;i++)
-    {
-        int tmpNum = rand()%pPopulation.getPopulationSize();
-        Individuals* tmpIndividual = pPopulation.getFittest();
+    {        
+        int tmpNum = rand()%pPopulation.getPopulationSize();       
+        Individuals* tmpIndividual = pPopulation.getFittest();        
         fathers->insertIndividualList(tmpIndividual);
+
     }
+
 
     Individuals bestIndividual = fathers->getFittest();
     return bestIndividual;
@@ -51,9 +58,9 @@ void Evolution::Mutation(Individuals* pIndividual)
 {
     for(int i=0;i < Constants::SKILLSQUANTITY ; i++)
     {
-        if (rand()%100 <= _mutationRate)
+        if (rand()%20 <= _mutationRate)
         {
-            pIndividual->getGenes()->Flip(rand()%80);
+            pIndividual->getGenes()->Flip(rand()%79);
         }
     }
 }
@@ -69,8 +76,8 @@ Individuals* Evolution::CrossOver(Individuals pFatherA, Individuals pFatherB)
     Individuals* tmpIndividuoA = new Individuals();
     Individuals* tmpIndividuoB = new Individuals();
 
-    std::cout << "Father A Fitness: " <<std::to_string(pFatherA.getFitness()) << endl;
-    std::cout << "Father B Fitness: " <<std::to_string(pFatherB.getFitness()) << endl;
+   // std::cout << "Father A Fitness: " <<std::to_string(pFatherA.getFitness()) << endl;
+    //std::cout << "Father B Fitness: " <<std::to_string(pFatherB.getFitness()) << endl;
 
     newIndividualA->setGene(pFatherA.getGenes()); // se le asigan los genes del padre al hijo A
     newIndividualB->setGene(pFatherB.getGenes()); // se le asignan los genes del padre al hijo B
@@ -82,8 +89,13 @@ Individuals* Evolution::CrossOver(Individuals pFatherA, Individuals pFatherB)
     for (int Indice = 0; Indice < Constants::SKILLSQUANTITY ; Indice++)
     {
         int tmpPuntoCruce = rand()%cantidadBits;
-        size_t maskA = Mask << tmpPuntoCruce;
-        size_t maskB = ~maskA;
+
+        size_t tmpMask = (char) Mask;
+        unsigned char maskA = (tmpMask << tmpPuntoCruce);
+
+        unsigned char maskB = ~(maskA);
+
+        // los fitness de los hijos son iguales
 
         newIndividualA->getGenes()->andOperator(Indice,maskA); // se le aplica un AND la mask A a los genes del padre A
         newIndividualB->getGenes()->andOperator(Indice,maskB); // se le aplica un AND la mask B y a los genes del padre B
@@ -100,8 +112,8 @@ Individuals* Evolution::CrossOver(Individuals pFatherA, Individuals pFatherB)
 
     }
 
-    std::cout << "HijoA Fitness: " <<std::to_string(tmpIndividuoA->getFitness()) << endl;
-    std::cout << "HijoB Fitness: " <<std::to_string(tmpIndividuoB->getFitness()) << endl;
+    //std::cout << "HijoA Fitness: " <<std::to_string(newIndividualA->getFitness()) << endl;
+    //std::cout << "HijoB Fitness: " <<std::to_string(tmpIndividuoA->getFitness()) << endl;
 
     Individuals* GroupNewIndividuals[] = {newIndividualA,tmpIndividuoA};
 

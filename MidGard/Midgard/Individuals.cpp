@@ -38,6 +38,23 @@ void Individuals::createIndividual()
 }
 
 
+/**
+
+ * @brief Individuals::generateCromosoma: Genera el cromosoma del individuo
+ *
+ * La casilla Indice =0 del array representará la Vida
+ * La casilla Indice =1 del array representará la Inteligencia
+ * La casilla Indice =2 del array representará el Ataque
+ * La casilla Indice =3 del array representará la Defensa
+ * La casilla Indice =4 del array representará la Velocidad de ataque
+ * La casilla Indice =5 del array representará la Magia
+ * La casilla Indice =6 del array representará la Energia Vital
+ * La casilla Indice =7 del array representará la Supersticion
+ * La casilla Indice =8 del array representará el Sacrificio
+ * La casilla Indice =9 del array representará la Invocacion
+ *
+ * @return El BitVector Con el cromosoma de dicho individuo
+ */
 BitVector *Individuals::generateCromosoma()
 {
     BitVector* tmpCromosoma = new BitVector(cantidadCualidades);

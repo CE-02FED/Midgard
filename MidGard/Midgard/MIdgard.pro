@@ -14,7 +14,13 @@ SOURCES += main.cpp \
     FitnessCalculation.cpp \
     Individuals.cpp \
     docXML.cpp \
-    pugixml.cpp
+    pugixml.cpp \
+    Elves.cpp \
+    DarkElves.cpp \
+    Giants.cpp \
+    Dwarves.cpp \
+    GameIndividual.cpp \
+    randomClass.cpp
 
 OTHER_FILES += \
     deployment.pri \
@@ -31,8 +37,13 @@ HEADERS += \
     docXML.h \
     lista_enlazada.h \
     nodo.h \
-    randomclass.h \
     Cola.h \
     NodoArbolBinario.h \
-    ArbolBinario.h
+    ArbolBinario.h \
+    dwarves.h \
+    Elves.h \
+    DarkElves.h \
+    Giants.h \
+    GameIndividual.h \
+    randomClass.h
 

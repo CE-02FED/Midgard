@@ -12,10 +12,10 @@
 
 class Population
 {
-private:
+protected:
     Individuals* _Individuals[];
     int _CantidadCualidades;
-    int* _PopulationSize=0;
+    int _PopulationSize;
     //std::unordered_map <int,Individuals>* _IndividualList;
     lista_enlazada<Individuals>* _IndividualList;
 
