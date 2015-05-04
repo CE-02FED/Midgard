@@ -13,6 +13,9 @@ class Individuals
 protected:
     int* _Fitness=0;
     int _ID;
+    int _MotherID = -1;
+    int _FatherID = -1;
+
     BitVector* _Genes;
     int cantidadCualidades;
     //FitnessCalculation* FitnessCalc;
@@ -23,6 +26,8 @@ public:
     Individuals(int pID);
     int getIndividualID();
     void setIndividualID(int pID);
+    void setFathers(int pIDFather, int pIDMother);
+    int getFathers();
 
 
     BitVector *generateCromosoma();

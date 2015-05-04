@@ -1,9 +1,10 @@
-#ifndef ELVES_H
-#define ELVES_H
+#ifndef DWARVES_H
+#define DWARVES_H
+
 #include "Population.h"
 #include "GameIndividual.h"
 
-class Elves : public Population
+class Dwarves:public Population
 {
 private:
     lista_enlazada<GameIndividual>* _IndividualList;
@@ -12,11 +13,6 @@ private:
                                             //EnergiaVital,   Supersticion, Sacrificio,  Invocacion.
                                               PrioridadNormal,PrioridadAlta,PrioridadBaja,PrioridadAlta};
 public:
-    Elves(int pSizePopulation, bool pStart);
+    Dwarves(int pSizePopulation, bool pStart);
 };
-
-#endif // ELVES_H
-
-
-
-
+#endif // DWARVES_H

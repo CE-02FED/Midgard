@@ -1,43 +1,40 @@
 #include "Individuals.h"
 
 
+
 Individuals::Individuals()
 {
     this->cantidadCualidades = Constants::SKILLSQUANTITY;
-    genes = new BitVector(cantidadCualidades);
-    _ID = (int*) malloc(sizeof(int));
-    *_ID = 0;
-     _Fitness = (int*) malloc(sizeof(int));
-     *_Fitness = 0;
+    _Genes = new BitVector(cantidadCualidades);
+    this->createIndividual();
+    this->_Fitness=0;
+
 }
 
 Individuals::Individuals(int pID)
 {
     this->cantidadCualidades = Constants::SKILLSQUANTITY;
-    genes = new BitVector(cantidadCualidades);
-    _ID = (int*) malloc(sizeof(int));
-    *_ID = pID;
-    _Fitness = (int*) malloc(sizeof(int));
-    *_Fitness = 0;
+    _Genes = new BitVector(cantidadCualidades);
+    this->_ID = pID;
+    this->createIndividual();
+    this->_Fitness=0;
 }
 
 void Individuals::setIndividualID(int pID)
 {
-    *_ID = pID;
+    this->_ID = pID;
 }
 
 int Individuals::getIndividualID()
 {
-    return *_ID;
+    return this->_ID;
 }
-
 
 
 void Individuals::createIndividual()
 {
-    BitVector* Cromosoma = new BitVector(cantidadCualidades);
+    _Genes = generateCromosoma();
 
-    Cromosoma = generateCromosoma();
 }
 
 
@@ -64,46 +61,48 @@ BitVector *Individuals::generateCromosoma()
 
     for(int i =0; i< cantidadCualidades; i++)
     {
-       int Skill = rand()%255;
-       int tmpGen = DecToBn(Skill,1);
-       tmpCromosoma->insertByIndex(i,tmpGen); // se agrega cualidad de derecha a izquierda
+       int Skill = rand()%256;
+
+       tmpCromosoma->insertByIndex(i,Skill); // se agrega cualidad de derecha a izquierda
+       //std::cout<< "in Generate Cromosoma skill: " << std::to_string(tmpCromosoma->getByIndex(i)) << std::endl;
+
     }
     return tmpCromosoma;
 }
 
 void Individuals::setGene(BitVector* pBitVector)
 {
-    this->genes = pBitVector;
+    this->_Genes = pBitVector;
 }
 
 BitVector* Individuals::getGenes()
 {
 
-    return genes;
+    return _Genes;
 }
 
 
 
 int Individuals::getFitness() {
 
-    if (*_Fitness== 0) {          // error con _Fitness
-
-        cout << "fitness individual" << endl;
-        *_Fitness = FitnessCalculation::getFitness(this);
+    if ( _Fitness== 0) {          // error con _Fitness
+        _Fitness = FitnessCalculation::getFitness(this->_Genes);
     }
-    return *_Fitness;
+
+    return _Fitness;
 }
 
-size_t Individuals::DecToBn(int pNum, int exp)
+void Individuals::setFathers(int pIDFather, int pIDMother)
 {
-    if ( pNum == 0 ) return 0;
-    if ( pNum == 1 ) return 1;
-
-    if ( pNum % 2 == 0 )
-       return 0 + DecToBn(pNum / 2,exp*10) ;
-    else
-        return 1 + DecToBn(pNum / 2, exp*10);
-
+    this->_FatherID = pIDFather;
+    this->_MotherID = pIDMother;
 }
+
+int Individuals::getFathers()
+{
+    int tmpFathersArray[] = {this->_FatherID, this->_MotherID};
+    return  *tmpFathersArray;
+}
+
 
 

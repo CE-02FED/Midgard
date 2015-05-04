@@ -2,8 +2,8 @@
 
 Giants::Giants(int pSizePopulation, bool pStart) : Population(pSizePopulation,pStart)
 {
-    _PopulationSize = (int*) malloc(sizeof(int));
-    _PopulationSize = Constants::MAXPOPULATION;
+    _PopulationSize = pSizePopulation;
+
    _CantidadCualidades = Constants::SKILLSQUANTITY;
 
    // Inicializa la poblacion
@@ -13,13 +13,14 @@ Giants::Giants(int pSizePopulation, bool pStart) : Population(pSizePopulation,pS
 
    if (pStart)
    {
-       for(int i =0; i < Constants::MAXPOPULATION; i++) // Loop para crear los individuos de la poblacion
+       for(int i =0; i < this->_PopulationSize; i++) // Loop para crear los individuos de la poblacion
        {
 
            GameIndividual* newIndividual = new GameIndividual(_Skills);
            insertIndividualList(newIndividual);
        }
    }
+       std::cout <<" psize" <<_PopulationSize <<std::endl;
 }
 
 

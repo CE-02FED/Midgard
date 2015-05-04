@@ -40,10 +40,11 @@ HEADERS += \
     Cola.h \
     NodoArbolBinario.h \
     ArbolBinario.h \
-    dwarves.h \
     Elves.h \
     DarkElves.h \
     Giants.h \
     GameIndividual.h \
-    randomClass.h
+    randomClass.h \
+    matriz.h \
+    Dwarves.h
 

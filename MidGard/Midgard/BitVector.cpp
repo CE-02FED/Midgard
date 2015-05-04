@@ -3,15 +3,16 @@
 BitVector::BitVector (int pSize)  // constructor
 {
   _BitVectorSize = pSize;
-  _BitVectorData = new unsigned char [_BitVectorSize];
+  _BitVectorData = (unsigned char*) calloc(pSize,cantidadBits);
+
   if (_BitVectorData == 0)
   {
-    cout << "** BitVector memory allocation failure -- terminating program.\n"<< endl;
-    //exit (EXIT_FAILURE);
+    std::cout << "** BitVector memory allocation failure -- terminating program.\n"<< std::endl;
+    exit (EXIT_FAILURE);
   }
 
-  for (size_t i = 0; i < _BitVectorSize; ++i){
-    _BitVectorData[i] = (size_t)ochoBits;
+  for (int i = 0; i < _BitVectorSize; ++i){
+    _BitVectorData[i] = 0x00;
 
   }
 }
@@ -22,8 +23,8 @@ BitVector::BitVector (int pSize)  // constructor
        _BitVectorData = new unsigned char [_BitVectorSize];
        if (_BitVectorData == 0)
        {
-         cout << "** BitVector memory allocation failure -- terminating program.\n"<< endl;
-         //exit (EXIT_FAILURE);
+         std::cout << "** BitVector memory allocation failure -- terminating program.\n"<< std::endl;
+         exit (EXIT_FAILURE);
        }
 
        for (size_t i = 0; i < _BitVectorSize; ++i){
@@ -45,7 +46,7 @@ BitVector& BitVector::operator = (const BitVector& pRightAssignment)  //assignme
       if (_BitVectorData == 0)
       {
         //std::cerr << "** BitVector memory allocation failure -- terminating program.\n";
-        //exit (EXIT_FAILURE);
+        exit (EXIT_FAILURE);
       }
     }
     for (size_t i = 0; i < _BitVectorSize; ++i)
@@ -54,7 +55,7 @@ BitVector& BitVector::operator = (const BitVector& pRightAssignment)  //assignme
   return *this;
 }
 
-void BitVector::orOperator(int pIndex, size_t pMask)
+void BitVector::orOperator(int pIndex, unsigned char* pMask)
 {
      _BitVectorData[getBitVectorPosicion(pIndex)] |= bitMask(pIndex);
 }
@@ -80,28 +81,32 @@ void BitVector::Unset(size_t pIndex)
     _BitVectorData[getBitVectorPosicion(pIndex)] ^= bitMask(pIndex);
 }
 
-void BitVector::Flip(size_t pIndex)
+void BitVector::Flip(int pIndex)
 {
+    std::cout<< "entro bitVec" << std::endl;
      _BitVectorData[getBitVectorPosicion(pIndex)] = ~_BitVectorData[getBitVectorPosicion(pIndex)];
+
 }
 
 void BitVector::Flip()
 {
+
     for (int i =0; i< _BitVectorSize*cantidadBits ; i++){
      _BitVectorData[getBitVectorPosicion(i)] = ~_BitVectorData[getBitVectorPosicion(i)];
+
     }
 }
 
 
-void BitVector::insertByIndex(int pIndex,size_t pBinData)
+void BitVector::insertByIndex(int pIndex,unsigned char pBinData)
 {
-    _BitVectorData[pIndex] =pBinData;
+    _BitVectorData[pIndex] = pBinData;
 }
 
-size_t BitVector::getByIndex(int pIndex)
-{
-    return (size_t)_BitVectorData[pIndex];
 
+unsigned char BitVector::getByIndex(int pIndex)
+{
+    return  _BitVectorData[pIndex];
 }
 
 size_t BitVector::Size()
@@ -116,22 +121,24 @@ size_t BitVector::Size()
  * @param pIndex: indice del "bit" al cual se desea acceder del bitVector
  * @return el indice del array al que se desea ingresar
  */
-size_t BitVector::getBitVectorPosicion (int pIndex) const
+int BitVector::getBitVectorPosicion(int pIndex) const
 {
   // retorna El indice / 8
   // mover hacia la derecha 3 espaciaos es equivalente y mas eficiente que dividir entre 8
+  std::cout<< "entro getBit" << std::endl;
   pIndex = pIndex >> 3;
 
   if (pIndex >= _BitVectorSize*cantidadBits)
   {
-    cout << "** BitVector error: pIndex out of range\n"<< endl;
-    //exit (EXIT_FAILURE);
+    std::cout << "** BitVector error: pIndex out of range\n"<< std::endl;
+    exit (EXIT_FAILURE);
   }
   return pIndex;
 }
 
 unsigned char* BitVector::getArray()
 {
+
     return this->_BitVectorData;
 }
 

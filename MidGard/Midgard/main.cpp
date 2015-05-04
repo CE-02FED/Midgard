@@ -2,6 +2,10 @@
 #include "BitVector.h"
 #include "Population.h"
 #include "Evolution.h"
+#include "Giants.h"
+#include "DarkElves.h"
+#include "Elves.h"
+#include "Dwarves.h"
 
 
 
@@ -14,7 +18,7 @@ using namespace std;
 int main()
 {
     srand(time(0));
-    Population* myPop = new Population(50, true);
+    DarkElves* myPop = new DarkElves(50, true);
 
 
 
@@ -22,7 +26,7 @@ int main()
 
             // Evolve our population until we reach an optimum solution
             int generationCount = 0;
-            while (generationCount <200)
+            while (generationCount <30)
             {
                 generationCount++;
 
@@ -30,7 +34,7 @@ int main()
 
 
 
-                *myPop = evolution->evolvePopulation(*myPop);
+                myPop = &evolution->evolvePopulation(*myPop);
 
             }
             cout <<"Solution found!" << endl;

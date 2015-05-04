@@ -47,35 +47,31 @@ void Population::insertIndividualList(Individuals* pIndividual)
 
 int Population::getPopulationSize()
 {
-    return Constants::MAXPOPULATION;
+    return _PopulationSize;
 }
 
 Individuals* Population::getFittest()
 {
-        //Individuals* fittest = _Individuals[0];
-
-        Individuals* fittest = &_IndividualList->getHead()->getData();
-
+        Nodo<Individuals>* tmpNodo = _IndividualList->getHead();
+        Individuals fittest = tmpNodo;
 
         // Loop through individuals to find fittest
         for (int i = 0; i < (this->_PopulationSize); i++)
         {
 
-            if (fittest->getFitness() <= getIndividualbyIndex(i)->getFitness())
+            if (fittest.getFitness() <= tmpNodo->getData().getFitness())
             {
-                fittest = getIndividualbyIndex(i);
+                fittest = tmpNodo->getData();
             }
+            tmpNodo = tmpNodo->getNext();
         }
-
-
-
-        return fittest;
+        return &fittest;
     }
 
 int Population::getTotalFitness()
 {
     int totalFitness = 0;
-    for (int i = 0; i < Constants::MAXPOPULATION; i++) {
+    for (int i = 0; i < _PopulationSize; i++) {
         totalFitness += _IndividualList->getDatabyIndice(i).getFitness();
     }
     return totalFitness;
