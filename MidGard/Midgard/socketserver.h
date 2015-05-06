@@ -23,15 +23,15 @@ class SocketServer
 {
 public:
     SocketServer();
-    void *run();
+    static void *run();
     void setMensaje(const char *msn);
 private:
-    int descriptor;
-    sockaddr_in info;
-    bool crear_Socket();
-    bool ligar_kernel();
+    static int descriptor;
+    static sockaddr_in info;
+    static bool crear_Socket();
+    static bool ligar_kernel();
     static void * controladorCliente(void *obj);
-    vector<int> clientes;
+    static vector<int> clientes;
 };
 
 #endif // SOCKETSERVER_H

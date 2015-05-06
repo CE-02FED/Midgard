@@ -83,7 +83,7 @@ void BitVector::Unset(size_t pIndex)
 
 void BitVector::Flip(int pIndex)
 {
-    std::cout<< "entro bitVec" << std::endl;
+
      _BitVectorData[getBitVectorPosicion(pIndex)] = ~_BitVectorData[getBitVectorPosicion(pIndex)];
 
 }
@@ -125,7 +125,7 @@ int BitVector::getBitVectorPosicion(int pIndex) const
 {
   // retorna El indice / 8
   // mover hacia la derecha 3 espaciaos es equivalente y mas eficiente que dividir entre 8
-  std::cout<< "entro getBit" << std::endl;
+
   pIndex = pIndex >> 3;
 
   if (pIndex >= _BitVectorSize*cantidadBits)

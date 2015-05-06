@@ -6,7 +6,7 @@
 #include "DarkElves.h"
 #include "Elves.h"
 #include "Dwarves.h"
-
+#include "socketserver.h"
 
 
 
@@ -17,7 +17,19 @@ using namespace std;
 
 int main()
 {
-    srand(time(0));
+
+    SocketServer* d = new SocketServer();
+
+
+     while(true)
+     {
+         cout<<"hola"<< endl;
+     };
+
+
+
+}
+   /* srand(time(0));
     DarkElves* myPop = new DarkElves(50, true);
 
 
@@ -26,7 +38,7 @@ int main()
 
             // Evolve our population until we reach an optimum solution
             int generationCount = 0;
-            while (generationCount <30)
+            while (generationCount <300)
             {
                 generationCount++;
 
@@ -42,7 +54,7 @@ int main()
             cout << myPop->getFittest()->getFitness()<< endl;
 
         }
-
+*/
 
 
 

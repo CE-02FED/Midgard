@@ -20,7 +20,10 @@ SOURCES += main.cpp \
     Giants.cpp \
     Dwarves.cpp \
     GameIndividual.cpp \
-    randomClass.cpp
+    randomClass.cpp \
+    socketserver.cpp \
+    socketcliente.cpp \
+    crazythread.cpp
 
 OTHER_FILES += \
     deployment.pri \
@@ -46,5 +49,8 @@ HEADERS += \
     GameIndividual.h \
     randomClass.h \
     matriz.h \
-    Dwarves.h
+    Dwarves.h \
+    socketserver.h \
+    socketcliente.h \
+    crazythread.h
 

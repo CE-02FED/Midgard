@@ -61,7 +61,7 @@ void Evolution::Mutation(Individuals* pIndividual)
         if (randomClass::randRange(0.0,10.0) <= _mutationRate)
         {
 
-           // pIndividual->getGenes()->Flip(randomClass::getRandom(80));
+            //pIndividual->getGenes()->Flip(randomClass::getRandom(80));
             //std::cout<< "entro mut saio flip" << std::endl;
         }
 
@@ -82,7 +82,7 @@ Individuals* Evolution::CrossOver(Individuals pFatherA, Individuals pFatherB)
    // std::cout << "Father A Fitness: " <<std::to_string(pFatherA.getFitness()) << endl;
     //std::cout << "Father B Fitness: " <<std::to_string(pFatherB.getFitness()) << endl;
 
-    /*newIndividualA->setGene(pFatherA.getGenes()); // se le asigan los genes del padre al hijo A
+    newIndividualA->setGene(pFatherA.getGenes()); // se le asigan los genes del padre al hijo A
     newIndividualB->setGene(pFatherB.getGenes()); // se le asignan los genes del padre al hijo B
 
     tmpIndividuoA->setGene( pFatherA.getGenes()); //se le asignan los genes del padre al hijo A
@@ -125,10 +125,13 @@ Individuals* Evolution::CrossOver(Individuals pFatherA, Individuals pFatherB)
     std::cout << "HijoA Fitness: " <<std::to_string(newIndividualA->getFitness()) << endl;
     std::cout << "HijoB Fitness: " <<std::to_string(tmpIndividuoA->getFitness()) << endl;
 
-    Individuals* GroupNewIndividuals[] = {newIndividualA,tmpIndividuoA};*/
+    Individuals* GroupNewIndividuals[] = {newIndividualA,tmpIndividuoA};
 
+    /*******************************************************************************/
+
+    /*
     int tmpCruce = randomClass::randRange(1,10);
-    std::cout <<"tmpCruce"<< tmpCruce<<std::endl;
+    //std::cout <<"tmpCruce"<< tmpCruce<<std::endl;
     for (int Indice = 0; Indice < tmpCruce ; Indice++)
     {
         newIndividualA->getGenes()->insertByIndex(Indice,pFatherA.getGenes()->getByIndex(Indice));
@@ -140,10 +143,10 @@ Individuals* Evolution::CrossOver(Individuals pFatherA, Individuals pFatherB)
         newIndividualB->getGenes()->insertByIndex(Indice,pFatherA.getGenes()->getByIndex(Indice));
     }
 
-    std::cout << "HijoA Fitness: " <<std::to_string(newIndividualA->getFitness()) << endl;
-    std::cout << "HijoB Fitness: " <<std::to_string(newIndividualB->getFitness()) << endl;
+    //std::cout << "HijoA Fitness: " <<std::to_string(newIndividualA->getFitness()) << endl;
+    //std::cout << "HijoB Fitness: " <<std::to_string(newIndividualB->getFitness()) << endl;
 
-    Individuals* GroupNewIndividuals[] = {newIndividualA,newIndividualB};
+    Individuals* GroupNewIndividuals[] = {newIndividualA,newIndividualB};*/
 
 
     return *GroupNewIndividuals;

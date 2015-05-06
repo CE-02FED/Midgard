@@ -1,7 +1,15 @@
 #include "socketserver.h"
 
+vector<int> SocketServer::clientes;
+int SocketServer::descriptor;
+sockaddr_in SocketServer::info;
+
 SocketServer::SocketServer()
 {
+    //CrazyThread* d = new CrazyThread((void*)SocketServer::run(),nullptr);
+    pthread_t hilo;
+    pthread_create(&hilo,0,SocketServer::run,nullptr);
+    pthread_detach(hilo);
 }
 
 
@@ -32,7 +40,7 @@ bool SocketServer::ligar_kernel()
 
 void* SocketServer::run()
 {
-    cout << "hola" << endl;
+
     if(!crear_Socket())
         throw string("Error al crear el socket");
     if(!ligar_kernel())
@@ -53,6 +61,7 @@ void* SocketServer::run()
             pthread_create(&hilo,0,SocketServer::controladorCliente,(void *)&data);
             pthread_detach(hilo);*/
             CrazyThread * hilo = new CrazyThread((void*)SocketServer::controladorCliente,&data );
+
         }
     }
     close(descriptor);
