@@ -13,17 +13,17 @@ using namespace std;
  */
 template<class T> class Matriz {
 private:
-    T** _matriz;	//Puntero de la matriz.
-    int _filas;		//Filas de la matriz.
-    int _columnas;	//Columnas de la matriz.
+	T** _matriz;	//Puntero de la matriz.
+	short _filas;		//Filas de la matriz.
+	short _columnas;	//Columnas de la matriz.
 
 public:
-    Matriz(int pFilas, int pColumnas);
-    ~Matriz();
-    T* operator[](int pIndex);
-    //void setDato(T pDato, int pFila, int pColumna);
-    //T* getDato(int pFila, int pColumna);
-    void print();
+	Matriz(int pFilas, int pColumnas);
+	~Matriz();
+	T* operator[](int pIndex);
+	short getHeight();
+	short getWidth();
+	void print();
 };
 
 #endif /* MATRIZ_H_ */
@@ -36,12 +36,12 @@ public:
  */
 template<class T>
 Matriz<T>::Matriz(int pFilas, int pColumnas) {
-    _matriz = new T *[pFilas];
-    for (int fila = Constants::START; fila < pFilas; fila++) {
-        _matriz[fila] = new T[pColumnas];
-    }
-    _filas = pFilas;
-    _columnas = pColumnas;
+	_matriz = new T *[pFilas];
+	for (int fila = Constants::START; fila < pFilas; fila++) {
+		_matriz[fila] = new T[pColumnas];
+	}
+	_filas = pFilas;
+	_columnas = pColumnas;
 }
 
 /**
@@ -50,12 +50,22 @@ Matriz<T>::Matriz(int pFilas, int pColumnas) {
  */
 template<class T>
 Matriz<T>::~Matriz() {
-    free(_matriz);
+	free(_matriz);
 }
 
 template<class T>
 T* Matriz<T>::operator[](int pIndex) {
-    return _matriz[pIndex];
+	return _matriz[pIndex];
+}
+
+template<class T>
+short Matriz<T>::getHeight() {
+	return _filas;
+}
+
+template<class T>
+short Matriz<T>::getWidth() {
+	return _columnas;
 }
 
 /**
@@ -63,11 +73,11 @@ T* Matriz<T>::operator[](int pIndex) {
  */
 template<class T>
 void Matriz<T>::print() {
-    for (int fila = Constants::START; fila < _filas; fila++) {
-        for (int columna = Constants::START; columna < _columnas; columna++) {
-            cout << _matriz[fila][columna] << "| ";
-        }
-        cout << endl;
-    }
+	for (int fila = Constants::START; fila < _filas; fila++) {
+		for (int columna = Constants::START; columna < _columnas; columna++) {
+			cout << _matriz[fila][columna] << "| ";
+		}
+		cout << endl;
+	}
 }
 
