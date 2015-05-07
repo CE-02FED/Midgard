@@ -7,9 +7,11 @@ sockaddr_in SocketServer::info;
 SocketServer::SocketServer()
 {
     //CrazyThread* d = new CrazyThread((void*)SocketServer::run(),nullptr);
+    _LogicFacade = LogicFacade::getInstance();
     pthread_t hilo;
     pthread_create(&hilo,0,SocketServer::run,nullptr);
     pthread_detach(hilo);
+
 }
 
 
@@ -84,7 +86,7 @@ void * SocketServer::controladorCliente(void *obj)
                 break;
             pthread_mutex_unlock(&mutex);
         }
-        cout << mensaje << endl;
+        _LogicFacade->receiveDataFromSocket(mensaje);
         usleep(10000);
     }
 

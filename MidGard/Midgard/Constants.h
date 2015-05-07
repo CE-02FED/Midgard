@@ -13,7 +13,7 @@ public:
     const static int START = 0;
     const static int HEIGHT = 60;
     const static int WIDTH = 60;
-    const static int START = 0;
+
 };
 
 

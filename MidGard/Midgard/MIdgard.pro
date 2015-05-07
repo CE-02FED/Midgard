@@ -23,7 +23,9 @@ SOURCES += main.cpp \
     randomClass.cpp \
     socketserver.cpp \
     socketcliente.cpp \
-    crazythread.cpp
+    crazythread.cpp \
+    LogicFacade.cpp \
+    MainLogic.cpp
 
 OTHER_FILES += \
     deployment.pri \
@@ -52,5 +54,7 @@ HEADERS += \
     Dwarves.h \
     socketserver.h \
     socketcliente.h \
-    crazythread.h
+    crazythread.h \
+    LogicFacade.h \
+    MainLogic.h
 
