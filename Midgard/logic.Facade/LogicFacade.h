@@ -1,15 +1,14 @@
 #ifndef LOGICFACADE_H
 #define LOGICFACADE_H
 
-#include "../DataAccess/socketcliente.h"
-#include "../DataAccess/socketserver.h"
-#include "../res/crazythread.h"
+#include "socketcliente.h"
+#include "socketserver.h"
+#include "crazythread.h"
 #include "iostream"
-#include "../MainLogic.h"
-#include "../DataAccess/jsonwriter.h"
+#include "MainLogic.h"
 
-#define Madre 1
-#define Padre 0
+#define jSonKeyGetMap "getMap"
+#define jSonKeyGetGenealogia "Familia"
 #define GetMap 1
 #define Genealogia 2
 
@@ -25,15 +24,15 @@ class LogicFacade
 public:
     void receiveDataFromSocket(string pMensaje);
     static LogicFacade* getInstance();
-    void runLogic(MainLogic* pMainLogic);
 private:
     static LogicFacade* _facade;
     SocketCliente* _socketCliente;
     SocketServer* _socketServer;
     MainLogic* _MainLogic;
 
-    LogicFacade();
+    LogicFacade(MainLogic *pMainLogic);
     void leerJson(string pMensaje);
+    string crearJson(int pType, string pMap, string pGenealogia);
     void getMap();
     void getGenealogia(string pClase, string pID);
 };

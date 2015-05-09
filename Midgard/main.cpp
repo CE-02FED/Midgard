@@ -1,6 +1,6 @@
 #include <iostream>
 #include "res/BitVector.h"
-#include "logicGeneticAlgorith/Population.h"
+//#include "logicGeneticAlgorith/Population.h"
 #include "logicGeneticAlgorith/Evolution.h"
 #include "logicRazas/Giants.h"
 #include "logicRazas/DarkElves.h"

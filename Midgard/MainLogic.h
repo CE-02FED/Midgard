@@ -9,6 +9,7 @@
 #include "logicRazas/Giants.h"
 #include "logicGeneticAlgorith/Evolution.h"
 #include "res/crazythread.h"
+#include "res/vector.h"
 
 
 using namespace std;
@@ -21,7 +22,7 @@ private:
 public:    
     MainLogic();
     void runLogic();
-    string getMap();
+    Vector<short> getMap();
     string getParents(string clase, string pID);
 
 };

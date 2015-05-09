@@ -4,7 +4,7 @@ using namespace std;
 static int _direccionX[8] = { 1, 1, 0, -1, -1, -1, 0, 1 };
 static int _direccionY[8] = { 0, 1, 1, 1, 0, -1, -1, -1 };
 
-Pathfinding::Pathfinding(Matriz<short>* pMap) {
+Pathfinding::Pathfinding(Vector<short>* pMap) {
 	_map = pMap;
 //	_height = pMap->getHeight();
 //	_width = pMap->getWidth();
@@ -20,9 +20,9 @@ string Pathfinding::find(int pXInicio, int pYInicio,
 	int i, j, x, y, xdx, ydy;
 	int dir = 8;
 	char c;
-	Matriz<short> closed_nodes_map(_height, _width);
-	Matriz<short> open_nodes_map(_height, _width);
-	Matriz<short> dir_map(_height, _width);
+	Vector<short> closed_nodes_map(_height, _width);
+	Vector<short> open_nodes_map(_height, _width);
+	Vector<short> dir_map(_height, _width);
 
 	for (y = 0; y < _height; y++)
 			{

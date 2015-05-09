@@ -14,6 +14,7 @@ using namespace std;
 template<class T> class Vector {
 private:
     T** _matriz;	//Puntero de la matriz.
+    T* __arreglo;   //Puntero del arreglo
     int _filas;		//Filas de la matriz.
     int _columnas;	//Columnas de la matriz.
 
@@ -43,6 +44,7 @@ Vector<T>::Vector(int pFilas, int pColumnas) {
     }
     _filas = pFilas;
     _columnas = pColumnas;
+    __arreglo =0;
 }
 
 /**
@@ -52,9 +54,10 @@ Vector<T>::Vector(int pFilas, int pColumnas) {
  */
 template<class T>
 Vector<T>::Vector(int pTamano) {
-    _matriz = new T[pTamano];
+    __arreglo = new T[pTamano];
     _filas = pTamano;
     _columnas = 0;
+    _matriz=0;
 }
 
 /**

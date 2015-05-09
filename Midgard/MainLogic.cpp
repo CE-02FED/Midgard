@@ -9,7 +9,7 @@ string MainLogic::getParents(string clase, string pID)
 
 }
 
-string MainLogic::getMap()
+Vector<short> MainLogic::getMap()
 {
 
 }

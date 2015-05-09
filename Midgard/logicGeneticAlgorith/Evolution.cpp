@@ -160,7 +160,7 @@ Individuals* Evolution::CrossOver(Individuals pFatherA, Individuals pFatherB)
     Individuals* GroupNewIndividuals[] = {newIndividualA,tmpIndividuoA};*/
 
     int tmpCruce = randomClass::randRange(1,10);
-    std::cout <<"tmpCruce"<< tmpCruce<<std::endl;
+
     for (int Indice = 0; Indice < tmpCruce ; Indice++)
     {
         newIndividualA->getGenes()->insertByIndex(Indice,pFatherA.getGenes()->getByIndex(Indice));
@@ -172,8 +172,8 @@ Individuals* Evolution::CrossOver(Individuals pFatherA, Individuals pFatherB)
         newIndividualB->getGenes()->insertByIndex(Indice,pFatherA.getGenes()->getByIndex(Indice));
     }
 
-    std::cout << "HijoA Fitness: " <<std::to_string(newIndividualA->getFitness()) << endl;
-    std::cout << "HijoB Fitness: " <<std::to_string(newIndividualB->getFitness()) << endl;
+    //std::cout << "HijoA Fitness: " <<std::to_string(newIndividualA->getFitness()) << endl;
+    //std::cout << "HijoB Fitness: " <<std::to_string(newIndividualB->getFitness()) << endl;
 
     Individuals* GroupNewIndividuals[] = {newIndividualA,newIndividualB};
 

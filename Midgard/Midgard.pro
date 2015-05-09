@@ -31,7 +31,9 @@ SOURCES += main.cpp \
     res/crazythread.cpp \
     res/nodoMatriz.cpp \
     res/randomClass.cpp \
-    MainLogic.cpp
+    MainLogic.cpp \
+    DataAccess/jsonwriter.cpp \
+    DataAccess/jsonreader.cpp
 
 RESOURCES += qml.qrc
 
@@ -75,11 +77,13 @@ HEADERS += \
     res/Constants.h \
     res/crazythread.h \
     res/lista_enlazada.h \
-    res/matriz.h \
     res/nodo.h \
     res/NodoArbolBinario.h \
     res/nodoMatriz.h \
     res/priorityQueue.h \
     res/pugiconfig.hpp \
     res/randomClass.h \
-    MainLogic.h
+    MainLogic.h \
+    DataAccess/jsonwriter.h \
+    DataAccess/jsonreader.h \
+    res/vector.h
