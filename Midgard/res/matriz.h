@@ -19,6 +19,7 @@ private:
 
 public:
     Matriz(int pFilas, int pColumnas);
+    Matriz(int pFilas);
     ~Matriz();
     T* operator[](int pIndex);
     short getHeight();
@@ -43,6 +44,18 @@ Matriz<T>::Matriz(int pFilas, int pColumnas) {
     }
     _filas = pFilas;
     _columnas = pColumnas;
+}
+
+/**
+ * 	@brief Constructor sobrecargado
+ * 	Crea la matriz unidimensional para almacenar los datos y genera atributos.
+ * 	@param pFilas Numero de filas para la matriz.
+ */
+template<class T>
+Matriz<T>::Matriz(int pFilas) {
+    _matriz = new T[pFilas];
+    _filas = pFilas;
+    _columnas = 0;
 }
 
 /**
