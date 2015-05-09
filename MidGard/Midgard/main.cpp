@@ -2,13 +2,36 @@
 #include "BitVector.h"
 #include "Population.h"
 #include "Evolution.h"
+#include "Giants.h"
+#include "DarkElves.h"
+#include "Elves.h"
+#include "Dwarves.h"
+#include "socketserver.h"
+
+
+
+
+
 using namespace std;
 
 
 int main()
 {
 
-    Population* myPop = new Population(50, true);
+    SocketServer* d = new SocketServer();
+
+
+     while(true)
+     {
+         cout<<"hola"<< endl;
+     };
+
+
+
+}
+   /* srand(time(0));
+    DarkElves* myPop = new DarkElves(50, true);
+
 
 
     Evolution* evolution = new Evolution();
@@ -18,16 +41,20 @@ int main()
             while (generationCount <300)
             {
                 generationCount++;
-                cout << "Generation: " << generationCount << " Fittest: " << myPop->getFittest().getFitness() << endl;
-                *myPop = evolution->evolvePopulation(*myPop);
+
+                cout << "Generation: " << generationCount << " Fittest: " << (myPop->getFittest()->getFitness()) << endl;
+
+
+
+                myPop = &evolution->evolvePopulation(*myPop);
 
             }
             cout <<"Solution found!" << endl;
             cout <<"Generation: " << generationCount << endl;
-            cout << "Genes:"<< endl;
-            cout << myPop->getFittest().getFitness()<< endl;
+            cout << myPop->getFittest()->getFitness()<< endl;
 
         }
+*/
 
 
 

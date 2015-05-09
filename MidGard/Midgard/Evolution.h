@@ -3,17 +3,20 @@
 
 #include "Individuals.h"
 #include "Population.h"
-#include "random"
+#include "randomClass.h"
 #include "Constants.h"
 
-#define Mask 00000000
+#define Mask 1
+#define partesDelaPoblacion 2
+#define mutationLowLimit 0.0
+#define mutationHightLimit 10.5
 
 
 class Evolution
 {
 private:
-    double _mutationRate = 0.1;
-    double _uniformRate = 0.5;
+    double _mutationRate = 2.0;
+    double _uniformRate = 0.9;
     bool _PreserveTheBest = true; // Mantiene al mejor individuo
     int _PoolFathersSize = 10; // Cantidad de miembros de un grupo para seleccionar los padres
 

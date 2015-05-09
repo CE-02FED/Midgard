@@ -5,6 +5,7 @@
 #include "Individuals.h"
 #include "Constants.h"
 #include "BitVector.h"
+#include <stdlib.h>
 
 class Individuals;
 class FitnessCalculation
@@ -18,7 +19,7 @@ public:
     static bool veriBase(size_t pNum);
     static void setSolution(int pSolution[]);
 
-    static int getFitness(Individuals *pIndividual); // ARREGLAR DEPENDENCIA CIRCULAR DE INCLUDES
+    static int getFitness(BitVector *pIndividualGenes); // ARREGLAR DEPENDENCIA CIRCULAR DE INCLUDES
 };
 
 #endif // FITNESSCALCULATION_H

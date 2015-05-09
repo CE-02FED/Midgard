@@ -2,9 +2,7 @@
 #define LISTA_ENLAZADA_H
 #include <nodo.h>
 #include <iostream>
-//#include <DataInfo.h>
-//#include "vreflist.h"
-//#include "DataManager.h"
+
 
 using namespace std;
 
