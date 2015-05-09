@@ -21,7 +21,6 @@ SOURCES += main.cpp\
     Scene.cpp \
     GuiFacade.cpp \
     obstacle.cpp \
-    quiindividual.cpp \
     socketserver.cpp \
     socketcliente.cpp
 
@@ -31,7 +30,6 @@ HEADERS  += mainwindow.h \
     Scene.h \
     GuiFacade.h \
     obstacle.h \
-    guiindividual.h \
     socketserver.h \
     socketcliente.h
 

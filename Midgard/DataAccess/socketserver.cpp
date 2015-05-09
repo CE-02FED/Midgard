@@ -3,12 +3,11 @@
 vector<int> SocketServer::clientes;
 int SocketServer::descriptor;
 sockaddr_in SocketServer::info;
-GuiFacade* SocketServer::_GuiFacade;
 
 SocketServer::SocketServer()
 {
-    MyThread* d = new MyThread((void*)SocketServer::run(),nullptr);
-    _GuiFacade = GuiFacade::getInstance();
+    CrazyThread* d = new CrazyThread((void*)SocketServer::run(),nullptr);
+    _LogicFacade = LogicFacade::getInstance();
 
 
 }
@@ -61,7 +60,7 @@ void* SocketServer::run()
             /*pthread_t hilo;
             pthread_create(&hilo,0,SocketServer::controladorCliente,(void *)&data);
             pthread_detach(hilo);*/
-            MyThread * hilo = new MyThread((void*)SocketServer::controladorCliente,&data );
+            CrazyThread * hilo = new CrazyThread((void*)SocketServer::controladorCliente,&data );
 
         }
     }
@@ -85,7 +84,7 @@ void * SocketServer::controladorCliente(void *obj)
                 break;
             pthread_mutex_unlock(&mutex);
         }        
-        _GuiFacade->receiveDataFromSocket(mensaje);
+        _LogicFacade->receiveDataFromSocket(mensaje);
         usleep(10000);
     }
 

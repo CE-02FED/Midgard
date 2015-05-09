@@ -26,13 +26,13 @@ void GuiFacade::receiveDataFromSocket(string pMensaje)
 void GuiFacade::getMap()
 {
     //string jsonGetMap = crearJson(GetMap,_MainLogic->getMap(),nullptr);
-    _socketServer->setMensaje(jsonGetMap.c_str());
+    //_socketServer->setMensaje(jsonGetMap.c_str());
 }
 
 void GuiFacade::getGenealogia(string pClase, string pID)
 {
     //string jsonGetMap = crearJson(Genealogia,nullptr, _MainLogic->getParents(pClase, pID)); // Le agrega el string que contiene el ID de ambos padres de pID
-    _socketServer->setMensaje(jsonGetMap.c_str());
+    //_socketServer->setMensaje(jsonGetMap.c_str());
 }
 
 
@@ -77,4 +77,5 @@ GuiFacade *GuiFacade::getInstance()
         return _facade;
 
 }
+
 
