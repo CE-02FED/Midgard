@@ -1,12 +1,12 @@
 #include <iostream>
-#include "BitVector.h"
-#include "Population.h"
-#include "Evolution.h"
-#include "Giants.h"
-#include "DarkElves.h"
-#include "Elves.h"
-#include "Dwarves.h"
-#include "socketserver.h"
+#include "res/BitVector.h"
+#include "logicGeneticAlgorith/Population.h"
+#include "logicGeneticAlgorith/Evolution.h"
+#include "logicRazas/Giants.h"
+#include "logicRazas/DarkElves.h"
+#include "logicRazas/Elves.h"
+#include "logicRazas/Dwarves.h"
+#include "DataAccess/socketserver.h"
 
 
 
@@ -17,16 +17,9 @@ using namespace std;
 
 int main()
 {
-
-    SocketServer* d = new SocketServer();
-
-
-     while(true)
-     {
-         cout<<"hola"<< endl;
-     };
-
-
+    MainLogic* d = new MainLogic();
+    LogicFacade* as = LogicFacade::getInstance();
+    as->runLogic(d);
 
 }
    /* srand(time(0));

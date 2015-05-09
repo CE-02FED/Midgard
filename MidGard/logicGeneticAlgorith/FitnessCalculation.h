@@ -2,9 +2,9 @@
 #define FITNESSCALCULATION_H
 
 #include "ios"
-#include "Individuals.h"
-#include "Constants.h"
-#include "BitVector.h"
+#include "../logicGeneticAlgorith/Individuals.h"
+#include "../res/Constants.h"
+#include "../res/BitVector.h"
 #include <stdlib.h>
 
 class Individuals;

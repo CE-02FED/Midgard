@@ -7,12 +7,12 @@ IndividualGui::IndividualGui(int pIdName){
     //QGraphicsItem* parent = NULL;
     int randomPosX = rand()%WIDTH_POS;
     int randomPosY = rand()%HEIGHT_POS;
-    QPixmap _guerrero("imagenes GUI/guerrero.png");
-    QPixmap _arquero("imagenes GUI/arquero.png");
-    QPixmap _alquimista("imagenes GUI/alquimista.png");
-    QPixmap _mujer("imagenes GUI/mujer.png");
-    QPixmap _mago("imagenes GUI/mago.png");
-    QPixmap _elfo("imagenes GUI/elfo.png");
+    QPixmap _guerrero("/home/david/Documents/cLion-Projects/Midgard/GUI/imagenes GUI/guerrero.png");
+    QPixmap _arquero("/home/david/Documents/cLion-Projects/Midgard/GUI/imagenes GUI/arquero.png");
+    QPixmap _alquimista("/home/david/Documents/cLion-Projects/Midgard/GUI/imagenes GUI/alquimista.png");
+    QPixmap _mujer("/home/david/Documents/cLion-Projects/Midgard/GUI/imagenes GUI/mujer.png");
+    QPixmap _mago("/home/david/Documents/cLion-Projects/Midgard/GUI/imagenes GUI/mago.png");
+    QPixmap _elfo("/home/david/Documents/cLion-Projects/Midgard/GUI/imagenes GUI/elfo.png");
     setPos(randomPosX, randomPosY);
 
     switch (pIdName)

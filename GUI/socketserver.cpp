@@ -1,18 +1,15 @@
-/*
-
 #include "socketserver.h"
 
 vector<int> SocketServer::clientes;
 int SocketServer::descriptor;
 sockaddr_in SocketServer::info;
 
-SocketServer::SocketServer(Scene* pPantalla)
+SocketServer::SocketServer()
 {
+    MyThread* d = new MyThread((void*)SocketServer::run(),nullptr);
+    _GuiFacade = LogicFacade::getInstance();
 
-    //MyThread* d = new MyThread((void*)SocketServer::run(),nullptr);
-    /*pthread_t hilo;
-    pthread_create(&hilo,0,SocketServer::run,nullptr);
-    pthread_detach(hilo);
+
 }
 
 
@@ -26,7 +23,7 @@ bool SocketServer::crear_Socket()
     }
     info.sin_family = AF_INET;
     info.sin_addr.s_addr = INADDR_ANY;
-    info.sin_port = htons(9090);
+    info.sin_port = htons(Puerto);
     memset(&info.sin_zero,0,sizeof(info.sin_zero));
     return true;
 }
@@ -62,8 +59,8 @@ void* SocketServer::run()
             clientes.push_back(data.descriptor);
             /*pthread_t hilo;
             pthread_create(&hilo,0,SocketServer::controladorCliente,(void *)&data);
-            pthread_detach(hilo);
-            MyThread * hilo = new CrazyThread((void*)SocketServer::controladorCliente,&data );
+            pthread_detach(hilo);*/
+            MyThread * hilo = new MyThread((void*)SocketServer::controladorCliente,&data );
 
         }
     }
@@ -86,9 +83,8 @@ void * SocketServer::controladorCliente(void *obj)
             if(bytes < 10)
                 break;
             pthread_mutex_unlock(&mutex);
-        }
-        GuiFacade* _facade = GuiFacade::getInstance();
-        _facade->receiveDataFromSocket(mensaje);
+        }        
+        _GuiFacade->receiveDataFromSocket(mensaje);
         usleep(10000);
     }
 
@@ -103,5 +99,3 @@ void SocketServer::setMensaje(const char *msn)
         send(clientes[i],msn,strlen(msn),0);
         //cout << "bytes enviados "<< send(clientes[i],msn,strlen(msn),0);
 }
-
-*/

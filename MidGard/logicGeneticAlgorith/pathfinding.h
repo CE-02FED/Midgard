@@ -1,9 +1,9 @@
 #ifndef PATHFINDING_H_
 #define PATHFINDING_H_
-#include "Constants.h"
-#include "matriz.h"
-#include "priorityQueue.h"
-#include "nodoMatriz.h"
+#include "../res/Constants.h"
+#include "../res/matriz.h"
+#include "../res/priorityQueue.h"
+#include "../res/nodoMatriz.h"
 #include <iostream>
 using namespace std;
 

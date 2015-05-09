@@ -3,8 +3,8 @@
 
 #include "Individuals.h"
 #include "Population.h"
-#include "randomClass.h"
-#include "Constants.h"
+#include "../res/randomClass.h"
+#include "../res/Constants.h"
 
 #define Mask 1
 #define partesDelaPoblacion 2

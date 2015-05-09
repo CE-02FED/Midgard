@@ -1,8 +1,8 @@
 #ifndef INDIVIDUALS_H
 #define INDIVIDUALS_H
 #include "FitnessCalculation.h"
-#include "BitVector.h"
-#include "Constants.h"
+#include "../res/BitVector.h"
+#include "../res/Constants.h"
 
 
 #define maxSkill 255

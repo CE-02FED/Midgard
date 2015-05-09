@@ -6,11 +6,9 @@ sockaddr_in SocketServer::info;
 
 SocketServer::SocketServer()
 {
-    //CrazyThread* d = new CrazyThread((void*)SocketServer::run(),nullptr);
+    CrazyThread* d = new CrazyThread((void*)SocketServer::run(),nullptr);
     _LogicFacade = LogicFacade::getInstance();
-    pthread_t hilo;
-    pthread_create(&hilo,0,SocketServer::run,nullptr);
-    pthread_detach(hilo);
+
 
 }
 
@@ -25,7 +23,7 @@ bool SocketServer::crear_Socket()
     }
     info.sin_family = AF_INET;
     info.sin_addr.s_addr = INADDR_ANY;
-    info.sin_port = htons(9090);
+    info.sin_port = htons(Puerto);
     memset(&info.sin_zero,0,sizeof(info.sin_zero));
     return true;
 }
@@ -85,7 +83,7 @@ void * SocketServer::controladorCliente(void *obj)
             if(bytes < 10)
                 break;
             pthread_mutex_unlock(&mutex);
-        }
+        }        
         _LogicFacade->receiveDataFromSocket(mensaje);
         usleep(10000);
     }

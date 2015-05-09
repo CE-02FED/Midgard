@@ -3,7 +3,7 @@
 #define DOCXML_H_
 #include <iostream>
 #include <string>
-#include "pugiconfig.hpp"
+#include "../res/pugiconfig.hpp"
 #include "pugixml.hpp"
 using namespace std ;
 

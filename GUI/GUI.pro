@@ -20,17 +20,19 @@ SOURCES += main.cpp\
     individualGui.cpp \
     Scene.cpp \
     GuiFacade.cpp \
-    socketcliente.cpp \
+    obstacle.cpp \
+    quiindividual.cpp \
     socketserver.cpp \
-    obstacle.cpp
+    socketcliente.cpp
 
 HEADERS  += mainwindow.h \
     mythread.h \
     individualGui.h \
     Scene.h \
     GuiFacade.h \
-    socketcliente.h \
+    obstacle.h \
+    guiindividual.h \
     socketserver.h \
-    obstacle.h
+    socketcliente.h
 
 FORMS    += mainwindow.ui

@@ -12,13 +12,18 @@
 #include "mythread.h"
 #include "GuiFacade.h"
 
+#define Puerto 9090
+
+
 using namespace std;
+
 
 struct dataSocket{
     int descriptor;
     sockaddr_in info;
 };
 
+class GuiFacade;
 class SocketServer
 {
 public:
@@ -28,6 +33,7 @@ public:
 private:
     static int descriptor;
     static sockaddr_in info;
+    static GuiFacade* _GuiFacade;
     static bool crear_Socket();
     static bool ligar_kernel();
     static void * controladorCliente(void *obj);

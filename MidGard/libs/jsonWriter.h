@@ -5,11 +5,11 @@
 #ifndef PROYECTO_JSONWRITER_H
 #define PROYECTO_JSONWRITER_H
 
-#include "List.h"
+/*#include "../List.h"
 #include "../../libs/rapidjson/rapidjson.h"
 #include "../../libs/rapidjson/document.h"
 #include "../../libs/rapidjson/stringbuffer.h"
-#include "../../libs/rapidjson/writer.h"
+#include "../../libs/rapidjson/writer.h"*/
 #include <cstdlib>
 #include <string>
 

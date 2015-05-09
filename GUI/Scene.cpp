@@ -5,7 +5,7 @@ Scene::Scene(): QGraphicsView(){
 
 
     scene = new QGraphicsScene(0,0,WIDTH_SCENE,HEIGHT_SCENE);
-    QPixmap _background("imagenes GUI/grasscuad.png");
+    QPixmap _background("/home/david/Documents/cLion-Projects/Midgard/GUI/imagenes GUI/grasscuad.png");
     setScene(scene);
     scene->setBackgroundBrush(_background.scaled(WIDTH_SCENE,HEIGHT_SCENE,Qt::IgnoreAspectRatio,
                                         Qt::SmoothTransformation));

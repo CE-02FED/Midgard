@@ -4,17 +4,22 @@
 LogicFacade* LogicFacade::_facade = 0;
 
 
-LogicFacade::LogicFacade(MainLogic* pMainLogic)
+LogicFacade::LogicFacade()
 {
-        _socketServer = new SocketServer();
-        _MainLogic = pMainLogic;
+
+
 
 }
 
+void LogicFacade::runLogic(MainLogic* pMainLogic)
+{
+    _MainLogic = pMainLogic;
+}
 
 void LogicFacade::receiveDataFromSocket(string pMensaje)
 {
     leerJson(pMensaje);
+    _socketServer = new SocketServer();
 }
 
 void LogicFacade::getMap()

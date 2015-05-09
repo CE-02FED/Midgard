@@ -9,7 +9,7 @@
 #include <pthread.h>
 #include <unistd.h>
 #include <arpa/inet.h>
-#include "crazythread.h"
+#include "../res/crazythread.h"
 
 #define IP "172.26.102.106"
 

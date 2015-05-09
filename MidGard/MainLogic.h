@@ -3,12 +3,12 @@
 
 #include <iostream>
 
-#include "DarkElves.h"
-#include "Elves.h"
-#include "Dwarves.h"
-#include "Giants.h"
-#include "Evolution.h"
-#include "crazythread.h"
+#include "logicRazas/DarkElves.h"
+#include "logicRazas/Elves.h"
+#include "logicRazas/Dwarves.h"
+#include "logicRazas/Giants.h"
+#include "logicGeneticAlgorith/Evolution.h"
+#include "res/crazythread.h"
 
 
 using namespace std;

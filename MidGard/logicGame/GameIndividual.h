@@ -1,9 +1,9 @@
 #ifndef GAMEINDIVIDUAL_H
 #define GAMEINDIVIDUAL_H
 
-#include "Individuals.h"
-#include "lista_enlazada.h"
-#include "randomClass.h"
+#include "../logicGeneticAlgorith/Individuals.h"
+#include "../res/lista_enlazada.h"
+#include "../res/randomClass.h"
 
 
 #define PrioridadAlta 1

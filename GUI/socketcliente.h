@@ -1,4 +1,3 @@
-/*
 #ifndef SOCKETCLIENTE_H
 #define SOCKETCLIENTE_H
 #include <sys/socket.h>
@@ -29,4 +28,3 @@ private:
 };
 
 #endif // SOCKETCLIENTE_H
-*/

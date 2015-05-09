@@ -1,6 +1,6 @@
 #ifndef LISTA_ENLAZADA_H
 #define LISTA_ENLAZADA_H
-#include <nodo.h>
+#include "../res/nodo.h"
 #include <iostream>
 
 

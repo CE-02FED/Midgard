@@ -1,9 +1,9 @@
 #ifndef LOGICFACADE_H
 #define LOGICFACADE_H
 
-#include "socketcliente.h"
-#include "socketserver.h"
-#include "crazythread.h"
+#include "../DataAccess/socketcliente.h"
+#include "../DataAccess/socketserver.h"
+#include "../res/crazythread.h"
 #include "iostream"
 #include "MainLogic.h"
 
@@ -24,13 +24,14 @@ class LogicFacade
 public:
     void receiveDataFromSocket(string pMensaje);
     static LogicFacade* getInstance();
+    void runLogic(MainLogic* pMainLogic);
 private:
     static LogicFacade* _facade;
     SocketCliente* _socketCliente;
     SocketServer* _socketServer;
     MainLogic* _MainLogic;
 
-    LogicFacade(MainLogic *pMainLogic);
+    LogicFacade();
     void leerJson(string pMensaje);
     string crearJson(int pType, string pMap, string pGenealogia);
     void getMap();

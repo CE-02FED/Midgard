@@ -1,9 +1,10 @@
-#ifndef DARKELVES_H
-#define DARKELVES_H
-#include "Population.h"
-#include "GameIndividual.h"
+#ifndef DWARVES_H
+#define DWARVES_H
 
-class DarkElves : public Population
+#include "../logicGeneticAlgorith/Population.h"
+#include "../logicGame/GameIndividual.h"
+
+class Dwarves:public Population
 {
 private:
     lista_enlazada<GameIndividual>* _IndividualList;
@@ -12,7 +13,6 @@ private:
                                             //EnergiaVital,   Supersticion, Sacrificio,  Invocacion.
                                               PrioridadNormal,PrioridadAlta,PrioridadBaja,PrioridadAlta};
 public:
-    DarkElves(int pSizePopulation, bool pStart);
+    Dwarves(int pSizePopulation, bool pStart);
 };
-
-#endif // DARKELVES_H
+#endif // DWARVES_H

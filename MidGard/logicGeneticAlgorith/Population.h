@@ -1,9 +1,9 @@
 #ifndef POPULATION_H
 #define POPULATION_H
 
-#include "Constants.h"
+#include "../res/Constants.h"
 #include "Individuals.h"
-#include "lista_enlazada.h"
+#include "../res/lista_enlazada.h"
 
 #include <iostream>
 

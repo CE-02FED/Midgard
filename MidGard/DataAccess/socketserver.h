@@ -9,8 +9,10 @@
 #include <pthread.h>
 #include <vector>
 #include <unistd.h>
-#include "crazythread.h"
-#include "LogicFacade.h"
+#include "../res/crazythread.h"
+#include "../logicFacade/LogicFacade.h"
+
+#define Puerto 9090
 
 
 using namespace std;

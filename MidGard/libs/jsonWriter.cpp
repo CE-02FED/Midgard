@@ -1,8 +1,8 @@
 //
 // Created by roberto on 24/04/15.
 //
-
-#include "../Headers/jsonWriter.h"
+/*
+#include "../libs/jsonWriter.h"
 
 using namespace rapidjson;
 
@@ -47,3 +47,4 @@ void jsonWriter::writeP(int id, int flag, int x, int combustible, int vida, char
     document.Accept(writer);
     strcpy(json2, buffer.GetString());
 };
+*/

@@ -1,9 +1,9 @@
-#ifndef GIANTS_H
-#define GIANTS_H
-#include "Population.h"
-#include "GameIndividual.h"
+#ifndef ELVES_H
+#define ELVES_H
+#include "../logicGeneticAlgorith/Population.h"
+#include "../logicGame/GameIndividual.h"
 
-class Giants : public Population
+class Elves : public Population
 {
 private:
     lista_enlazada<GameIndividual>* _IndividualList;
@@ -12,7 +12,11 @@ private:
                                             //EnergiaVital,   Supersticion, Sacrificio,  Invocacion.
                                               PrioridadNormal,PrioridadAlta,PrioridadBaja,PrioridadAlta};
 public:
-    Giants (int pSizePopulation, bool pStart);
+    Elves(int pSizePopulation, bool pStart);
 };
 
-#endif // GIANTS_H
+#endif // ELVES_H
+
+
+
+
