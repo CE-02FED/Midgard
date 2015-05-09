@@ -24,6 +24,7 @@ public:
 	short getHeight();
 	short getWidth();
 	void print();
+	void llenarMatriz(T dato);
 };
 
 #endif /* MATRIZ_H_ */
@@ -53,19 +54,42 @@ Matriz<T>::~Matriz() {
 	free(_matriz);
 }
 
+/**
+ * 	@brief Operador[]
+ * 	Permite la capacidad de obtener e ingresar datos por indices
+ */
 template<class T>
 T* Matriz<T>::operator[](int pIndex) {
 	return _matriz[pIndex];
 }
 
+/**
+ * 	@brief Obtener numero de filas
+ */
 template<class T>
 short Matriz<T>::getHeight() {
 	return _filas;
 }
 
+/**
+ * 	@brief Obtener numero de columnas
+ */
 template<class T>
 short Matriz<T>::getWidth() {
 	return _columnas;
+}
+
+/**
+ * 	@brief LLenar la matriz con un dato en particular
+ * 	@param dato Dato de tipo template
+ */
+template<class T>
+void Matriz<T>::llenarMatriz(T dato) {
+	for (int fila = Constants::START; fila < _filas; fila++) {
+		for (int columna = Constants::START; columna < _columnas; columna++) {
+			_matriz[fila][columna] = dato;
+		}
+	}
 }
 
 /**
