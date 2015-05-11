@@ -3,12 +3,13 @@
 vector<int> SocketServer::clientes;
 int SocketServer::descriptor;
 sockaddr_in SocketServer::info;
+LogicFacade* SocketServer::_LogicFacade;
 
 SocketServer::SocketServer()
 {
-    CrazyThread* d = new CrazyThread((void*)SocketServer::run(),nullptr);
-    //_LogicFacade = LogicFacade::getInstance();
-
+    CrazyThread* hiloRecibirMensajes = new CrazyThread((void*)SocketServer::run(),nullptr);
+    _LogicFacade = LogicFacade::getInstance();
+    hiloRecibirMensajes->run();
 
 }
 
@@ -57,10 +58,8 @@ void* SocketServer::run()
         else
         {
             clientes.push_back(data.descriptor);
-            /*pthread_t hilo;
-            pthread_create(&hilo,0,SocketServer::controladorCliente,(void *)&data);
-            pthread_detach(hilo);*/
             CrazyThread * hilo = new CrazyThread((void*)SocketServer::controladorCliente,&data );
+            hilo->run();
 
         }
     }
@@ -83,8 +82,8 @@ void * SocketServer::controladorCliente(void *obj)
             if(bytes < 10)
                 break;
             pthread_mutex_unlock(&mutex);
-        }        
-        //_LogicFacade->receiveDataFromSocket(mensaje);
+        }
+        _LogicFacade->receiveDataFromSocket(mensaje);
         usleep(10000);
     }
 

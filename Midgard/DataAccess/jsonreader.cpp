@@ -119,6 +119,7 @@ Vector<int>* jsonReader::readFamilyFromGUI(string pJson)
 int jsonReader::readType(string pJson)
 {
     rapidjson::Document document;
+    cout << "before return"<< endl;
     const char* formatoJson = pJson.c_str();
     document.Parse<0>(formatoJson);
 

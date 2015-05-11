@@ -6,7 +6,7 @@
 #include "logicRazas/DarkElves.h"
 #include "logicRazas/Elves.h"
 #include "logicRazas/Dwarves.h"
-
+#include "DataAccess/socketserver.h"
 
 
 
@@ -17,6 +17,9 @@ using namespace std;
 
 int main()
 {
+ SocketServer* d = new SocketServer();
+}
+    /*
     srand(time(0));
     DarkElves* myPop = new DarkElves(50, true);
 
@@ -41,7 +44,7 @@ int main()
             cout <<"Generation: " << generationCount << endl;
             cout << myPop->getFittest()->getFitness()<< endl;
 
-        }
+        }*/
 
 
 

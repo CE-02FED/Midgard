@@ -23,7 +23,6 @@ void LogicFacade::runLogic(MainLogic* pMainLogic)
 void LogicFacade::receiveDataFromSocket(string pMensaje)
 {
     leerJson(pMensaje);
-
 }
 
 /**
@@ -43,27 +42,14 @@ void LogicFacade::getMap()
  * @param pClase: Del individuo al que se desea saber su genealogia
  * @param pID: El ID del individuo
  */
-void LogicFacade::getGenealogia(string pClase, string pID)
+void LogicFacade::getGenealogia(Vector<int> pDatos)
 {
      JsonWriter* crearJson = new JsonWriter();
-     string* padres = &_MainLogic->getParents(pClase, pID);
-     int tmpPadreID =0;
-     int tmpMadreID =0;
-     string tmpString = "";
-     for(int i = 0; i<padres->length(); i++)
-     {
-         if(padres[i] == "#")
-         {
-            tmpPadreID= stoi(padres[i]);
-            tmpMadreID= stoi(padres[i+1]);
-            tmpString = "";
-         }
-         tmpString = tmpString + padres[i];
-     }
+     Vector<int>* padres = _MainLogic->getParents(pDatos[Raza],pDatos[individuoID]);
 
-     char jsonGetMap;
-     crearJson->writeFamily(tmpPadreID,tmpMadreID, 0,jsonGetMap); // Le agrega el string que contiene el ID de ambos padres de pID
-    _socketServer->setMensaje(jsonGetMap);
+     char pArreglo[10000];
+     crearJson->writeFamily((*padres)[Padre],(*padres)[Madre], (*padres)[indvFitness],pArreglo); // Le agrega el string que contiene el ID de ambos padres de pID
+    _socketServer->setMensaje(pArreglo);
 }
 
 
@@ -73,20 +59,29 @@ void LogicFacade::getGenealogia(string pClase, string pID)
  */
 void LogicFacade::leerJson(string pMensaje)
 {
+    try {
+        jsonReader* Reader = new jsonReader();
 
-    /*switch(pMensaje)
-    {
 
-    case GetMap:
-        getMap();
-        break;
+        switch(Reader->readType(pMensaje))
+        {
+        case GetMap:
+            cout << "paso" << endl;
+            getMap();
+            break;
+        case Genealogia:
+            getGenealogia(Reader->readFamilyFromGUI(pMensaje));
+            break;
+        default:
+            getMap();
+            break;
+        }
 
-    case Genealogia:
-        getGenealogia();
+    } catch (...) {
+        cout << "Fallo" << endl;
+        exit(EXIT_FAILURE);
+    }
 
-        break;
-
-    }*/
 
 }
 /**

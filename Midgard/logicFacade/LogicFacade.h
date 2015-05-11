@@ -7,11 +7,15 @@
 #include "iostream"
 #include "../MainLogic.h"
 #include "../DataAccess/jsonwriter.h"
+#include "../DataAccess/jsonreader.h"
 
-#define Madre 1
 #define Padre 0
+#define Madre 1
+#define indvFitness 2
 #define GetMap 1
 #define Genealogia 2
+#define Raza 0
+#define individuoID 1
 
 
 
@@ -35,7 +39,7 @@ private:
     LogicFacade();
     void leerJson(string pMensaje);
     void getMap();
-    void getGenealogia(string pClase, string pID);
+    void getGenealogia(Vector<int> pDatos);
 };
 
 #endif // LOGICFACADE_H

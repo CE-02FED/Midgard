@@ -98,10 +98,14 @@ void Individuals::setFathers(int pIDFather, int pIDMother)
     this->_MotherID = pIDMother;
 }
 
-int Individuals::getFathers()
+int Individuals::getPadre()
 {
-    int tmpFathersArray[] = {this->_FatherID, this->_MotherID};
-    return  *tmpFathersArray;
+    return this->_FatherID;
+}
+
+int Individuals::getMadre()
+{
+    return this->_MotherID;
 }
 
 

@@ -27,7 +27,8 @@ public:
     int getIndividualID();
     void setIndividualID(int pID);
     void setFathers(int pIDFather, int pIDMother);
-    int getFathers();
+    int getPadre();
+    int getMadre();
 
 
     BitVector *generateCromosoma();

@@ -23,6 +23,7 @@ struct dataSocket{
     sockaddr_in info;
 };
 
+
 class SocketServer
 {
 public:

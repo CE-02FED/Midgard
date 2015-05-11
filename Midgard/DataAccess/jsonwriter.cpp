@@ -5,7 +5,7 @@
 void JsonWriter::writeMap(Vector<short> pMatriz,char pArreglo[])
 {
     rapidjson::Document document;
-    const char* formatoJson = "{\"type\":\"0\", \"height\":\"0\", \"width\":\"0\",\"map\":\"0\" }";
+    const char* formatoJson = "{\"type\":\"1\", \"height\":\"0\", \"width\":\"0\",\"map\":\"0\" }";
     document.Parse<0>(formatoJson);
 
     rapidjson::Value& type = document["type"];
