@@ -53,7 +53,7 @@ int Population::getPopulationSize()
 Individuals* Population::getFittest()
 {
         Nodo<Individuals>* tmpNodo = _IndividualList->getHead();
-        Individuals fittest = tmpNodo;
+        Individuals fittest = tmpNodo->getData();
 
         // Loop through individuals to find fittest
         for (int i = 0; i < (this->_PopulationSize); i++)
@@ -61,7 +61,7 @@ Individuals* Population::getFittest()
 
             if (fittest.getFitness() <= tmpNodo->getData().getFitness())
             {
-                fittest = tmpNodo->getData();
+                fittest = tmpNodo->getData();                
             }
             tmpNodo = tmpNodo->getNext();
         }

@@ -8,6 +8,7 @@ QMAKE_CXXFLAGS += -fpermissive
 
 
 QT += qml quick widgets
+LIBS += -ljsoncpp
 
 SOURCES += main.cpp \
     DataAccess/docXML.cpp \
@@ -32,7 +33,9 @@ SOURCES += main.cpp \
     res/randomClass.cpp \
     MainLogic.cpp \
     DataAccess/jsonwriter.cpp \
-    DataAccess/jsonreader.cpp
+    DataAccess/jsonreader.cpp \
+    DataAccess/jsonreadercpp.cpp \
+    DataAccess/jsonwritercpp.cpp
 
 RESOURCES += qml.qrc
 
@@ -70,14 +73,12 @@ HEADERS += \
     logicRazas/Dwarves.h \
     logicRazas/Elves.h \
     logicRazas/Giants.h \
-    res/ArbolBinario.h \
     res/BitVector.h \
     res/Cola.h \
     res/Constants.h \
     res/crazythread.h \
     res/lista_enlazada.h \
     res/nodo.h \
-    res/NodoArbolBinario.h \
     res/nodoMatriz.h \
     res/priorityQueue.h \
     res/pugiconfig.hpp \
@@ -85,4 +86,6 @@ HEADERS += \
     MainLogic.h \
     DataAccess/jsonwriter.h \
     DataAccess/jsonreader.h \
-    res/vector.h
+    res/vector.h \
+    DataAccess/jsonreadercpp.h \
+    DataAccess/jsonwritercpp.h

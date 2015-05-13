@@ -6,7 +6,7 @@
 #include "../res/randomClass.h"
 #include "../res/Constants.h"
 
-#define Mask 1
+#define Mask 255
 #define partesDelaPoblacion 2
 #define mutationLowLimit 0.0
 #define mutationHightLimit 10.5

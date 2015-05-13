@@ -11,15 +11,14 @@ class FitnessCalculation;
 class Individuals
 {
 protected:
-    int* _Fitness=0;
+    int _Fitness=0;
     int _ID;
-    int _MotherID = -1;
-    int _FatherID = -1;
-
+    int _MotherID = -1; // si es < 0 significa que estos son la primera generacion
+    int _FatherID = -1;    
     BitVector* _Genes;
-    int cantidadCualidades;
-    //FitnessCalculation* FitnessCalc;
+    int cantidadCualidades;    
     bool veriBase(size_t pNum);
+
 
 public:
     Individuals();

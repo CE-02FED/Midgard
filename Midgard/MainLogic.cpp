@@ -11,7 +11,7 @@ MainLogic::MainLogic()
 
 Vector<int>* MainLogic::getParents(int* pRaza, int* pIndividualID)
 {
-    Vector<int>* Family = new Vector<int>(3);
+    /*Vector<int>* Family = new Vector<int>(3);
     switch (*pRaza) {
     case darkElves:
         Family[0] = _DarkElvesPopulation->getIndividualbyIndex(pIndividualID)->getPadre();
@@ -37,8 +37,13 @@ Vector<int>* MainLogic::getParents(int* pRaza, int* pIndividualID)
         break;
     default:
         break;
-    }
-    return Family;
+    }*/
+    //return Family;
+    Vector<int>* Family2 = new Vector<int>(3);
+    Family2[0] = 1;
+    Family2[1] = 2;
+    Family2[2] = 3;
+    return Family2;
 }
 
 Vector<short> MainLogic::getMap()
@@ -54,7 +59,7 @@ void MainLogic::runLogic()
     runThread->run();
 
     while(1)
-    {
+    {                        
 
     }
 

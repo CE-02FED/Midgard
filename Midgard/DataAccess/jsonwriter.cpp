@@ -4,6 +4,7 @@
 
 void JsonWriter::writeMap(Vector<short> pMatriz,char pArreglo[])
 {
+
     rapidjson::Document document;
     const char* formatoJson = "{\"type\":\"1\", \"height\":\"0\", \"width\":\"0\",\"map\":\"0\" }";
     document.Parse<0>(formatoJson);
@@ -39,6 +40,7 @@ void JsonWriter::writeMap(Vector<short> pMatriz,char pArreglo[])
 void JsonWriter::writeFamily(int *pFather, int *pMother, int *pFitness, char pArreglo[])
 {
     rapidjson::Document document;
+    //{"type":"2", "height":"0", "width":"0","map":"0" }
     const char* formatoJson = "{\"type\":\"0\", \"Father\":\"0\", \"Mother\":\"0\",\"Fitness\":\"0\" }";
     document.Parse<0>(formatoJson);
 

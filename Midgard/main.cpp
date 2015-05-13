@@ -17,9 +17,9 @@ using namespace std;
 
 int main()
 {
- SocketServer* d = new SocketServer();
-}
-    /*
+ /*SocketServer* d = new SocketServer();
+}*/
+
     srand(time(0));
     DarkElves* myPop = new DarkElves(50, true);
 
@@ -29,7 +29,7 @@ int main()
 
             // Evolve our population until we reach an optimum solution
             int generationCount = 0;
-            while (generationCount <30)
+            while (generationCount <1)
             {
                 generationCount++;
 
@@ -44,7 +44,7 @@ int main()
             cout <<"Generation: " << generationCount << endl;
             cout << myPop->getFittest()->getFitness()<< endl;
 
-        }*/
+        }
 
 
 

@@ -8,7 +8,7 @@
 BitVector::BitVector (int pSize)  // constructor
 {
   _BitVectorSize = pSize;
-  _BitVectorData = (unsigned char*) calloc(pSize,cantidadBits);
+  _BitVectorData = (u_int8_t*) calloc(pSize,cantidadBits);
 
   if (_BitVectorData == 0)
   {
@@ -28,10 +28,10 @@ BitVector::BitVector (int pSize)  // constructor
   * @param pSize: Tamaño del BitVector
   * @param pData: Datos de los cuales se formara el BitVector
   */
- BitVector::BitVector (int pSize, unsigned char* pData)
+ BitVector::BitVector (int pSize, u_int8_t *pData)
  {
        _BitVectorSize = pSize;
-       _BitVectorData = new unsigned char [_BitVectorSize];
+       _BitVectorData = new u_int8_t [_BitVectorSize];
        if (_BitVectorData == 0)
        {
          std::cout << "** BitVector memory allocation failure -- terminating program.\n"<< std::endl;
@@ -61,7 +61,7 @@ BitVector& BitVector::operator = (const BitVector& pRightAssignment)  //assignme
     {
       delete [] _BitVectorData;
       _BitVectorSize = pRightAssignment._BitVectorSize;
-      _BitVectorData = new unsigned char [_BitVectorSize];
+      _BitVectorData = new int8_t [_BitVectorSize];
       if (_BitVectorData == 0)
       {
         //std::cerr << "** BitVector memory allocation failure -- terminating program.\n";
@@ -80,9 +80,9 @@ BitVector& BitVector::operator = (const BitVector& pRightAssignment)  //assignme
  * @param pIndex indice del array al que se le aplicara el operator
  * @param pMask La mascara con la que se aplicara el & operator
  */
-void BitVector::orOperator(int pIndex, unsigned char* pMask)
+void BitVector::orOperator(int pIndex, u_int8_t pMask)
 {
-     _BitVectorData[getBitVectorPosicion(pIndex)] |= bitMask(pIndex);
+     _BitVectorData[pIndex] ^= pMask;
 }
 
 /**
@@ -91,7 +91,7 @@ void BitVector::orOperator(int pIndex, unsigned char* pMask)
  * @param pIndex indice del array al que se le aplicara el operator
  * @param pMask La mascara con la que se aplicara el or operator
  */
-void BitVector::andOperator(int pIndex, size_t pMask )
+void BitVector::andOperator(int pIndex, u_int8_t pMask )
 {
     _BitVectorData[pIndex] &= pMask;
 }
@@ -124,7 +124,7 @@ void BitVector::Unset(size_t pIndex)
  */
 void BitVector::Flip(int pIndex)
 {
-    std::cout<< "entro bitVec" << std::endl;
+
      _BitVectorData[getBitVectorPosicion(pIndex)] = ~_BitVectorData[getBitVectorPosicion(pIndex)];
 
 }
@@ -148,7 +148,7 @@ void BitVector::Flip()
  * @param pIndex
  * @param pBinData
  */
-void BitVector::insertByIndex(int pIndex,unsigned char pBinData)
+void BitVector::insertByIndex(int pIndex, u_int8_t pBinData)
 {
     _BitVectorData[pIndex] = pBinData;
 }
@@ -159,7 +159,7 @@ void BitVector::insertByIndex(int pIndex,unsigned char pBinData)
  * @param pIndex
  * @return se devuelve todos los datos de la posicion del array que se indica
  */
-unsigned char BitVector::getByIndex(int pIndex)
+u_int8_t BitVector::getByIndex(int pIndex)
 {
     return  _BitVectorData[pIndex];
 }
@@ -184,7 +184,7 @@ int BitVector::getBitVectorPosicion(int pIndex) const
 {
   // retorna El indice / 8
   // mover hacia la derecha 3 espaciaos es equivalente y mas eficiente que dividir entre 8
-  std::cout<< "entro getBit" << std::endl;
+
   pIndex = pIndex >> 3;
 
   if (pIndex >= _BitVectorSize*cantidadBits)

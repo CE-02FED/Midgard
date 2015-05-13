@@ -7,8 +7,7 @@ Individuals::Individuals()
     this->cantidadCualidades = Constants::SKILLSQUANTITY;
     _Genes = new BitVector(cantidadCualidades);
     this->createIndividual();
-    this->_Fitness=0;
-
+    this->_Fitness=0;    
 }
 
 Individuals::Individuals(int pID)
@@ -17,7 +16,7 @@ Individuals::Individuals(int pID)
     _Genes = new BitVector(cantidadCualidades);
     this->_ID = pID;
     this->createIndividual();
-    this->_Fitness=0;
+    this->_Fitness=0;   
 }
 
 void Individuals::setIndividualID(int pID)
@@ -86,7 +85,7 @@ BitVector* Individuals::getGenes()
 int Individuals::getFitness() {
 
     if ( _Fitness== 0) {          // error con _Fitness
-        _Fitness = FitnessCalculation::getFitness(this->_Genes);
+         _Fitness = FitnessCalculation::getFitness(this->_Genes);
     }
 
     return _Fitness;

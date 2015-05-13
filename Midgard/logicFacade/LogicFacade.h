@@ -8,6 +8,8 @@
 #include "../MainLogic.h"
 #include "../DataAccess/jsonwriter.h"
 #include "../DataAccess/jsonreader.h"
+#include "../DataAccess/jsonreadercpp.h"
+#include "../DataAccess/jsonwritercpp.h"
 
 #define Padre 0
 #define Madre 1

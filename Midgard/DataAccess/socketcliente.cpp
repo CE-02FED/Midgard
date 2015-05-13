@@ -25,6 +25,7 @@ bool SocketCliente::connectar()
     cout << "Conecto"<< endl;
     //pthread_t hilo;
     CrazyThread* hilo = new CrazyThread((void*)SocketCliente::controlador,this);
+    hilo->run();
     //pthread_create(&hilo,0,SocketCliente::controlador,(void *)this);
     //pthread_detach(hilo);
     return true;

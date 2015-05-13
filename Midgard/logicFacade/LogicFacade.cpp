@@ -31,9 +31,15 @@ void LogicFacade::receiveDataFromSocket(string pMensaje)
  */
 void LogicFacade::getMap()
 {
-    JsonWriter* crearJson = new JsonWriter();
+
+    jsonWriterCpp* crearJson = new jsonWriterCpp();
     char pArreglo[10000];
-    crearJson->writeMap(_MainLogic->getMap(),pArreglo);
+    //crearJson->writeMap(_MainLogic->getMap(),pArreglo);
+
+    cout << "llegoGetMap" << endl;
+    crearJson->writeMap(_MainLogic->getMap());
+    cout << "manda mapa" << endl;
+    cout << "json "<< pArreglo << endl;
     _socketServer->setMensaje(pArreglo);
 }
 
@@ -44,11 +50,13 @@ void LogicFacade::getMap()
  */
 void LogicFacade::getGenealogia(Vector<int> pDatos)
 {
-     JsonWriter* crearJson = new JsonWriter();
+     jsonWriterCpp* crearJson = new jsonWriterCpp();
      Vector<int>* padres = _MainLogic->getParents(pDatos[Raza],pDatos[individuoID]);
 
      char pArreglo[10000];
-     crearJson->writeFamily((*padres)[Padre],(*padres)[Madre], (*padres)[indvFitness],pArreglo); // Le agrega el string que contiene el ID de ambos padres de pID
+     //crearJson->writeFamily((*padres)[Padre],(*padres)[Madre], (*padres)[indvFitness],pArreglo); // Le agrega el string que contiene el ID de ambos padres de pID
+     crearJson->writeFamily((*padres)[Padre],(*padres)[Madre], (*padres)[indvFitness]); // Le agrega el string que contiene el ID de ambos padres de pID
+     cout << "creo el json en family" << endl;
     _socketServer->setMensaje(pArreglo);
 }
 
@@ -59,9 +67,9 @@ void LogicFacade::getGenealogia(Vector<int> pDatos)
  */
 void LogicFacade::leerJson(string pMensaje)
 {
-    try {
-        jsonReader* Reader = new jsonReader();
+    cout << "llego al leer" << endl;
 
+        jsonReaderCpp* Reader = new jsonReaderCpp();
 
         switch(Reader->readType(pMensaje))
         {
@@ -75,14 +83,7 @@ void LogicFacade::leerJson(string pMensaje)
         default:
             getMap();
             break;
-        }
-
-    } catch (...) {
-        cout << "Fallo" << endl;
-        exit(EXIT_FAILURE);
-    }
-
-
+        }    
 }
 /**
  * @brief LogicFacade::getInstance

@@ -34,7 +34,7 @@ bool SocketServer::ligar_kernel()
     if((bind(descriptor,(sockaddr *)&info,(socklen_t)sizeof(info))) < 0)
         return false;
 
-    listen(descriptor,5);
+    listen(descriptor,MaxConections);
     return true;
 }
 
@@ -77,13 +77,15 @@ void * SocketServer::controladorCliente(void *obj)
         while (1) {
              pthread_mutex_lock(&mutex);
             char buffer[10] = {0};
-            int bytes = recv(data->descriptor,buffer,10,0);
+            int bytes = recv(data->descriptor,buffer,500,0);
             mensaje.append(buffer,bytes);
-            if(bytes < 10)
+            if(bytes < 500)
                 break;
             pthread_mutex_unlock(&mutex);
         }
+        cout << mensaje << endl;
         _LogicFacade->receiveDataFromSocket(mensaje);
+
         usleep(10000);
     }
 
