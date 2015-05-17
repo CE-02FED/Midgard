@@ -9,7 +9,7 @@
 
 using namespace std;
 
-class Individuals;
+//class Individuals;
 class FitnessCalculation
 {
 private:

@@ -1,13 +1,13 @@
 #ifndef INDIVIDUALS_H
 #define INDIVIDUALS_H
-#include "FitnessCalculation.h"
+//#include "FitnessCalculation.h"
 #include "../res/BitVector.h"
 #include "../res/Constants.h"
 
 
 #define maxSkill 255
 
-class FitnessCalculation;
+//class FitnessCalculation;
 class Individuals
 {
 protected:
@@ -21,6 +21,7 @@ protected:
 
 
 public:
+    int calculateFitness(BitVector* pIndividualGenes);
     Individuals();
     Individuals(int pID);
     int getIndividualID();
@@ -30,11 +31,11 @@ public:
     int getMadre();
 
 
-    BitVector *generateCromosoma();
+    void generateCromosoma();
     void createIndividual();
-    void setGene(BitVector *pBitVector);
+    void setGene(BitVector pBitVector);
     BitVector* getGenes();
-    int getFitness();
+    int* getFitness();
 
     int getCantidadCualidades();
 

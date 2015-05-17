@@ -9,7 +9,7 @@ DarkElves::DarkElves(int pSizePopulation, bool pStart) : Population(pSizePopulat
    // Inicializa la poblacion
    //_Individuals [*_PopulationSize] = (Individuals*)calloc(*_PopulationSize,sizeof(Individuals));
 
-   _IndividualList = new lista_enlazada<GameIndividual>();
+   _IndividualList = new lista<GameIndividual>();
 
    if (pStart)
    {
@@ -17,7 +17,7 @@ DarkElves::DarkElves(int pSizePopulation, bool pStart) : Population(pSizePopulat
        {
 
            GameIndividual* newIndividual = new GameIndividual(_Skills);
-           insertIndividualList(newIndividual);
+           //insertIndividualList(newIndividual);
        }
    }
 }

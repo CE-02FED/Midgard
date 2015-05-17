@@ -18,6 +18,20 @@ Individuals::Individuals(int pID)
     this->createIndividual();
     this->_Fitness=0;   
 }
+int Individuals::calculateFitness(BitVector* pIndividualGenes) // VERIFICAR BIEN
+{
+
+    int tmpFitness =0;
+
+    for(int i=0; i< Constants::SKILLSQUANTITY; i++)
+    {
+        //cout << "habiilidad: " << to_string(pIndividualGenes->getByIndex(i)) << endl;
+        u_int8_t skillValue = (pIndividualGenes->getByIndex(i));
+
+        tmpFitness+= skillValue;
+    }
+    return tmpFitness;
+}
 
 void Individuals::setIndividualID(int pID)
 {
@@ -32,7 +46,7 @@ int Individuals::getIndividualID()
 
 void Individuals::createIndividual()
 {
-    _Genes = generateCromosoma();
+    generateCromosoma();
 
 }
 
@@ -54,7 +68,7 @@ void Individuals::createIndividual()
  *
  * @return El BitVector Con el cromosoma de dicho individuo
  */
-BitVector *Individuals::generateCromosoma()
+void Individuals::generateCromosoma()
 {
     BitVector* tmpCromosoma = new BitVector(cantidadCualidades);
 
@@ -66,12 +80,12 @@ BitVector *Individuals::generateCromosoma()
        //std::cout<< "in Generate Cromosoma skill: " << std::to_string(tmpCromosoma->getByIndex(i)) << std::endl;
 
     }
-    return tmpCromosoma;
+   this->_Genes=tmpCromosoma;
 }
 
-void Individuals::setGene(BitVector* pBitVector)
+void Individuals::setGene(BitVector pBitVector)
 {
-    this->_Genes = pBitVector;
+    *(this->_Genes) = pBitVector;
 }
 
 BitVector* Individuals::getGenes()
@@ -82,13 +96,13 @@ BitVector* Individuals::getGenes()
 
 
 
-int Individuals::getFitness() {
+int* Individuals::getFitness() {
 
     if ( _Fitness== 0) {          // error con _Fitness
-         _Fitness = FitnessCalculation::getFitness(this->_Genes);
+         _Fitness = this->calculateFitness(_Genes);
     }
 
-    return _Fitness;
+    return &_Fitness;
 }
 
 void Individuals::setFathers(int pIDFather, int pIDMother)

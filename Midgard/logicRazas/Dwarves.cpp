@@ -9,7 +9,7 @@ Dwarves::Dwarves(int pSizePopulation, bool pStart) : Population(pSizePopulation,
    // Inicializa la poblacion
    //_Individuals [*_PopulationSize] = (Individuals*)calloc(*_PopulationSize,sizeof(Individuals));
 
-   _IndividualList = new lista_enlazada<GameIndividual>();
+   _IndividualList = new lista<GameIndividual>();
 
    if (pStart)
    {
@@ -17,7 +17,7 @@ Dwarves::Dwarves(int pSizePopulation, bool pStart) : Population(pSizePopulation,
        {
 
            GameIndividual* newIndividual = new GameIndividual(_Skills);
-           insertIndividualList(newIndividual);
+           //insertIndividualList(newIndividual);
        }
    }
 }

@@ -2,7 +2,7 @@
 #define GAMEINDIVIDUAL_H
 
 #include "../logicGeneticAlgorith/Individuals.h"
-#include "../res/lista_enlazada.h"
+#include "../res/lista.h"
 #include "../res/randomClass.h"
 
 
