@@ -6,7 +6,7 @@
 class Elves : public Population
 {
 private:
-    lista_enlazada<GameIndividual>* _IndividualList;
+    lista<GameIndividual>* _IndividualList;
                                                 //Vida,      Inteligencia,      Ataque,     Defensa,       Vel.Ataque,      Magia,
     int _Skills[Constants::SKILLSQUANTITY] = {PrioridadAlta,PrioridadNormal,PrioridadAlta,PrioridadNormal,PrioridadBaja,PrioridadNormal,
                                             //EnergiaVital,   Supersticion, Sacrificio,  Invocacion.

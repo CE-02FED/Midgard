@@ -11,6 +11,7 @@ public:
     const static int MAXPOPULATION= 2;
     const static size_t DEFAULTELEMENTSIZE = 8;
     const static int START = 0;
+    const static int GENERATIONS=1;
 
 
 };

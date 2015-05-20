@@ -3,7 +3,7 @@
 
 #include "../res/Constants.h"
 #include "Individuals.h"
-#include "../res/lista_enlazada.h"
+#include "../res/lista.h"
 
 #include <iostream>
 
@@ -17,7 +17,7 @@ protected:
     int _CantidadCualidades;
     int _PopulationSize;
     //std::unordered_map <int,Individuals>* _IndividualList;
-    lista_enlazada<Individuals>* _IndividualList;
+    lista<Individuals>* _IndividualList;
 
 
 public:
@@ -28,7 +28,7 @@ public:
     Individuals *getIndividualList(int pIndex);
     void insertIndividualList(Individuals *pIndividual);
     int getPopulationSize();
-    Individuals *getFittest();
+    Individuals* getFittest();
     int getTotalFitness();
 
     static int _ID;
