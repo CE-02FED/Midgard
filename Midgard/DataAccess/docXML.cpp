@@ -5,28 +5,26 @@ using namespace std;
 docXML::docXML()
 {
 	pugi::xml_document doc;
-	if (!doc.load_file("vheap.xml"))
+    if (!doc.load_file("MidgardConstants.xml"))
 	{
 		cout << "Error al cargar el documento XML." << endl;
 	}
 
 	pugi::xml_node root_node;
 
-	if (!(root_node = doc.child("vHeapData")))
+    if (!(root_node = doc.child("ConstatsData")))
 	{
 		cout << "El documento no es válido." << endl;
 	}
         // se obtienen los datos del archivo xml
 
-    vdebug = root_node.attribute("vdebug").as_bool();
-    vdebug_file_name = root_node.attribute("vdebug_file_name").value();
-    overweight = root_node.attribute("overweight").as_uint();
-	size = root_node.attribute("size").as_uint();
-	dump_frecuency = root_node.attribute("dump_frecuency").as_uint();
-    dump_path = root_node.attribute("dump_path").value();
-	vdebug_file_path = root_node.attribute("vdebug_file_path").as_uint();
-	gc_frecuency = root_node.attribute("gc_frecuency").as_uint();
-
+    elmentSize = root_node.attribute("elementSize").as_uint();
+    maxPopulation = root_node.attribute("maxPopulation").as_uint();
+    MaxSkill = root_node.attribute("maxSkill").as_uint();
+    skillsQuantity = root_node.attribute("skillsQuantity").as_uint();
+    matrizWidth = root_node.attribute("matrizWidth").as_uint();
+    matrizHeight = root_node.attribute("matrizHeight").as_uint();
+    matriz = root_node.attribute("matriz").value();
 }
 
 /*int main()
