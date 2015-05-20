@@ -6,7 +6,7 @@ GameIndividual::GameIndividual(int pCualidades[])
 }
 void GameIndividual::createIndividual(int pCualidades[])
 {
-    this->setGene(GameIndividual::generateCromosoma(pCualidades));
+    this->setGene(*(GameIndividual::generateCromosoma(pCualidades)));
 }
 
 /**
@@ -37,6 +37,7 @@ BitVector* GameIndividual::generateCromosoma(int pCualidades[])
         {
             int Skill = randomClass::randRange(MidValue,maxSkill);
             tmpCromosoma->insertByIndex(i,Skill);
+
         }
         if (pCualidades[i]== PrioridadBaja)
         {
@@ -48,8 +49,11 @@ BitVector* GameIndividual::generateCromosoma(int pCualidades[])
             int Skill = randomClass::getRandom(maxSkill);
             tmpCromosoma->insertByIndex(i,Skill);
         }
+        //std::cout<<"Skill " << i<<": "<<to_string(tmpCromosoma->getByIndex(i))<<std::endl;
+
     }
-    return tmpCromosoma;
+    *_Genes=*tmpCromosoma;
+    return _Genes;
 }
 
 void GameIndividual::setFathers(int pIDFather, int pIDMother)

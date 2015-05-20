@@ -5,6 +5,9 @@
 #include "Population.h"
 #include "../res/randomClass.h"
 #include "../res/Constants.h"
+#include "../res/lista.h"
+#include <cmath>
+#include <cstdlib>
 
 #define Mask 255
 #define partesDelaPoblacion 2
@@ -24,9 +27,9 @@ private:
 
 
 
-    Individuals fathersSelection(Population pPopulation); // Forma un pequeño grupo de individuos y de ahi saca el mas apto
+    Individuals* fathersSelection(Population pPopulation); // Forma un pequeño grupo de individuos y de ahi saca el mas apto
     void Mutation(Individuals *pIndividual); // Muta el gen
-    Individuals* CrossOver(Individuals pFatherA, Individuals pFatherB); // Hace el cruce entre 2 individuos
+    lista<Individuals>* CrossOver(Individuals pFatherA, Individuals pFatherB); // Hace el cruce entre 2 individuos
 
 public:
     Evolution();

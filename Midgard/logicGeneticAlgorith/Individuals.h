@@ -17,7 +17,7 @@ protected:
     int _FatherID = -1;    
     BitVector* _Genes;
     int cantidadCualidades;    
-    bool veriBase(size_t pNum);    
+    bool veriBase(size_t pNum);
 
 
 public:

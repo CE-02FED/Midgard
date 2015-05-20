@@ -5,7 +5,6 @@
 #include "Individuals.h"
 #include "../res/lista.h"
 
-
 #include <iostream>
 
 
@@ -16,14 +15,15 @@ class Population
 protected:
     Individuals* _Individuals[];
     int _CantidadCualidades;
-    int _PopulationSize;
+    int* _PopulationSize=0;
     //std::unordered_map <int,Individuals>* _IndividualList;
     lista<Individuals>* _IndividualList;
 
 
 public:
+    Population();
     Population(int pSizePopulation, bool pStart);
-
+    void upPopulation();
     Individuals *getIndividualbyIndex(int pIndex);
 
     Individuals *getIndividualList(int pIndex);

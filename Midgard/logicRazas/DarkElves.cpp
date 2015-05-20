@@ -2,8 +2,9 @@
 
 DarkElves::DarkElves(int pSizePopulation, bool pStart) : Population(pSizePopulation,pStart)
 {
+    //Population::Population(pSizePopulation,false);
     _PopulationSize = (int*) malloc(sizeof(int));
-    _PopulationSize = Constants::MAXPOPULATION;
+    *_PopulationSize = Constants::MAXPOPULATION;
    _CantidadCualidades = Constants::SKILLSQUANTITY;
 
    // Inicializa la poblacion
@@ -17,7 +18,8 @@ DarkElves::DarkElves(int pSizePopulation, bool pStart) : Population(pSizePopulat
        {
 
            GameIndividual* newIndividual = new GameIndividual(_Skills);
-           //insertIndividualList(newIndividual);
+           //std::cout<<"Fitness NewIndividuo "<<*(newIndividual->getFitness())<<std::endl;
+           insertIndividualList(newIndividual);
        }
    }
 }

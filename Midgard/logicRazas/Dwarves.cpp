@@ -3,7 +3,7 @@
 Dwarves::Dwarves(int pSizePopulation, bool pStart) : Population(pSizePopulation,pStart)
 {
     _PopulationSize = (int*) malloc(sizeof(int));
-    _PopulationSize = Constants::MAXPOPULATION;
+    *_PopulationSize = Constants::MAXPOPULATION;
    _CantidadCualidades = Constants::SKILLSQUANTITY;
 
    // Inicializa la poblacion
@@ -17,7 +17,7 @@ Dwarves::Dwarves(int pSizePopulation, bool pStart) : Population(pSizePopulation,
        {
 
            GameIndividual* newIndividual = new GameIndividual(_Skills);
-           //insertIndividualList(newIndividual);
+           insertIndividualList(newIndividual);
        }
    }
 }
