@@ -3,8 +3,9 @@
 
  //LogicWriter
 
-string jsonWriterCpp::writeMap(Vector<short> pMatriz)
+string jsonWriterCpp::writeMap(Vector<int> pMatriz)
 {
+
     string pMe="{\"type\" : ";
            string Height=to_string(pMatriz.getHeight());
            string type=to_string(1);
@@ -16,14 +17,17 @@ string jsonWriterCpp::writeMap(Vector<short> pMatriz)
            pMe.append("\"map\" :\"");
            string newMatriz= "";
 
+
            for(int i =0; i < pMatriz.getHeight(); i++)
            {
                for(int j=0; j<pMatriz.getWidth();j++ )
                {
                    newMatriz += to_string(pMatriz[i][j]) + "#" ;
                }
+
            }
 
+        cout << "estoy aqui en json WRITE" << endl;
         pMe.append(newMatriz);
         pMe.append("\" }");
         cout<<pMe<<endl;

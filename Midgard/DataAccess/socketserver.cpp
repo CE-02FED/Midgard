@@ -7,9 +7,9 @@ LogicFacade* SocketServer::_LogicFacade;
 
 SocketServer::SocketServer()
 {
-    CrazyThread* hiloRecibirMensajes = new CrazyThread((void*)SocketServer::run(),nullptr);
+    CrazyThread* d = new CrazyThread((void*)SocketServer::run,nullptr);
     _LogicFacade = LogicFacade::getInstance();
-    hiloRecibirMensajes->run();
+
 
 }
 
@@ -34,14 +34,14 @@ bool SocketServer::ligar_kernel()
     if((bind(descriptor,(sockaddr *)&info,(socklen_t)sizeof(info))) < 0)
         return false;
 
-    listen(descriptor,MaxConections);
+    listen(descriptor,5);
     return true;
 }
 
 
 void* SocketServer::run()
 {
-
+    cout << "run" << endl;
     if(!crear_Socket())
         throw string("Error al crear el socket");
     if(!ligar_kernel())
@@ -58,9 +58,11 @@ void* SocketServer::run()
         else
         {
             clientes.push_back(data.descriptor);
+            /*pthread_t hilo;
+            pthread_create(&hilo,0,SocketServer::controladorCliente,(void *)&data);
+            pthread_detach(hilo);*/
             CrazyThread * hilo = new CrazyThread((void*)SocketServer::controladorCliente,&data );
             hilo->run();
-
         }
     }
     close(descriptor);
@@ -76,16 +78,15 @@ void * SocketServer::controladorCliente(void *obj)
         string mensaje;
         while (1) {
              pthread_mutex_lock(&mutex);
-            char buffer[10] = {0};
-            int bytes = recv(data->descriptor,buffer,500,0);
+            char buffer[10000] = {0};
+            int bytes = recv(data->descriptor,buffer,10000,0);
             mensaje.append(buffer,bytes);
-            if(bytes < 500)
+            if(bytes < 10000)
                 break;
             pthread_mutex_unlock(&mutex);
         }
-        cout << mensaje << endl;
+        //cout << mensaje << endl;
         _LogicFacade->receiveDataFromSocket(mensaje);
-
         usleep(10000);
     }
 

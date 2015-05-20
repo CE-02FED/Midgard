@@ -16,18 +16,17 @@ Evolution::Evolution()
 Population Evolution::evolvePopulation(Population pPopulation)
 {
     Population* newPopulation = new Population(Constants::MAXPOPULATION, false);
-    newPopulation->insertIndividualList(pPopulation.getFittest());
+    newPopulation->insertIndividualList((pPopulation.getFittest()));
 
 
     for (int i =0;i<((Constants::MAXPOPULATION)/2);i++)
     {
-        Individuals FatherA = *(pPopulation.getIndividualbyIndex(0));
+        Individuals FatherA = fathersSelection(pPopulation);
 
-        Individuals FatherB = *(pPopulation.getIndividualbyIndex(1));
+        Individuals FatherB = fathersSelection(pPopulation);
         Individuals* newIndividualsArray = CrossOver(FatherA, FatherB);
 
         Individuals& newA = newIndividualsArray[0];
-        newA.getFitness();
         Individuals& newB = newIndividualsArray[1];
 
         newPopulation->insertIndividualList(&newA);
@@ -57,8 +56,6 @@ Population Evolution::evolvePopulation(Population pPopulation)
  */
 Individuals Evolution::fathersSelection(Population pPopulation)
 {
-
-
     Population* fathers = new Population(_PoolFathersSize,false);
 
 
@@ -109,6 +106,9 @@ void Evolution::Mutation(Individuals* pIndividual)
  */
 Individuals* Evolution::CrossOver(Individuals pFatherA, Individuals pFatherB)
 {
+    // Necesario para metodo 2 y 3
+
+
    /* Individuals* newIndividualA = new Individuals();
     Individuals* newIndividualB = new Individuals();
     Individuals* tmpIndividualA = new Individuals();
@@ -119,21 +119,22 @@ Individuals* Evolution::CrossOver(Individuals pFatherA, Individuals pFatherB)
     tmpIndividualA->setIndividualID(3);
     tmpIndividualB->setIndividualID(4);
 
-
+   // std::cout << "Father A Fitness: " <<std::to_string(pFatherA.getFitness()) << endl;
+    //std::cout << "Father B Fitness: " <<std::to_string(pFatherB.getFitness()) << endl;
 
     newIndividualA->setGene(pFatherA.getGenes()); // se le asigan los genes del padre al hijo A
     newIndividualB->setGene(pFatherB.getGenes()); // se le asignan los genes del padre al hijo B
 
     tmpIndividualA->setGene( pFatherA.getGenes()); //se le asignan los genes del padre al hijo A
     tmpIndividualB->setGene( pFatherB.getGenes()); //se le asignan los genes del padre al hijo B*/
-    std::cout << "Father A Fitness: " <<std::to_string(*(pFatherA.getFitness())) << endl;
-    std::cout << "Father B Fitness: " <<std::to_string(*(pFatherB.getFitness())) << endl;
 
-    BitVector genesIndividualA = *(pFatherA.getGenes());
-    BitVector genesIndividualB = *(pFatherB.getGenes());
+    // End;
 
-    BitVector tmpGenesIndividualA =  *(pFatherA.getGenes());
-    BitVector tmpGenesIndividualB = *(pFatherB.getGenes());
+    BitVector* genesIndividualA = pFatherA.getGenes();
+    BitVector* genesIndividualB = pFatherB.getGenes();
+
+    BitVector* tmpGenesIndividualA =  pFatherA.getGenes();
+    BitVector* tmpGenesIndividualB = pFatherB.getGenes();
 
 
     for (int Indice = 0; Indice < Constants::SKILLSQUANTITY ; Indice++)
@@ -143,36 +144,39 @@ Individuals* Evolution::CrossOver(Individuals pFatherA, Individuals pFatherB)
         u_int8_t maskA = (tmpMask << tmpPuntoCruce);
         u_int8_t maskB = ~(maskA);
 
-        cout<<"MaskA "<<to_string(maskA)<<endl;
-        cout<<"MaskB "<<to_string(maskB)<<endl;
+        //cout<<"MaskA "<<to_string(maskA)<<endl;
+        //cout<<"MaskB "<<to_string(maskB)<<endl;
 
 
-        genesIndividualA.andOperator(Indice,maskB);
+        genesIndividualA->andOperator(Indice,maskA);
         //cout <<"Cualidad "<<Indice<<" F1 and "<< to_string(genesIndividualA->getByIndex(Indice))<<endl;
-        genesIndividualB.andOperator(Indice,maskA);
+        genesIndividualB->andOperator(Indice,maskB);
         //cout <<"Cualidad "<<Indice<<" F2 and "<< to_string(genesIndividualB->getByIndex(Indice))<<endl;
-        genesIndividualA.orOperator(Indice,genesIndividualB.getByIndex(Indice));
-        cout <<"Cualidad IndA: "<<Indice<<" New or "<< to_string(genesIndividualA.getByIndex(Indice))<<endl;
+        genesIndividualA->orOperator(Indice,genesIndividualB->getByIndex(Indice));
+        cout <<"Cualidad IndA: "<<Indice<<" New or "<< to_string(genesIndividualA->getByIndex(Indice))<<endl;
 
-        tmpGenesIndividualA.andOperator(Indice,maskA);
+        tmpGenesIndividualA->andOperator(Indice,maskA);
         //cout <<"Cualidad "<<Indice<<" F1 and "<< to_string(tmpGenesIndividualA->getByIndex(Indice))<<endl;
-        tmpGenesIndividualB.andOperator(Indice,maskB);
+        tmpGenesIndividualB->andOperator(Indice,maskB);
         //cout <<"Cualidad "<<Indice<<" F2 and "<< to_string(tmpGenesIndividualA->getByIndex(Indice))<<endl;
-        tmpGenesIndividualA.orOperator(Indice,tmpGenesIndividualB.getByIndex(Indice));
-        cout <<"Cualidad IndB: "<<Indice<<" New or "<< to_string(tmpGenesIndividualA.getByIndex(Indice))<<endl;
+        tmpGenesIndividualA->orOperator(Indice,tmpGenesIndividualB->getByIndex(Indice));
+        cout <<"Cualidad IndB: "<<Indice<<" New or "<< to_string(tmpGenesIndividualA->getByIndex(Indice))<<endl;
 
     }
 
-    Individuals* newIndividualA = new Individuals();
-    newIndividualA->setGene(genesIndividualA);
-    Individuals* newIndividualB = new Individuals();
-    newIndividualB->setGene(tmpGenesIndividualA);
+    Individuals* newIndividualA = new Individuals(genesIndividualA);
+    Individuals* newIndividualB = new Individuals(tmpGenesIndividualA);
+
+    free(genesIndividualA);
+    free(genesIndividualB);
+    free(tmpGenesIndividualA);
+    free(tmpGenesIndividualB);
 
 
 
-    cout<< "fitness New A "<< *(newIndividualA->getFitness())<<endl;
+    cout<< "fitness New A "<< (newIndividualA->getFitness())<<endl;
 
-    cout<< "fitness New B "<< *(newIndividualB->getFitness())<<endl;
+    cout<< "fitness New B "<< (newIndividualB->getFitness())<<endl;
 
     Individuals* GroupNewIndividuals[] = {newIndividualB,newIndividualB};
 
@@ -182,9 +186,8 @@ Individuals* Evolution::CrossOver(Individuals pFatherA, Individuals pFatherB)
 
 
 
-
-
-
+ // METODO 2, Cambiando los genes dentro de los newIndividuals
+ // Le calcula bien el fitness al Individuo B pero al A lo calcula con las cualidades del B
 
 
 
@@ -231,6 +234,24 @@ Individuals* Evolution::CrossOver(Individuals pFatherA, Individuals pFatherB)
     cout << "individual B ID: " << tmpIndividualB->getIndividualID() << endl;
 
     Individuals* GroupNewIndividuals[] = {newIndividualB,tmpIndividualB};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ // METODO 3 Manual
+
+
 */
     /*int tmpCruce = randomClass::randRange(1,10);
 

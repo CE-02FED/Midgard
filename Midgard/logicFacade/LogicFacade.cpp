@@ -10,8 +10,10 @@ LogicFacade::LogicFacade()
 
 void LogicFacade::runLogic(MainLogic* pMainLogic)
 {
-    _MainLogic = pMainLogic;
-    _socketServer = new SocketServer();
+    _MainLogic = pMainLogic;    
+    _socketServer = new SocketServer();    
+
+    //receiveDataFromSocket("{\"type\":\"1\"}");
 
 }
 
@@ -33,14 +35,15 @@ void LogicFacade::getMap()
 {
 
     jsonWriterCpp* crearJson = new jsonWriterCpp();
-    char pArreglo[10000];
+
     //crearJson->writeMap(_MainLogic->getMap(),pArreglo);
 
-    cout << "llegoGetMap" << endl;
-    crearJson->writeMap(_MainLogic->getMap());
+    cout << "llegoGetMap" << endl;    
     cout << "manda mapa" << endl;
-    cout << "json "<< pArreglo << endl;
-    _socketServer->setMensaje(pArreglo);
+    cout<< "height: " << _MainLogic->getMap().getHeight()<< endl;
+    cout<< "width: " << _MainLogic->getMap().getWidth()<< endl;
+
+    _socketServer->setMensaje(crearJson->writeMap(_MainLogic->getMap()).c_str());
 }
 
 /**

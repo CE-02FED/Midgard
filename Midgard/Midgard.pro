@@ -35,7 +35,8 @@ SOURCES += main.cpp \
     DataAccess/jsonwriter.cpp \
     DataAccess/jsonreader.cpp \
     DataAccess/jsonreadercpp.cpp \
-    DataAccess/jsonwritercpp.cpp
+    DataAccess/jsonwritercpp.cpp \
+    res/Constants.cpp
 
 RESOURCES += qml.qrc
 
@@ -88,4 +89,6 @@ HEADERS += \
     DataAccess/jsonreader.h \
     res/vector.h \
     DataAccess/jsonreadercpp.h \
-    DataAccess/jsonwritercpp.h
+    DataAccess/jsonwritercpp.h \
+    res/lista.h \
+    res/nodos.h

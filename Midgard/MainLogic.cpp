@@ -7,6 +7,23 @@ Dwarves* MainLogic::_DwarvesPopulation;
 
 MainLogic::MainLogic()
 {
+
+    archivoXML = new docXML();
+    matriz = new Vector<int> (50,50);
+
+
+    /*for(int i=0;i<matriz->getWidth();i++)
+    {
+        for(int j=0; i< matriz->getHeight();j++)
+        {
+            (*matriz)[i][j] = 0;
+        }
+
+    }*/
+
+
+
+    //matriz = initMatriz();
 }
 
 Vector<int>* MainLogic::getParents(int* pRaza, int* pIndividualID)
@@ -46,9 +63,9 @@ Vector<int>* MainLogic::getParents(int* pRaza, int* pIndividualID)
     return Family2;
 }
 
-Vector<short> MainLogic::getMap()
+Vector<int> MainLogic::getMap()
 {
-
+    return this->matriz;
 }
 
 
@@ -60,7 +77,7 @@ void MainLogic::runLogic()
 
     while(1)
     {                        
-
+        
     }
 
 }
@@ -91,3 +108,34 @@ void MainLogic::evolution()
     }
 
 }
+
+Vector<int> *MainLogic::initMatriz()
+{
+    int Height = archivoXML->getMatrizHeight();
+    int Width = archivoXML->getMatrizWidth();
+    Vector<int>* newMatriz = new Vector<int>(Width,Height);
+    string tmpMap = archivoXML->getMatriz();
+        string numero = "";
+
+        int index = 0, jindex = 0;
+        for (int i = 0; i < tmpMap.length(); i++) {
+            if (index >= Height) {
+                break;
+            }
+            if (jindex >= Width) {
+                jindex = 0;
+                index++;
+            }
+            if (tmpMap[i] == '#') {
+                (*newMatriz)[index][jindex] = stoi(numero);
+                jindex++;
+                numero = "";
+            }
+            else {
+                numero += tmpMap[i];
+            }
+        }
+  return newMatriz;
+
+}
+

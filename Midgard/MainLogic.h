@@ -11,6 +11,7 @@
 #include "logicGame/GameIndividual.h"
 #include "res/crazythread.h"
 #include "res/vector.h"
+#include "DataAccess/docXML.h"
 #include <unistd.h>
 
 #define darkElves 1
@@ -31,14 +32,21 @@ private:
     static DarkElves* _DarkElvesPopulation;
     static Elves* _ElvesPopulation;
     static Giants* _GiantsPopulation;
-    static Dwarves* _DwarvesPopulation;
+    static Dwarves* _DwarvesPopulation;    
+    docXML* archivoXML;
+    Vector<int>* matriz;
 
     static void evolution();
+    Vector<int> *initMatriz();
+
+
+
+
 
 public:    
     MainLogic();
     void runLogic();
-    Vector<short> getMap();
+    Vector<int> getMap();
     Vector<int> *getParents(int *pRaza, int *pIndividualID);
 
 };

@@ -13,7 +13,7 @@
 #include "../logicFacade/LogicFacade.h"
 
 #define Puerto 9090
-#define MaxConections 5
+
 
 using namespace std;
 
@@ -22,7 +22,6 @@ struct dataSocket{
     int descriptor;
     sockaddr_in info;
 };
-
 
 class SocketServer
 {

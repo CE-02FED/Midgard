@@ -5,6 +5,7 @@
 #include "Individuals.h"
 #include "../res/lista.h"
 
+
 #include <iostream>
 
 
