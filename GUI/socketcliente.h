@@ -10,11 +10,15 @@
 #include <unistd.h>
 #include <arpa/inet.h>
 #include "mythread.h"
+#include "GuiFacade.h"
 
 #define IP "172.26.102.106"
+#define PUERTO 7070
 
 using namespace std;
 
+
+class GuiFacade;
 class SocketCliente
 {
 public:
@@ -22,6 +26,7 @@ public:
     bool connectar();
     void setMensaje(const char *msn);
 private:
+    static GuiFacade* _GuiFacade;
     int descriptor;
     sockaddr_in info;
     static void * controlador(void *obj);

@@ -1,6 +1,7 @@
 #include <QApplication>
 #include "Scene.h"
 //#include "mythread.h"
+class MyThread;
 
 int main(int argc, char *argv[])
 {
@@ -10,7 +11,7 @@ int main(int argc, char *argv[])
    scene = new Scene();
    scene->show();
 
-   MyThread* _thread = new MyThread((void*)scene->start,nullptr);
+   //MyThread* _thread = new MyThread((void*)scene->start,nullptr);
 
 
 

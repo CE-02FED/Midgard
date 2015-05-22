@@ -22,7 +22,9 @@ SOURCES += main.cpp\
     GuiFacade.cpp \
     obstacle.cpp \
     socketserver.cpp \
-    socketcliente.cpp
+    socketcliente.cpp \
+    jsonreadercpp.cpp \
+    jsonwritercpp.cpp
 
 HEADERS  += mainwindow.h \
     mythread.h \
@@ -31,6 +33,10 @@ HEADERS  += mainwindow.h \
     GuiFacade.h \
     obstacle.h \
     socketserver.h \
-    socketcliente.h
+    socketcliente.h \
+    jsonreadercpp.h \
+    jsonwritercpp.h \
+    vector.h \
+    Constants.h
 
 FORMS    += mainwindow.ui

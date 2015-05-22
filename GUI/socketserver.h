@@ -10,20 +10,18 @@
 #include <vector>
 #include <unistd.h>
 #include "mythread.h"
-#include "GuiFacade.h"
 
-#define Puerto 9090
+#define Puerto 8080
 
 
 using namespace std;
 
-
+class LogicFacade;
 struct dataSocket{
     int descriptor;
     sockaddr_in info;
 };
 
-class GuiFacade;
 class SocketServer
 {
 public:
@@ -33,7 +31,7 @@ public:
 private:
     static int descriptor;
     static sockaddr_in info;
-    static GuiFacade* _GuiFacade;
+    static LogicFacade* _LogicFacade;
     static bool crear_Socket();
     static bool ligar_kernel();
     static void * controladorCliente(void *obj);

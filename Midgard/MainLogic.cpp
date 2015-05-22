@@ -10,6 +10,9 @@ MainLogic::MainLogic()
 
     archivoXML = new docXML();
     matriz = new Vector<int> (50,50);
+    matriz->llenarMatriz(0);
+
+
 
 
     /*for(int i=0;i<matriz->getWidth();i++)
@@ -63,9 +66,11 @@ Vector<int>* MainLogic::getParents(int* pRaza, int* pIndividualID)
     return Family2;
 }
 
-Vector<int> MainLogic::getMap()
+Vector<int>* MainLogic::getMap()
 {
-    return this->matriz;
+    cout << "matriz: height " << matriz->getHeight()<< endl;
+    cout << "matriz width: " << matriz->getWidth()<< endl;
+    return matriz;
 }
 
 

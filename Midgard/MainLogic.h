@@ -46,7 +46,7 @@ private:
 public:    
     MainLogic();
     void runLogic();
-    Vector<int> getMap();
+    Vector<int> *getMap();
     Vector<int> *getParents(int *pRaza, int *pIndividualID);
 
 };

@@ -14,58 +14,70 @@ GuiFacade::GuiFacade()
 
 void GuiFacade::runGui(Scene* pGuiLogic)
 {
-    _MainGui = pGuiLogic;
+    _MainGui = pGuiLogic;    
+    _socketClient = new SocketCliente();
 }
 
 void GuiFacade::receiveDataFromSocket(string pMensaje)
 {
-    leerJson(pMensaje);
-    _socketServer = new SocketServer();
+        leerJson(pMensaje);
+}
+
+void GuiFacade::receiveMap(string pMensaje)
+{
+    jsonReaderCpp* Reader = new jsonReaderCpp();
+    Vector<int>* matrizMapa = Reader->readMap(pMensaje);
+
+    // Aqui despues le manda la matriz al main gui
+}
+
+void GuiFacade::receiveGenealogia(string pMensaje)
+{
+    //Posicion 0= Padre, Posicion 1 = Madre, Posicion 2 = Fitness del individuo
+    jsonReaderCpp* Reader = new jsonReaderCpp();
+    Vector<int>* vectorFamilia = Reader->readFamilyFromGUI(pMensaje);
+
+    // AQUI puede llamar algun metodo del main de la gui e insertarle este vector para que ya el haga lo que ocupa
+
+}
+
+void GuiFacade::getGenealogia(int pRaza, int pIndviduoID)
+{
+    jsonWriterCpp* crearJson = new jsonWriterCpp();
+
+    _socketClient->setMensaje(crearJson->writeFamilyFromGUI(pRaza,pIndviduoID).c_str());
+
 }
 
 void GuiFacade::getMap()
 {
-    //string jsonGetMap = crearJson(GetMap,_MainLogic->getMap(),nullptr);
-    //_socketServer->setMensaje(jsonGetMap.c_str());
-}
+    jsonWriterCpp* crearJson = new jsonWriterCpp();
 
-void GuiFacade::getGenealogia(string pClase, string pID)
-{
-    //string jsonGetMap = crearJson(Genealogia,nullptr, _MainLogic->getParents(pClase, pID)); // Le agrega el string que contiene el ID de ambos padres de pID
-    //_socketServer->setMensaje(jsonGetMap.c_str());
+    _socketClient->setMensaje(crearJson->writeType(1).c_str());
 }
-
 
 
 void GuiFacade::leerJson(string pMensaje)
 {
-   /* switch(pMensaje)
-    {
+    cout << "llego al leer" << endl;
 
-    case GetMap:
-        getMap();
-        break;
+        jsonReaderCpp* Reader = new jsonReaderCpp();
 
-    case Genealogia:
-        getGenealogia();
+        switch(Reader->readType(pMensaje))
+        {
+        case GetMap:
+            cout << "paso" << endl;
+            receiveMap(pMensaje);
 
-        break;
-
-    }*/
+            break;
+        case Genealogia:
+            receiveGenealogia(pMensaje);
+            break;
+        default:
+            receiveMap(pMensaje);
+            break;
+        }
 }
-
-string GuiFacade::crearJson(int pType, string pMap, string pGenealogia)
-{/*
-    switch (pType)
-    {
-    case GetMap:
-        break;
-    case Genealogia:
-        break;
-    }*/
-}
-
-
 
 GuiFacade *GuiFacade::getInstance()
 {

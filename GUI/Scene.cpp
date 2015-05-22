@@ -34,7 +34,7 @@ void* Scene::start()
          individuo->setId(i);
          _population[i] = individuo;
          scene->addItem(individuo);
-         std::cout << "Tipo: " << individuo->getType() << std::endl;
+         //std::cout << "Tipo: " << individuo->getType() << std::endl;
          usleep(1000000);
      }
 
