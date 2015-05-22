@@ -1,6 +1,7 @@
 #include "socketcliente.h"
 SocketCliente::SocketCliente()
 {
+
 }
 
 bool SocketCliente::connectar()

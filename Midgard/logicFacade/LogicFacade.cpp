@@ -10,9 +10,11 @@ LogicFacade::LogicFacade()
 
 void LogicFacade::runLogic(MainLogic* pMainLogic)
 {
-    _MainLogic = pMainLogic;
-    _socketServer = new SocketServer();
+    _MainLogic = pMainLogic;    
+    _socketServer = new SocketServer();    
 
+    //receiveDataFromSocket("{\"type\":\"1\"}");
+//{"type":"1"}"{\"type\":\"1\"}"
 }
 
 /**
@@ -33,14 +35,15 @@ void LogicFacade::getMap()
 {
 
     jsonWriterCpp* crearJson = new jsonWriterCpp();
-    char pArreglo[10000];
+
     //crearJson->writeMap(_MainLogic->getMap(),pArreglo);
 
-    cout << "llegoGetMap" << endl;
-    crearJson->writeMap(_MainLogic->getMap());
-    cout << "manda mapa" << endl;
-    cout << "json "<< pArreglo << endl;
-    _socketServer->setMensaje(pArreglo);
+    cout << "llegoGetMap Logic" << endl;
+    cout << "manda mapa from logic" << endl;
+    //cout<< "height: " << _MainLogic->getMap()->getHeight()<< endl;
+    //cout<< "width: " << _MainLogic->getMap()->getWidth()<< endl;
+
+    _socketServer->setMensaje(crearJson->writeMap((*_MainLogic->getMap())).c_str());
 }
 
 /**
@@ -53,11 +56,11 @@ void LogicFacade::getGenealogia(Vector<int> pDatos)
      jsonWriterCpp* crearJson = new jsonWriterCpp();
      Vector<int>* padres = _MainLogic->getParents(pDatos[Raza],pDatos[individuoID]);
 
-     char pArreglo[10000];
+
      //crearJson->writeFamily((*padres)[Padre],(*padres)[Madre], (*padres)[indvFitness],pArreglo); // Le agrega el string que contiene el ID de ambos padres de pID
-     crearJson->writeFamily(*((*padres)[Padre]),*((*padres)[Madre]), *((*padres)[indvFitness])); // Le agrega el string que contiene el ID de ambos padres de pID
+     crearJson->writeFamily((*padres)[Padre],(*padres)[Madre], (*padres)[indvFitness]); // Le agrega el string que contiene el ID de ambos padres de pID
      cout << "creo el json en family" << endl;
-    _socketServer->setMensaje(pArreglo);
+    //_socketServer->setMensaje(pArreglo);
 }
 
 
@@ -67,14 +70,14 @@ void LogicFacade::getGenealogia(Vector<int> pDatos)
  */
 void LogicFacade::leerJson(string pMensaje)
 {
-    cout << "llego al leer" << endl;
+    cout << "llego al leer logica" << endl;
 
         jsonReaderCpp* Reader = new jsonReaderCpp();
 
         switch(Reader->readType(pMensaje))
         {
         case GetMap:
-            cout << "paso" << endl;
+            cout << "paso getMap logic" << endl;
             getMap();
             break;
         case Genealogia:

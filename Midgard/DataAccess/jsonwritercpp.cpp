@@ -5,7 +5,7 @@
 
 string jsonWriterCpp::writeMap(Vector<int> pMatriz)
 {
-
+    //{"type":"1"}"{\"type\":\"1\"}"
     string pMe="{\"type\" : ";
            string Height=to_string((&pMatriz)->getHeight());
            string type=to_string(1);

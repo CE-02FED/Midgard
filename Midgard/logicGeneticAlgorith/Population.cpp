@@ -16,7 +16,7 @@ Population::Population(int pSizePopulation, bool pStart)
 
 
     _IndividualList = new lista<Individuals>();
-
+    this = 3;
 
     if (false)
     {
