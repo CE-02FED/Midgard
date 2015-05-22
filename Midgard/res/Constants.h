@@ -10,10 +10,10 @@ class Constants{
     static Constants* getInstance();
         const static int SKILLSQUANTITY = 10;
         const static int MAXSKILL = 255;
-        const static int MAXPOPULATION= 40;
+        const static int MAXPOPULATION= 50;
         const static size_t DEFAULTELEMENTSIZE = 8;
         const static int START = 0;
-        const static int GENERATIONS=100;
+        const static int GENERATIONS=100000;
     //vheap
          int vHeapSize;
          float vHeapOverweight;

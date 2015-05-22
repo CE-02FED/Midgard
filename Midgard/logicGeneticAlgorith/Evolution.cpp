@@ -19,7 +19,7 @@ Population Evolution::evolvePopulation(Population pPopulation)
     newPopulation->insertIndividualList(pPopulation.getFittest());
 
 
-    for (int i =0;i<((Constants::MAXPOPULATION)/10);i++)
+    for (int i =0;i<((Constants::MAXPOPULATION)/20);i++)
     {
         Individuals* FatherA = fathersSelection(pPopulation);
 
@@ -47,6 +47,12 @@ Population Evolution::evolvePopulation(Population pPopulation)
 
         Mutation(pPopulation.getIndividualbyIndex(i));
     }
+    while((pPopulation.getPopulationSize()-Constants::MAXPOPULATION)!=0){
+        pPopulation.deleteIndividualList(pPopulation.getFitless());
+        pPopulation.downPopulation();
+    }
+
+    //recortar poblacion con el fitless
     return pPopulation;
 }
 
@@ -108,7 +114,7 @@ void Evolution::Mutation(Individuals* pIndividual)
         if (randomClass::randRange(0.0,10.0) <= _mutationRate)
         {
 
-           // pIndividual->getGenes()->Flip(randomClass::getRandom(80));
+           pIndividual->getGenes()->Flip(randomClass::getRandom(80));
             //std::cout<< "entro mut saio flip" << std::endl;
         }
 
@@ -186,8 +192,10 @@ lista<Individuals>* Evolution::CrossOver(Individuals pFatherA, Individuals pFath
 
     Individuals* newIndividualA = new Individuals();
     newIndividualA->setGene(*genesIndividualA);
+    newIndividualA->setFathers(pFatherA.getId(),pFatherB.getId());
     Individuals* newIndividualB = new Individuals();
     newIndividualB->setGene(*tmpGenesIndividualA);
+    newIndividualB->setFathers(pFatherA.getId(),pFatherB.getId());
 
 
 
@@ -199,7 +207,6 @@ lista<Individuals>* Evolution::CrossOver(Individuals pFatherA, Individuals pFath
     lista<Individuals>* list= new lista<Individuals>();
     list->agregar(newIndividualA,0);
     list->agregar(newIndividualB,0);
-    Individuals Array[2]={(newIndividualA),(newIndividualB)};
     /*lista<Individuals> GroupNewIndividuals;
     GroupNewIndividuals.agregar(newIndividualA,0);
     GroupNewIndividuals.agregar(newIndividualB,0);*/

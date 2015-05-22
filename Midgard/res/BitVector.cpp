@@ -61,7 +61,7 @@ BitVector& BitVector::operator = (const BitVector& pRightAssignment)  //assignme
     {
       delete [] _BitVectorData;
       _BitVectorSize = pRightAssignment._BitVectorSize;
-      _BitVectorData = new int8_t [_BitVectorSize];
+      _BitVectorData = new u_int8_t [_BitVectorSize];
       if (_BitVectorData == 0)
       {
         //std::cerr << "** BitVector memory allocation failure -- terminating program.\n";
@@ -213,7 +213,7 @@ unsigned char* BitVector::getArray()
  * @param pIndex
  * @return devuelve una mascara para poder ubicar al bit indicado
  */
-unsigned char const BitVector::bitMask (int pIndex)
+size_t BitVector::bitMask (int pIndex)
 {
   // return bitMask for pIndex % 8
   // the low order 3 bits is the remainder when dividing by 8

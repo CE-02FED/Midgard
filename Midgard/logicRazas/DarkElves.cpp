@@ -18,7 +18,7 @@ DarkElves::DarkElves(int pSizePopulation, bool pStart) : Population(pSizePopulat
        {
 
            GameIndividual* newIndividual = new GameIndividual(_Skills);
-           //std::cout<<"Fitness NewIndividuo "<<*(newIndividual->getFitness())<<std::endl;
+
            insertIndividualList(newIndividual);
        }
    }

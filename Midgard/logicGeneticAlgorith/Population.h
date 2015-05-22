@@ -22,8 +22,11 @@ protected:
 
 public:
     Population();
+    Individuals* getFitless();
+    void deleteIndividualList(Individuals* pIndividual);
     Population(int pSizePopulation, bool pStart);
     void upPopulation();
+    void downPopulation();
     Individuals *getIndividualbyIndex(int pIndex);
 
     Individuals *getIndividualList(int pIndex);

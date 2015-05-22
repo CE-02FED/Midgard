@@ -44,6 +44,9 @@ void Population::upPopulation(){
     (*(_PopulationSize))++;
 }
 
+void Population::downPopulation(){
+    (*(_PopulationSize))--;
+}
 
 
 void Population::insertIndividualList(Individuals* pIndividual)
@@ -54,6 +57,15 @@ void Population::insertIndividualList(Individuals* pIndividual)
     //std::cout<<"Se agrega al final de la lista "<<*(pIndividual->getFitness())<<std::endl;
     _ID++;
 
+}
+void Population::deleteIndividualList(Individuals* pIndividual){
+
+  int id= pIndividual->getId();
+  for(int i=0;i<_IndividualList->getNumEle();i++){
+      if(id==_IndividualList->getElemento(i)->getId()){
+          _IndividualList->eliminar(i);
+      }
+  }
 }
 
 int Population::getPopulationSize()
@@ -80,6 +92,26 @@ Individuals* Population::getFittest()
             tmpNodo = tmpNodo->getSiguiente();
         }
         return fittest;
+    }
+Individuals* Population::getFitless()
+{
+        nodo<Individuals>* tmpNodo = _IndividualList->getNodo(0);
+        Individuals* fitless = tmpNodo->getDato();
+        //std::cout<<"Tamaño Lista "<<_IndividualList->getNumEle()<<std::endl;
+        //std::cout<<"Cantidad de Individuos "<<*_PopulationSize<<std::endl;
+
+        // Loop through individuals to find fittest
+        for (int i = 0; i < (*(this->_PopulationSize)); i++)
+        {
+            //std::cout<<"Fitness en Nodo "<<*(tmpNodo->getDato()->getFitness())<<std::endl;
+
+            if (*(fitless->getFitness()) >= *(tmpNodo->getDato()->getFitness()))
+            {
+                fitless = tmpNodo->getDato();
+            }
+            tmpNodo = tmpNodo->getSiguiente();
+        }
+        return fitless;
     }
 
 int Population::getTotalFitness()

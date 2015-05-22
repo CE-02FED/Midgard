@@ -202,6 +202,7 @@ template <typename datoGenerico> class lista {
 					}
 					nodo<datoGenerico>* nodoBorrar=nodoAnterior->getSiguiente();
 					nodoAnterior->setSiguiente(nodoBorrar->getSiguiente());
+                    //free((void*)nodoBorrar->getDato());
 					delete nodoBorrar;
 					numEle--;//disminuye el numero de elementos
 				}

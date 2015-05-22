@@ -4,8 +4,10 @@
 
 Individuals::Individuals()
 {
+    static int x=0;
     this->cantidadCualidades = Constants::SKILLSQUANTITY;
     _Genes = new BitVector(cantidadCualidades);
+    this->_ID=x++;
     this->createIndividual();
     this->_Fitness=0;    
 }
@@ -35,6 +37,7 @@ int Individuals::calculateFitness(BitVector* pIndividualGenes) // VERIFICAR BIEN
 
 void Individuals::setIndividualID(int pID)
 {
+   // std::cout<<"ID Nuevo Individuo "<<pID<<std::endl;
     this->_ID = pID;
 }
 
@@ -50,6 +53,9 @@ void Individuals::createIndividual()
 
 }
 
+int Individuals::getId(){
+    return _ID;
+}
 
 /**
 

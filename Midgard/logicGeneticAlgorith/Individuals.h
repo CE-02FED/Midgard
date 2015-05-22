@@ -6,12 +6,12 @@
 
 
 #define maxSkill 255
-
 //class FitnessCalculation;
 class Individuals
 {
 protected:
     int _Fitness=0;
+
     int _ID;
     int _MotherID = -1; // si es < 0 significa que estos son la primera generacion
     int _FatherID = -1;    
@@ -21,6 +21,7 @@ protected:
 
 
 public:
+    int getId();
     int calculateFitness(BitVector* pIndividualGenes);
     Individuals();
     Individuals(int pID);

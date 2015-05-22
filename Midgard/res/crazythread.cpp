@@ -16,7 +16,7 @@ CrazyThread::~CrazyThread()
 void CrazyThread::run()
 {
     pthread_create(_thread, nullptr, (void*(*)(void*))_func, _arg);
-
+    //pthread_create(_thread, nullptr, _func, _arg);
 }
 
 
