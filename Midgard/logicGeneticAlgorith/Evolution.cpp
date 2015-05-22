@@ -15,28 +15,21 @@ Evolution::Evolution()
 
 Population Evolution::evolvePopulation(Population pPopulation)
 {
-    Population* newPopulation = new Population(1, false);
-    newPopulation->insertIndividualList(pPopulation.getFittest());
 
-
-    for (int i =0;i<((Constants::MAXPOPULATION)/20);i++)
+    for (int i =0;i<((Constants::getInstance()->MAXPOPULATION)*0.08);i++)
     {
+        //std::cout<<"interacion: "<<i<<endl;
         Individuals* FatherA = fathersSelection(pPopulation);
 
         Individuals* FatherB = fathersSelection(pPopulation);
-        lista<Individuals>* newIndividualsList = CrossOver(*FatherA, *FatherB);
+        while(FatherA->getId()==FatherB->getId()){
+            FatherB = fathersSelection(pPopulation);}
 
-        /*Individuals* newA=new Individuals();
-        Individuals* newB=new Individuals();
-        newA = newIndividualsArray[0];
-        newB = newIndividualsArray[1];*/
-        //std::cout<<"Fitness newA2 "<<*(newA->getFitness())<<std::endl;
-        //std::cout<<"Fitness newB2 "<<*(newB->getFitness())<<std::endl;
+        lista<Individuals>* newIndividualsList = CrossOver(*FatherA, *FatherB);
 
 
         pPopulation.insertIndividualList(newIndividualsList->getElemento(0));
         pPopulation.upPopulation();
-
         pPopulation.insertIndividualList(newIndividualsList->getElemento(1));
         pPopulation.upPopulation();
     }
@@ -47,12 +40,10 @@ Population Evolution::evolvePopulation(Population pPopulation)
 
         Mutation(pPopulation.getIndividualbyIndex(i));
     }
-    while((pPopulation.getPopulationSize()-Constants::MAXPOPULATION)!=0){
+    while((pPopulation.getPopulationSize()-Constants::getInstance()->MAXPOPULATION)!=0){
         pPopulation.deleteIndividualList(pPopulation.getFitless());
         pPopulation.downPopulation();
     }
-
-    //recortar poblacion con el fitless
     return pPopulation;
 }
 
@@ -85,9 +76,6 @@ Individuals* Evolution::fathersSelection(Population pPopulation)
             if(j!=(pPopulation.getPopulationSize()-1)){
             j++;
             }
-            //std::cout<<"redondeo: "<<redondeo<<std::endl;
-            //std::cout<<"num Ele "<<j<<std::endl;
-            //std::cout<<"fitness FS "<<*(pPopulation.getIndividualbyIndex(j)->getFitness())<<std::endl;
             redondeo=redondeo+round(((*(pPopulation.getIndividualbyIndex(j)->getFitness())+0.0)/totalFitness)*100);
         }
         fathers[i]=pPopulation.getIndividualbyIndex(j);
@@ -115,7 +103,6 @@ void Evolution::Mutation(Individuals* pIndividual)
         {
 
            pIndividual->getGenes()->Flip(randomClass::getRandom(80));
-            //std::cout<< "entro mut saio flip" << std::endl;
         }
 
     }
@@ -136,26 +123,6 @@ void Evolution::Mutation(Individuals* pIndividual)
  */
 lista<Individuals>* Evolution::CrossOver(Individuals pFatherA, Individuals pFatherB)
 {
-   /* Individuals* newIndividualA = new Individuals();
-    Individuals* newIndividualB = new Individuals();
-    Individuals* tmpIndividualA = new Individuals();
-    Individuals* tmpIndividualB = new Individuals();
-
-    newIndividualA->setIndividualID(1);
-    newIndividualB->setIndividualID(2);
-    tmpIndividualA->setIndividualID(3);
-    tmpIndividualB->setIndividualID(4);
-
-
-
-    newIndividualA->setGene(pFatherA.getGenes()); // se le asigan los genes del padre al hijo A
-    newIndividualB->setGene(pFatherB.getGenes()); // se le asignan los genes del padre al hijo B
-
-    tmpIndividualA->setGene( pFatherA.getGenes()); //se le asignan los genes del padre al hijo A
-    tmpIndividualB->setGene( pFatherB.getGenes()); //se le asignan los genes del padre al hijo B*/
-    //std::cout << "Father A Fitness: " <<std::to_string(*(pFatherA.getFitness())) << endl;
-    //std::cout << "Father B Fitness: " <<std::to_string(*(pFatherB.getFitness())) << endl;
-
     BitVector* genesIndividualA = new BitVector(Constants::SKILLSQUANTITY);
     *genesIndividualA=*(pFatherA.getGenes());
     BitVector* genesIndividualB = new BitVector(Constants::SKILLSQUANTITY);
@@ -175,18 +142,13 @@ lista<Individuals>* Evolution::CrossOver(Individuals pFatherA, Individuals pFath
         u_int8_t maskB = ~(maskA);
 
         genesIndividualA->andOperator(Indice,maskB);
-        //cout <<"Cualidad "<<Indice<<" F1 and "<< to_string(genesIndividualA->getByIndex(Indice))<<endl;
         genesIndividualB->andOperator(Indice,maskA);
-        //cout <<"Cualidad "<<Indice<<" F2 and "<< to_string(genesIndividualB->getByIndex(Indice))<<endl;
         genesIndividualA->orOperator(Indice,genesIndividualB->getByIndex(Indice));
-        //cout <<"Cualidad IndA: "<<Indice<<" New or "<< to_string(genesIndividualA->getByIndex(Indice))<<endl;
+
 
         tmpGenesIndividualA->andOperator(Indice,maskA);
-        //cout <<"Cualidad "<<Indice<<" F1 and "<< to_string(tmpGenesIndividualA->getByIndex(Indice))<<endl;
         tmpGenesIndividualB->andOperator(Indice,maskB);
-        //cout <<"Cualidad "<<Indice<<" F2 and "<< to_string(tmpGenesIndividualA->getByIndex(Indice))<<endl;
         tmpGenesIndividualA->orOperator(Indice,tmpGenesIndividualB->getByIndex(Indice));
-        //cout <<"Cualidad IndB: "<<Indice<<" New or "<< to_string(tmpGenesIndividualA->getByIndex(Indice))<<endl;
 
     }
 
@@ -197,94 +159,9 @@ lista<Individuals>* Evolution::CrossOver(Individuals pFatherA, Individuals pFath
     newIndividualB->setGene(*tmpGenesIndividualA);
     newIndividualB->setFathers(pFatherA.getId(),pFatherB.getId());
 
-
-
-
-
-    //cout<< "fitness New A "<< *(*(newIndividualA)).getFitness()<<endl;
-
-    //cout<< "fitness New B "<< *(*(newIndividualB)).getFitness()<<endl;
     lista<Individuals>* list= new lista<Individuals>();
     list->agregar(newIndividualA,0);
     list->agregar(newIndividualB,0);
-    /*lista<Individuals> GroupNewIndividuals;
-    GroupNewIndividuals.agregar(newIndividualA,0);
-    GroupNewIndividuals.agregar(newIndividualB,0);*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*            // Loop through genes
-    for (int Indice = 0; Indice < Constants::SKILLSQUANTITY ; Indice++)
-    {
-        int tmpPuntoCruce = rand()%cantidadBits;
-
-        u_int8_t tmpMask = (char) Mask; //1
-        u_int8_t maskA = (tmpMask << tmpPuntoCruce);
-        u_int8_t     maskB = ~(maskA);
-
-        //cout<<"MaskA "<<to_string(maskA)<<endl;
-        //cout<<"MaskB "<<to_string(maskB)<<endl;
-
-// INDIVIDUO A
-
-        newIndividualA->getGenes()->andOperator(Indice,maskA);
-        //cout <<"Cualidad "<<Indice<<" F1 and "<< to_string(newIndividualA->getGenes()->getByIndex(Indice))<<endl;
-
-        newIndividualB->getGenes()->andOperator(Indice,maskB);
-        //cout <<"Cualidad "<<Indice<<" F2 and "<< to_string(newIndividualB->getGenes()->getByIndex(Indice))<<endl;
-
-        newIndividualB->getGenes()->orOperator(Indice,newIndividualA->getGenes()->getByIndex(Indice));// Individuo 1 Paso3
-        cout <<"Cualidad IndA: "<<Indice<<" New or "<< to_string(newIndividualB->getGenes()->getByIndex(Indice))<<endl;
-
-// INDIVIDUO B
-
-        tmpIndividualA->getGenes()->andOperator(Indice,maskB);
-        //cout <<"Cualidad "<<Indice<<" F1 and "<< to_string(tmpIndividualA->getGenes()->getByIndex(Indice))<<endl;
-
-        tmpIndividualB->getGenes()->andOperator(Indice,maskA);
-        //cout <<"Cualidad "<<Indice<<" F2 and "<< to_string(tmpIndividualB->getGenes()->getByIndex(Indice))<<endl;
-
-        tmpIndividualB->getGenes()->orOperator(Indice,tmpIndividualA->getGenes()->getByIndex(Indice));// Individuo 2 Paso3
-        cout <<"Cualidad IndB: "<<Indice<<" New or "<< to_string(tmpIndividualB->getGenes()->getByIndex(Indice))<<endl;
-    }
-
-
-    cout<< "fitness New A "<< (newIndividualB->getFitness())<<endl;
-    cout << "individual A ID: " << newIndividualB->getIndividualID() << endl;
-
-    cout<< "fitness New B "<< (tmpIndividualB->getFitness())<<endl;
-    cout << "individual B ID: " << tmpIndividualB->getIndividualID() << endl;
-
-    Individuals* GroupNewIndividuals[] = {newIndividualB,tmpIndividualB};
-*/
-    /*int tmpCruce = randomClass::randRange(1,10);
-
-    for (int Indice = 0; Indice < tmpCruce ; Indice++)
-    {
-        newIndividualA->getGenes()->insertByIndex(Indice,pFatherA.getGenes()->getByIndex(Indice));
-        newIndividualB->getGenes()->insertByIndex(Indice,pFatherB.getGenes()->getByIndex(Indice));
-    }
-    for(int Indice =tmpCruce; Indice < (10-tmpCruce);Indice++)
-    {
-        newIndividualA->getGenes()->insertByIndex(Indice,pFatherB.getGenes()->getByIndex(Indice));
-        newIndividualB->getGenes()->insertByIndex(Indice,pFatherA.getGenes()->getByIndex(Indice));
-    }*/
-
-    //std::cout << "HijoA Fitness: " <<std::to_string(newIndividualA->getFitness()) << endl;
-    //std::cout << "HijoB Fitness: " <<std::to_string(newIndividualB->getFitness()) << endl;
-
-    //Individuals* GroupNewIndividuals[] = {newIndividualA,newIndividualB};
 
 
     return list;

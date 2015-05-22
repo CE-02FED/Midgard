@@ -3,7 +3,7 @@
 Dwarves::Dwarves(int pSizePopulation, bool pStart) : Population(pSizePopulation,pStart)
 {
     _PopulationSize = (int*) malloc(sizeof(int));
-    *_PopulationSize = Constants::MAXPOPULATION;
+    *_PopulationSize = Constants::getInstance()->MAXPOPULATION;
    _CantidadCualidades = Constants::SKILLSQUANTITY;
 
    // Inicializa la poblacion
@@ -13,7 +13,7 @@ Dwarves::Dwarves(int pSizePopulation, bool pStart) : Population(pSizePopulation,
 
    if (pStart)
    {
-       for(int i =0; i < Constants::MAXPOPULATION; i++) // Loop para crear los individuos de la poblacion
+       for(int i =0; i < Constants::getInstance()->MAXPOPULATION; i++) // Loop para crear los individuos de la poblacion
        {
 
            GameIndividual* newIndividual = new GameIndividual(_Skills);

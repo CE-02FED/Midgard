@@ -13,7 +13,7 @@ Giants::Giants(int pSizePopulation, bool pStart) : Population(pSizePopulation,pS
 
    if (pStart)
    {
-       for(int i =0; i < Constants::MAXPOPULATION; i++) // Loop para crear los individuos de la poblacion
+       for(int i =0; i < Constants::getInstance()->MAXPOPULATION; i++) // Loop para crear los individuos de la poblacion
        {
 
            GameIndividual* newIndividual = new GameIndividual(_Skills);

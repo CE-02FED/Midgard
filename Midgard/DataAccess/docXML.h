@@ -5,16 +5,26 @@
 #include <string>
 #include "../res/pugiconfig.hpp"
 #include "pugixml.hpp"
+
 using namespace std ;
 
 class docXML {
 private:    
-    unsigned int elmentSize, maxPopulation, MaxSkill, skillsQuantity,matrizWidth,matrizHeight;
+    unsigned int elmentSize, maxPopulation, MaxSkill, skillsQuantity,matrizWidth,matrizHeight, generations;
     string matriz;
+    pugi::xml_document doc;
+    pugi::xml_node rootNode;
 
 public:
 
     docXML();
+    char* stringToChar(string toConvert);
+    const pugi::xml_document& loadFile(const char* document);
+    const pugi::xml_document& getDoc() const {
+        return doc;
+    }
+
+    int getGenerations(){return this->generations;}
 
     int getElementSize(){ return this->elmentSize;}
 

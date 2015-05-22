@@ -11,9 +11,9 @@ string jsonWriterCpp::writeMap(Vector<int> pMatriz)
            string type=to_string(1);
            string Width =to_string((&pMatriz)->getWidth());
 
-           pMe.append("\""+type+"\ ,");
-           pMe.append("\"height\" : \""+Height+"\ ,");
-           pMe.append("\"width\" : \""+Width+"\ ,");
+           pMe.append("\""+type+"\" ,");
+           pMe.append("\"height\" : \""+Height+"\" ,");
+           pMe.append("\"width\" : \""+Width+"\" ,");
            pMe.append("\"map\" :\"");
            string newMatriz= "";
 
@@ -44,10 +44,10 @@ string jsonWriterCpp::writeFamily(int pFather, int pMother, int pFitness)
            string Fitness=to_string(pFitness);
 
 
-           pMe.append("\""+type+"\ ,");
-           pMe.append("\"Father\" : \""+Father+"\ ,");
-           pMe.append("\"Mother\" : \""+Mother+"\ ,");
-           pMe.append("\"Fitness\" : \""+Fitness+"\ ");
+           pMe.append("\""+type+"\" ,");
+           pMe.append("\"Father\" : \""+Father+"\" ,");
+           pMe.append("\"Mother\" : \""+Mother+"\" ,");
+           pMe.append("\"Fitness\" : \""+Fitness+"\" ");
 
 
         pMe.append(" }");
@@ -62,9 +62,9 @@ string jsonWriterCpp::writeFight(int pPopulation1, int pPopulation2)
            string Population1=to_string(pPopulation1);
            string Population2=to_string(pPopulation2);
 
-           pMe.append("\""+type+"\ ,");
-           pMe.append("\"Raza1\" : \""+Population1+"\ ,");
-           pMe.append("\"Raza2\" : \""+Population2+"\ ");
+           pMe.append("\""+type+"\" ,");
+           pMe.append("\"Raza1\" : \""+Population1+"\" ,");
+           pMe.append("\"Raza2\" : \""+Population2+"\" ");
 
            pMe.append(" }");
            cout<<pMe<<endl;
@@ -80,9 +80,9 @@ string jsonWriterCpp::writeFamilyFromGUI(int pRaza, int pIndividuoID)
            string Raza=to_string(pRaza);
            string IndividuoID=to_string(pIndividuoID);
 
-           pMe.append("\""+type+"\ ,");
-           pMe.append("\"Raza\" : \""+Raza+"\ ,");
-           pMe.append("\"IndividuoID\" : \""+IndividuoID+"\ ");
+           pMe.append("\""+type+"\" ,");
+           pMe.append("\"Raza\" : \""+Raza+"\" ,");
+           pMe.append("\"IndividuoID\" : \""+IndividuoID+"\" ");
 
            pMe.append(" }");
            cout<<pMe<<endl;
@@ -94,7 +94,7 @@ string jsonWriterCpp::writeType(int pType)
     string pMe="{\"type\" : ";
            string type=to_string(pType);
 
-           pMe.append("\""+type+"\ ");
+           pMe.append("\""+type+"\" ");
 
            pMe.append(" }");
            cout<<pMe<<endl;

@@ -1,34 +1,33 @@
-#ifndef CONSTANTES_H_
-#define CONSTANTES_H_
+#ifndef CONSTANTS_H_
+#define CONSTANTS_H_
 #include <string>
 #include <iostream>
+#include "../DataAccess/docXML.h"
 #include<sstream>
+#include <cstring>
 using namespace std;
 
 class Constants{
     public:
     static Constants* getInstance();
-        const static int SKILLSQUANTITY = 10;
-        const static int MAXSKILL = 255;
-        const static int MAXPOPULATION= 50;
-        const static size_t DEFAULTELEMENTSIZE = 8;
-        const static int START = 0;
-        const static int GENERATIONS=100000;
+        const static int SKILLSQUANTITY=10;
+        int MAXSKILL;
+        int MAXPOPULATION;
+        static const size_t DEFAULTELEMENTSIZE = 8;
+        static const int START = 0;
+        int GENERATIONS=100000;
     //vheap
-         int vHeapSize;
-         float vHeapOverweight;
-         bool vDebug;
-         int dumpFrecuency;
-         int port;
     string integerToString(int entero);
     string punteroToString(void* puntero);
     int stringToint(string st);
     private:
          Constants();
+         docXML xmlDocument;
+
          static Constants* m_pInstancia;
          //xmlp heapxml;
 };
 
 
 
-#endif /* CONSTANTES_H_ */
+#endif /* CONSTANTS_H_ */

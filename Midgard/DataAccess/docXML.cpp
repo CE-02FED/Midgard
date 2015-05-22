@@ -4,8 +4,8 @@ using namespace std;
 
 docXML::docXML()
 {
-	pugi::xml_document doc;
-    if (!doc.load_file("MidgardConstants.xml"))
+    pugi::xml_document doc;
+    if (!doc.load_file("/home/javier/WorkspaceQT/Midgard/MidgardConstants.xml"))
 	{
 		cout << "Error al cargar el documento XML." << endl;
 	}
@@ -25,7 +25,20 @@ docXML::docXML()
     matrizWidth = root_node.attribute("matrizWidth").as_uint();
     matrizHeight = root_node.attribute("matrizHeight").as_uint();
     matriz = root_node.attribute("matriz").value();
+    generations= root_node.attribute("generaciones").as_int();
 }
+const pugi::xml_document& docXML::loadFile(const char* document){
+     if (!doc.load_file(document)){
+            cerr << "Error al cargar el documento XML." << endl;
+                }
+     return doc;
+ }
+/*char* docXML::stringToChar(string toConvert){
+    char *y = new char[toConvert.length() + 1];
+    strcpy(y, toConvert.c_str());
+    return y;
+}*/
+
 
 /*int main()
 {

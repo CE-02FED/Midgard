@@ -4,7 +4,7 @@ DarkElves::DarkElves(int pSizePopulation, bool pStart) : Population(pSizePopulat
 {
     //Population::Population(pSizePopulation,false);
     _PopulationSize = (int*) malloc(sizeof(int));
-    *_PopulationSize = Constants::MAXPOPULATION;
+    *_PopulationSize = Constants::getInstance()->MAXPOPULATION;
    _CantidadCualidades = Constants::SKILLSQUANTITY;
 
    // Inicializa la poblacion
@@ -14,7 +14,7 @@ DarkElves::DarkElves(int pSizePopulation, bool pStart) : Population(pSizePopulat
 
    if (pStart)
    {
-       for(int i =0; i < Constants::MAXPOPULATION; i++) // Loop para crear los individuos de la poblacion
+       for(int i =0; i < Constants::getInstance()->MAXPOPULATION; i++) // Loop para crear los individuos de la poblacion
        {
 
            GameIndividual* newIndividual = new GameIndividual(_Skills);
