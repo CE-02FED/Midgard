@@ -48,13 +48,13 @@ void JsonWriter::writeFamily(int *pFather, int *pMother, int *pFitness, char pAr
     type.SetInt(2);
 
     rapidjson::Value& Father = document["Father"];
-    Father.SetInt(pFather);
+    Father.SetInt(*pFather);
 
     rapidjson::Value& Mother = document["Mother"];
-    Mother.SetInt(pMother);
+    Mother.SetInt(*pMother);
 
     rapidjson::Value& Fitness = document["Fitness"];
-    Fitness.SetInt(pFitness);
+    Fitness.SetInt(*pFitness);
 
     rapidjson::StringBuffer buffer;
     rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);

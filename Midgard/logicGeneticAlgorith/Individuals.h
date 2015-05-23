@@ -13,6 +13,7 @@ protected:
     int _Fitness=0;
 
     int _ID;
+    int _Age=0;
     int _MotherID = -1; // si es < 0 significa que estos son la primera generacion
     int _FatherID = -1;    
     BitVector* _Genes;
@@ -39,6 +40,7 @@ public:
     int* getFitness();
 
     int getCantidadCualidades();
+    void isMyBirthDay();
 
 };
 

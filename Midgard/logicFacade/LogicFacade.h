@@ -41,7 +41,7 @@ private:
     LogicFacade();
     void leerJson(string pMensaje);
     void getMap();
-    void getGenealogia(Vector<int> pDatos);
+    void getGenealogia(Vector<int> *pDatos);
 };
 
 #endif // LOGICFACADE_H

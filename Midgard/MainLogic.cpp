@@ -1,35 +1,82 @@
 #include "MainLogic.h"
 
-DarkElves* MainLogic::_DarkElvesPopulation;
+DarkElves* MainLogic::_DarkElvesPopulation=0;
 Elves* MainLogic::_ElvesPopulation;
 Giants* MainLogic::_GiantsPopulation;
 Dwarves* MainLogic::_DwarvesPopulation;
+Evolution* MainLogic::_Evolution;
+int MainLogic::Age=0;
+int MainLogic::EddaActual=0;
 
 MainLogic::MainLogic()
 {
+    _DarkElvesPopulation = new DarkElves(50, true);
+    _GiantsPopulation = new Giants(50, true);
+    _DwarvesPopulation = new Dwarves(50, true);
+    _ElvesPopulation = new Elves(50, true);
+    _Evolution = new Evolution();
+
 
     archivoXML = new docXML();
     matriz = new Vector<int> (3,3);
+    matriz->llenarMatriz(0);
     (*matriz)[0][0]=3;
     (*matriz)[1][1]=4;
-    (*matriz)[2][2]=2;
+    (*matriz)[1][2]=2;
 
-
-
-
-    /*for(int i=0;i<matriz->getWidth();i++)
-    {
-        for(int j=0; i< matriz->getHeight();j++)
-        {
-            (*matriz)[i][j] = 0;
-        }
-
-    }*/
-
-
+    runLogic();
 
     //matriz = initMatriz();
 }
+
+void MainLogic::runLogic()
+{
+    EddaActual = EddaAntigua;
+    CrazyThread* runThread = new CrazyThread((void*)evolution, nullptr);
+    runThread->run();
+
+    CrazyThread* ageThread = new CrazyThread((void*)HappyNewYear, nullptr);
+    ageThread->run();
+
+    CrazyThread* mainThread = new CrazyThread((void*)mainGame, nullptr);
+    mainThread->run();
+
+}
+
+void MainLogic::mainGame()
+{
+    pthread_mutex_t mutex= PTHREAD_MUTEX_INITIALIZER;
+    bool EddaCaracteristicas = true;
+    while(EddaActual!= AtardecerDioses)
+    {
+        pthread_mutex_lock(&mutex);
+        if (EddaActual ==EddaAntigua)
+        {
+            EddaCaracteristicas = EddaAntiguaMethod(EddaCaracteristicas);
+
+        }
+        if(EddaActual == EddaReligiosa)
+        {
+            EddaCaracteristicas = EddaReligiosaMethod(EddaCaracteristicas);
+        }
+        if(EddaActual == EddaCienciaTecnologia)
+        {
+            EddaCaracteristicas = EddaCienciaTecnologiaMethod(EddaCaracteristicas);
+        }
+        if(EddaActual == EddaSupremacia)
+        {
+            EddaCaracteristicas = EddaSupremaciaMethod(EddaCaracteristicas);
+        }
+        if(EddaActual == EddaPazMundial)
+        {
+            EddaPazMundialMethod();
+        }
+        pthread_mutex_unlock(&mutex);
+        sleep(1);
+
+    }
+}
+
 
 Vector<int>* MainLogic::getParents(int* pRaza, int* pIndividualID)
 {
@@ -62,60 +109,67 @@ Vector<int>* MainLogic::getParents(int* pRaza, int* pIndividualID)
     }*/
     //return Family;
     Vector<int>* Family2 = new Vector<int>(3);
-    Family2[0] = 1;
-    Family2[1] = 2;
-    Family2[2] = 3;
+    Family2->llenarMatriz(0);
+    *(*Family2)[0] = 1;
+    *(*Family2)[1] = 2;
+    *(*Family2)[2] = 3;
     return Family2;
 }
 
 Vector<int>* MainLogic::getMap()
-{
-    //cout << "matriz: height " << matriz->getHeight()<< endl;
-    //cout << "matriz width: " << matriz->getWidth()<< endl;
+{        
     return matriz;
 }
 
-
-
-void MainLogic::runLogic()
+void MainLogic::HappyNewYear()
 {
-    CrazyThread* runThread = new CrazyThread((void*)evolution, nullptr);
-    runThread->run();
-
-    while(1)
-    {                        
-        
+    pthread_mutex_t mutex= PTHREAD_MUTEX_INITIALIZER;
+    while(EddaActual !=AtardecerDioses)
+    {
+        pthread_mutex_lock(&mutex);
+        Age++;
+        _DarkElvesPopulation->isPopBirthDay();
+        _ElvesPopulation->isPopBirthDay();
+        _GiantsPopulation->isPopBirthDay();
+        _DwarvesPopulation->isPopBirthDay();
+        pthread_mutex_unlock(&mutex);
+        sleep(5);
     }
-
 }
+
+
+
 
 void MainLogic::evolution()
 {
     srand(time(0));
-    _DarkElvesPopulation = new DarkElves(50, true);
-    _GiantsPopulation = new Giants(50, true);
-    _DwarvesPopulation = new Dwarves(50, true);
-    _ElvesPopulation = new Elves(50, true);
 
-    pthread_mutex_t mutex= PTHREAD_MUTEX_INITIALIZER;
-    Evolution* evolution = new Evolution();
+
+    pthread_mutex_t mutex= PTHREAD_MUTEX_INITIALIZER;    
 
     // Evolve our population until we reach an optimum solution
     int generationCount = 0;
-    while (generationCount <300)
+    while (generationCount <Constants::GENERATIONS)
     {
         pthread_mutex_lock(&mutex);
         generationCount++;
-        _DarkElvesPopulation = &evolution->evolvePopulation(*_DarkElvesPopulation);
-        _GiantsPopulation = &evolution->evolvePopulation(*_GiantsPopulation);
-        _DwarvesPopulation = &evolution->evolvePopulation(*_DwarvesPopulation);
-        _ElvesPopulation = &evolution->evolvePopulation(*_ElvesPopulation);
+        /*_DarkElvesPopulation = (DarkElves*)&(_Evolution->evolvePopulation(*_DarkElvesPopulation));
+        _GiantsPopulation = (Giants*)&_Evolution->evolvePopulation(*_GiantsPopulation);
+        _DwarvesPopulation = ((Dwarves*)&_Evolution->evolvePopulation(*_DwarvesPopulation));
+        _ElvesPopulation = (Elves*)&_Evolution->evolvePopulation(*_ElvesPopulation);
+        */
+
+
         pthread_mutex_unlock(&mutex);
         usleep(1000);
     }
 
 }
 
+/**
+ * @brief MainLogic::initMatriz: Lee el archivo xml la casilla de la matriz y la retorna
+ * @return la matriz contenida en el XML
+ */
 Vector<int> *MainLogic::initMatriz()
 {
     int Height = archivoXML->getMatrizHeight();
@@ -146,3 +200,216 @@ Vector<int> *MainLogic::initMatriz()
 
 }
 
+bool MainLogic::EddaAntiguaMethod(bool pImprovePopulation)
+{
+    if(pImprovePopulation)
+    {
+    Vector<int>* newSkills= new Vector<int>(10);
+
+    *(*newSkills)[vida]= despreciable;
+    *(*newSkills)[inteligencia]= despreciable;
+    *(*newSkills)[ataque]= alto;
+    *(*newSkills)[defensa]= alto;
+    *(*newSkills)[velAtaque]= despreciable;
+    *(*newSkills)[magia]= despreciable;
+    *(*newSkills)[energiaVital]= despreciable;
+    *(*newSkills)[supersticion]= despreciable;
+    *(*newSkills)[invocacion]= despreciable;
+
+
+    _DarkElvesPopulation->CambioEdda(*newSkills);
+    _ElvesPopulation->CambioEdda(*newSkills);
+    _GiantsPopulation->CambioEdda(*newSkills);
+    _DwarvesPopulation->CambioEdda(*newSkills);
+    }
+
+    if(_DarkElvesPopulation->getFittest()->getGenes()->getByIndex(supersticion)>= 70)
+    {
+        EddaActual++;
+        return true;
+    }
+    if(_ElvesPopulation->getFittest()->getGenes()->getByIndex(supersticion)>= 70)
+    {
+        EddaActual++;
+        return true;
+    }
+    if(_GiantsPopulation->getFittest()->getGenes()->getByIndex(supersticion)>= 70)
+    {
+        EddaActual++;
+        return true;
+    }
+    if(_DwarvesPopulation->getFittest()->getGenes()->getByIndex(supersticion)>= 70)
+    {
+        EddaActual++;
+        return true;
+    }
+    else return false;
+}
+
+bool MainLogic::EddaReligiosaMethod( bool pImprovePopulation)
+{
+    if(pImprovePopulation)
+    {
+    Vector<int>* newSkills= new Vector<int>(10);
+
+    *(*newSkills)[vida]= alto;
+    *(*newSkills)[inteligencia]= despreciable;
+    *(*newSkills)[ataque]= alto;
+    *(*newSkills)[defensa]= alto;
+    *(*newSkills)[velAtaque]= alto;
+    *(*newSkills)[magia]= alto;
+    *(*newSkills)[energiaVital]= alto;
+    *(*newSkills)[supersticion]= alto;
+    *(*newSkills)[invocacion]= alto;
+
+    _DarkElvesPopulation->CambioEdda(*newSkills);
+    _ElvesPopulation->CambioEdda(*newSkills);
+    _GiantsPopulation->CambioEdda(*newSkills);
+    _DwarvesPopulation->CambioEdda(*newSkills);
+    }
+
+    if(_DarkElvesPopulation->getFittest()->getGenes()->getByIndex(inteligencia)>= 100)
+    {
+        EddaActual++;
+        return true;
+    }
+    if(_ElvesPopulation->getFittest()->getGenes()->getByIndex(inteligencia)>= 100)
+    {
+        EddaActual++;
+        return true;
+    }
+    if(_GiantsPopulation->getFittest()->getGenes()->getByIndex(inteligencia)>= 100)
+    {
+        EddaActual++;
+        return true;
+    }
+    if(_DwarvesPopulation->getFittest()->getGenes()->getByIndex(inteligencia)>= 100)
+    {
+        EddaActual++;
+        return true;
+    }
+    else return false;
+}
+
+
+
+bool MainLogic::EddaCienciaTecnologiaMethod(bool pImprovePopulation)
+{
+    if(pImprovePopulation)
+    {
+    Vector<int>* newSkills= new Vector<int>(10);
+
+    *(*newSkills)[vida]= noCambia;
+    *(*newSkills)[inteligencia]= alto;
+    *(*newSkills)[ataque]= alto;
+    *(*newSkills)[defensa]= alto;
+    *(*newSkills)[velAtaque]= noCambia;
+    *(*newSkills)[magia]= noCambia;
+    *(*newSkills)[energiaVital]= noCambia;
+    *(*newSkills)[supersticion]= noCambia;
+    *(*newSkills)[invocacion]= noCambia;
+
+    _DarkElvesPopulation->CambioEdda(*newSkills);
+    _ElvesPopulation->CambioEdda(*newSkills);
+    _GiantsPopulation->CambioEdda(*newSkills);
+    _DwarvesPopulation->CambioEdda(*newSkills);
+    }
+
+    if(_DarkElvesPopulation->getFittest()->getGenes()->getByIndex(inteligencia)>= 140)
+    {
+        EddaActual++;
+        return true;
+    }
+    if(_ElvesPopulation->getFittest()->getGenes()->getByIndex(inteligencia)>= 140)
+    {
+        EddaActual++;
+        return true;
+    }
+    if(_GiantsPopulation->getFittest()->getGenes()->getByIndex(inteligencia)>= 140)
+    {
+        EddaActual++;
+        return true;
+    }
+    if(_DwarvesPopulation->getFittest()->getGenes()->getByIndex(inteligencia)>= 140)
+    {
+        EddaActual++;
+        return true;
+    }
+    else return false;
+}
+
+bool MainLogic::EddaSupremaciaMethod(bool pImprovePopulation)
+{
+    if(pImprovePopulation)
+    {
+    Vector<int>* newSkills= new Vector<int>(10);
+
+    *(*newSkills)[vida]= alto;
+    *(*newSkills)[inteligencia]= alto;
+    *(*newSkills)[ataque]= alto;
+    *(*newSkills)[defensa]= alto;
+    *(*newSkills)[velAtaque]= alto;
+    *(*newSkills)[magia]= alto;
+    *(*newSkills)[energiaVital]= alto;
+    *(*newSkills)[supersticion]= alto;
+    *(*newSkills)[invocacion]= alto;
+
+    _DarkElvesPopulation->CambioEdda(*newSkills);
+    _ElvesPopulation->CambioEdda(*newSkills);
+    _GiantsPopulation->CambioEdda(*newSkills);
+    _DwarvesPopulation->CambioEdda(*newSkills);
+    }
+
+    if(_DarkElvesPopulation->getFittest()->getFitness() == _DarkElvesPopulation->getFitless()->getFitness())
+    {
+        EddaActual++;
+        return true;
+    }
+    if(_ElvesPopulation->getFittest()->getFitness() == _ElvesPopulation->getFitless()->getFitness())
+    {
+        EddaActual++;
+        return true;
+    }
+    if(_GiantsPopulation->getFittest()->getFitness() == _GiantsPopulation->getFitless()->getFitness())
+    {
+        EddaActual++;
+        return true;
+    }
+    if(_DwarvesPopulation->getFittest()->getFitness()== _DarkElvesPopulation->getFitless()->getFitness())
+    {
+        EddaActual++;
+        return true;
+    }
+    else return false;
+
+
+
+}
+void MainLogic::EddaPazMundialMethod()
+{
+    Population* unionDePueblos = new Population();
+
+
+    for(int i =0; i<_DarkElvesPopulation->getIndividualList()->getNumEle();i++)
+    {
+        unionDePueblos->insertIndividualList(_DarkElvesPopulation->getIndividualList()->getElemento(i));
+
+    }
+    for(int i =0; i<_DwarvesPopulation->getIndividualList()->getNumEle();i++)
+    {
+        unionDePueblos->insertIndividualList(_DwarvesPopulation->getIndividualList()->getElemento(i));
+
+    }
+    for(int i =0; i<_GiantsPopulation->getIndividualList()->getNumEle();i++)
+    {
+        unionDePueblos->insertIndividualList(_GiantsPopulation->getIndividualList()->getElemento(i));
+
+    }
+    for(int i =0; i<_ElvesPopulation->getIndividualList()->getNumEle();i++)
+    {
+        unionDePueblos->insertIndividualList(_ElvesPopulation->getIndividualList()->getElemento(i));
+    }
+
+    return;
+
+}

@@ -13,7 +13,7 @@ Constants::Constants(){
 //SKILLSQUANTITY=xmlDocument.getDoc().child("ConstatsData").attribute("skillQuantity").as_int();
 MAXSKILL= xmlDocument.getvMaxSkill();
 MAXPOPULATION =xmlDocument.getMaxPopulation();
-GENERATIONS= xmlDocument.getGenerations();
+//GENERATIONS= xmlDocument.getGenerations();
 
 }
 string Constants::punteroToString(void* puntero){

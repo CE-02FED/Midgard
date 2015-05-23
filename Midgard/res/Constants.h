@@ -15,7 +15,7 @@ class Constants{
         int MAXPOPULATION;
         static const size_t DEFAULTELEMENTSIZE = 8;
         static const int START = 0;
-        int GENERATIONS=100000;
+        static const int GENERATIONS=100000;
     //vheap
     string integerToString(int entero);
     string punteroToString(void* puntero);

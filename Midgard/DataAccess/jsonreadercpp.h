@@ -10,7 +10,7 @@ public:
     //Gui
     Vector<int>* readMap (string pJson);
     int readType (string pJson);
-    Vector<int> readFamily (string pJson);
+    Vector<int> *readFamily(string pJson);
     Vector<int>* readFight (string pJson);
 
     //Logic

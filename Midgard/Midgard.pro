@@ -4,7 +4,7 @@ CONFIG -= app_bundle
 CONFIG -= qt
 CONFIG += C++11
 CONFIG += thread
-QMAKE_CXXFLAGS += -fpermissive
+QMAKE_CXXFLAGS +=
 
 
 QT += qml quick widgets
@@ -18,10 +18,10 @@ SOURCES += main.cpp \
     libs/jsonWriter.cpp \
     logicFacade/LogicFacade.cpp \
     logicGame/GameIndividual.cpp \
+    logicGame/pathfinding.cpp \
     logicGeneticAlgorith/Evolution.cpp \
     logicGeneticAlgorith/FitnessCalculation.cpp \
-    logicGeneticAlgorith/Individuals.cpp \
-    logicGeneticAlgorith/pathfinding.cpp \
+    logicGeneticAlgorith/Individuals.cpp \    
     logicGeneticAlgorith/Population.cpp \
     logicRazas/DarkElves.cpp \
     logicRazas/Dwarves.cpp \
@@ -36,7 +36,8 @@ SOURCES += main.cpp \
     DataAccess/jsonreader.cpp \
     DataAccess/jsonreadercpp.cpp \
     DataAccess/jsonwritercpp.cpp \
-    res/Constants.cpp
+    res/Constants.cpp \
+
 
 RESOURCES += qml.qrc
 
@@ -91,4 +92,5 @@ HEADERS += \
     DataAccess/jsonreadercpp.h \
     DataAccess/jsonwritercpp.h \
     res/lista.h \
-    res/nodos.h
+    res/nodos.h \
+    logicGame/pathfinding.h

@@ -68,7 +68,20 @@ int GameIndividual::getFathers()
     return  *tmpFathersArray;
 }
 
-void GameIndividual::BirthDay()
+string GameIndividual::findPath(Vector<int> pMatrizJuego, int posicionInicialI,int posicionInicialJ,
+                                int posicionFinalI,int posicionFinalJ)
 {
-    _Age++;
+    _encontrarCamino = new Pathfinding((Vector<short>*)&pMatrizJuego);
+
+    _encontrarCamino->find( posicionInicialI, posicionInicialJ, posicionFinalI, posicionFinalJ);
+
+
 }
+
+
+
+
+
+
+
+

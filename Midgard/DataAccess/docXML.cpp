@@ -5,7 +5,7 @@ using namespace std;
 docXML::docXML()
 {
     pugi::xml_document doc;
-    if (!doc.load_file("/home/javier/WorkspaceQT/Midgard/MidgardConstants.xml"))
+    if (!doc.load_file(xmlPath))
 	{
 		cout << "Error al cargar el documento XML." << endl;
 	}
@@ -33,22 +33,3 @@ const pugi::xml_document& docXML::loadFile(const char* document){
                 }
      return doc;
  }
-/*char* docXML::stringToChar(string toConvert){
-    char *y = new char[toConvert.length() + 1];
-    strcpy(y, toConvert.c_str());
-    return y;
-}*/
-
-
-/*int main()
-{
-	docXML* doc = new docXML();
-	cout << "size: "<< doc->getSize() << endl;
-	cout << "gcfrec: "<< doc->getGCFrecuency() << endl;
-	cout << "overw: "<< doc->getOverweight() << endl;
-	cout << "vdebug: "<< doc->getvDebug() << endl;
-	cout << "vdebugfilepath: "<< doc->getvDebugFilePath() << endl;
-	doc->setvDebugFilePath(doc->getvDebugFilePath()+2);
-	cout << "vdebugfilepath: "<< doc->getvDebugFilePath() << endl;
-}
-*/

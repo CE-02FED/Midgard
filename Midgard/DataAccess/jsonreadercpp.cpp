@@ -58,14 +58,14 @@ Vector<int>* jsonReaderCpp::readFight(string pJson)
     int Population2= stoi(root["Raza2"].asString());
 
     Vector<int>* arregloRazas = new Vector<int>(2);
-    arregloRazas[0] = Population1;
-    arregloRazas[1] = Population2;
+    *(*arregloRazas)[0] = Population1;
+    *(*arregloRazas)[1] = Population2;
 
     return arregloRazas;
 
 }
 
-Vector<int> jsonReaderCpp::readFamily(string pJson)
+Vector<int>* jsonReaderCpp::readFamily(string pJson)
 {
 
     Json::Value root;
@@ -83,11 +83,11 @@ Vector<int> jsonReaderCpp::readFamily(string pJson)
     int tmpMotherID= stoi(root["Mother"].asString());
     int tmpFitness= stoi(root["Fitness"].asString());
 
-    Vector<int> genealogia = new Vector<int>(3);
+    Vector<int>* genealogia = new Vector<int>(3);
 
-    (*genealogia[0])= tmpFatherID;
-    (*genealogia[1])= tmpMotherID;
-    (*genealogia[2])= tmpFitness;
+    *(*genealogia)[0]= tmpFatherID;
+    *(*genealogia)[1]= tmpMotherID;
+    *(*genealogia)[2]= tmpFitness;
 
     return genealogia;
 }
@@ -107,13 +107,14 @@ Vector<int>* jsonReaderCpp::readFamilyFromGUI(string pJson)
     }
     cout<<root.toStyledString()<<endl;
 
-    int Raza= stoi(root["raza"].asString());
-    int IndividuoID= stoi(root["individuo"].asString());
+    int Raza= stoi(root["Raza"].asString());
+    int IndividuoID= stoi(root["IndividuoID"].asString());
+    cout << "estoy readFromGUiFamili" << endl;
 
     Vector<int>* arregloFamilia = new Vector<int>(2);
 
-    arregloFamilia[0] = Raza;
-    arregloFamilia[1] = IndividuoID;
+    *(*arregloFamilia)[0] = Raza;
+    *(*arregloFamilia)[1] = IndividuoID;
 
     return arregloFamilia;
 }

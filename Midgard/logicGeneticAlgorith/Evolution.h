@@ -14,7 +14,7 @@
 #define mutationLowLimit 0.0
 #define mutationHightLimit 10.5
 
-
+class Population;
 class Evolution
 {
 private:

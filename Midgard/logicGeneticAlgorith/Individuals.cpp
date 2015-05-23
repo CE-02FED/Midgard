@@ -111,6 +111,11 @@ int* Individuals::getFitness() {
     return &_Fitness;
 }
 
+void Individuals::isMyBirthDay()
+{
+    this->_Age++;
+}
+
 void Individuals::setFathers(int pIDFather, int pIDMother)
 {
     this->_FatherID = pIDFather;

@@ -18,10 +18,11 @@ string jsonWriterCpp::writeMap(Vector<int> pMatriz)
            string newMatriz= "";
 
 
-           for(int i =0; i < (&pMatriz)->getHeight(); i++)
+           for(int i =0; i < (pMatriz).getHeight();i++)
            {
-               for(int j=0; j<(&pMatriz)->getWidth();j++ )
+               for(int j=0; j<(pMatriz).getWidth();j++ )
                {
+                   cout << "matriz: " << to_string(pMatriz[i][j]) << endl;
                    newMatriz += to_string(pMatriz[i][j]) + "#" ;
                }
 
@@ -47,10 +48,11 @@ string jsonWriterCpp::writeFamily(int pFather, int pMother, int pFitness)
            pMe.append("\""+type+"\" ,");
            pMe.append("\"Father\" : \""+Father+"\" ,");
            pMe.append("\"Mother\" : \""+Mother+"\" ,");
-           pMe.append("\"Fitness\" : \""+Fitness+"\" ");
+           pMe.append("\"Fitness\" : \""+Fitness+"\" }");
 
 
-        pMe.append(" }");
+        //pMe.append(" }");
+        cout << "mando write family" <<endl;
         cout<<pMe<<endl;
         return pMe;
 }

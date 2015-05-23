@@ -1,5 +1,9 @@
 #include "Population.h"
 int Population::_ID =0;
+lista<Individuals>* Population::_IndividualList;
+Evolution* Population::_Evolution;
+
+
 Population::Population(){
 
 }
@@ -14,9 +18,10 @@ Population::Population(int pSizePopulation, bool pStart)
     *_PopulationSize = pSizePopulation;
     _CantidadCualidades = Constants::SKILLSQUANTITY;
 
+    _Evolution = new Evolution();
 
     _IndividualList = new lista<Individuals>();
-    this = 3;
+
 
     if (false)
     {
@@ -33,6 +38,14 @@ Population::Population(int pSizePopulation, bool pStart)
     //std::cout<<"#Ele lista "<<_IndividualList->getNumEle()<<std::endl;
 
 }
+/*
+void Population::evolutionThread()
+{
+    CrazyThread* evolutionThread = new CrazyThread((void*)evolveThis,nullptr);
+    evolutionThread->run();
+}
+*/
+
 
 
 Individuals* Population::getIndividualbyIndex(int pIndex)
@@ -113,6 +126,58 @@ Individuals* Population::getFitless()
         }
         return fitless;
     }
+/*
+ void* Population::evolveThis()
+{
+    pthread_mutex_t mutex= PTHREAD_MUTEX_INITIALIZER;
+    int generationCount = 0;
+    while(Constants::GENERATIONS)
+    {
+        pthread_mutex_lock(&mutex);
+        generationCount++;
+        //_IndividualList = _Evolution->evolvePopulation(*this                                            ).getIndividualList();
+        pthread_mutex_unlock(&mutex);
+        sleep(1000);
+    }
+    pthread_exit(NULL);
+}
+*/
+lista<Individuals>* Population::getIndividualList()
+{
+    return this->_IndividualList;
+}
+
+/** La casilla Indice =0 del array representará la Vida
+* La casilla Indice =1 del array representará la Inteligencia
+* La casilla Indice =2 del array representará el Ataque
+* La casilla Indice =3 del array representará la Defensa
+* La casilla Indice =4 del array representará la Velocidad de ataque
+* La casilla Indice =5 del array representará la Magia
+* La casilla Indice =6 del array representará la Energia Vital
+* La casilla Indice =7 del array representará la Supersticion
+* La casilla Indice =8 del array representará el Sacrificio
+* La casilla Indice =9 del array representará la Invocacion
+* */
+void Population::CambioEdda(Vector<int> pSkills)
+{
+    nodo<Individuals>* tmpInd =_IndividualList->getNodo(0);
+    for (int i=0; i < (_IndividualList->getNumEle());i++)
+    {
+        for(int j =0; j< Constants::SKILLSQUANTITY; j++)
+        {
+            int newSkill = *(tmpInd->getDato()->getGenes()->getByIndex(j) + pSkills[j]);
+            if(newSkill>255)
+            {
+                newSkill = 255;
+            }
+            tmpInd->getDato()->getGenes()->insertByIndex(j,newSkill);
+        }
+     }
+}
+
+
+
+
 
 int Population::getTotalFitness()
 {
@@ -121,6 +186,17 @@ int Population::getTotalFitness()
         totalFitness += *(_IndividualList->getElemento(i)->getFitness());
     }
     return totalFitness;
+
+}
+
+void Population::isPopBirthDay()
+{
+    nodo<Individuals>* tmpIndividual = _IndividualList->getNodo(0);
+    for(int i =0; i< _IndividualList->getNumEle();i++)
+    {
+        tmpIndividual->getDato()->isMyBirthDay();
+        tmpIndividual = tmpIndividual->getSiguiente();
+    }
 
 }
 

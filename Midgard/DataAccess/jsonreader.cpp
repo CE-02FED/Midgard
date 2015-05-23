@@ -43,7 +43,7 @@ Vector<int>* jsonReader::readMap(string pJson)
 
 
 
-Vector<int> jsonReader::readFamily(string pJson)
+Vector<int>* jsonReader::readFamily(string pJson)
 {
 
     rapidjson::Document document;
@@ -59,11 +59,11 @@ Vector<int> jsonReader::readFamily(string pJson)
     rapidjson::Value& jsonFitness = document["Fitness"];
     int tmpFitness=jsonFitness.GetInt();
 
-    Vector<int> genealogia = new Vector<int>(3);
+    Vector<int>* genealogia = new Vector<int>(3);
 
-    (*genealogia[0])= tmpFatherID;
-    (*genealogia[1])= tmpMotherID;
-    (*genealogia[2])= tmpFitness;
+    *(*genealogia)[0]= tmpFatherID;
+    *(*genealogia)[1]= tmpMotherID;
+    *(*genealogia)[2]= tmpFitness;
 
     return genealogia;
 }

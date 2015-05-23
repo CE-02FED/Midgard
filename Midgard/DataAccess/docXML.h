@@ -6,6 +6,9 @@
 #include "../res/pugiconfig.hpp"
 #include "pugixml.hpp"
 
+static constexpr const char* xmlPath = "/home/david/Documents/cLion-Projects/Midgard/Midgard/res/MidgardConstants.xml";
+
+
 using namespace std ;
 
 class docXML {

@@ -51,16 +51,19 @@ void LogicFacade::getMap()
  * @param pClase: Del individuo al que se desea saber su genealogia
  * @param pID: El ID del individuo
  */
-void LogicFacade::getGenealogia(Vector<int> pDatos)
+void LogicFacade::getGenealogia(Vector<int>* pDatos)
 {
      jsonWriterCpp* crearJson = new jsonWriterCpp();
-     Vector<int>* padres = _MainLogic->getParents(pDatos[Raza],pDatos[individuoID]);
+     Vector<int>* padres = new Vector<int>(3);
+
+     padres = _MainLogic->getParents((*pDatos)[Raza],(*pDatos)[individuoID]);
+     padres->print();
 
 
      //crearJson->writeFamily((*padres)[Padre],(*padres)[Madre], (*padres)[indvFitness],pArreglo); // Le agrega el string que contiene el ID de ambos padres de pID
-     crearJson->writeFamily((*padres)[Padre],(*padres)[Madre], (*padres)[indvFitness]); // Le agrega el string que contiene el ID de ambos padres de pID
+     //crearJson->writeFamily((*padres)[Padre],(*padres)[Madre], (*padres)[indvFitness]); // Le agrega el string que contiene el ID de ambos padres de pID
      cout << "creo el json en family" << endl;
-    //_socketServer->setMensaje(pArreglo);
+    _socketServer->setMensaje(crearJson->writeFamily(*(*padres)[Padre],*(*padres)[Madre], *(*padres)[indvFitness]).c_str());
 }
 
 

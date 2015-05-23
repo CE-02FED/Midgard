@@ -13,7 +13,7 @@ Evolution::Evolution()
  */
 
 
-Population Evolution::evolvePopulation(Population pPopulation)
+Population Evolution:: evolvePopulation(Population pPopulation)
 {
 
     for (int i =0;i<((Constants::getInstance()->MAXPOPULATION)*0.08);i++)

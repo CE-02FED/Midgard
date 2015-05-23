@@ -14,9 +14,10 @@ using namespace std;
 template<class T> class Vector {
 private:
     T** _matriz;	//Puntero de la matriz.
-    T* __arreglo;   //Puntero del arreglo
+    T* _arreglo;   //Puntero del arreglo
     int _filas;		//Filas de la matriz.
     int _columnas;	//Columnas de la matriz.
+    bool _matrizFlag = true;
 
 public:
     Vector(int pFilas, int pColumnas);
@@ -28,6 +29,7 @@ public:
     int getWidth();
     void print();
     void llenarMatriz(T dato);
+    void printArray();
 };
 
 /**
@@ -44,7 +46,8 @@ Vector<T>::Vector(int pFilas, int pColumnas) {
     }
     _filas = pFilas;
     _columnas = pColumnas;
-    __arreglo =0;
+    _arreglo =0;
+    _matrizFlag = true;
 }
 
 /**
@@ -54,10 +57,11 @@ Vector<T>::Vector(int pFilas, int pColumnas) {
  */
 template<class T>
 Vector<T>::Vector(int pTamano) {
-    __arreglo = new T[pTamano];
+    _arreglo = new T[pTamano];
     _filas = pTamano;
     _columnas = 0;
     _matriz=0;
+    _matrizFlag = false;
 }
 
 /**
@@ -85,7 +89,12 @@ Vector<T>::~Vector() {
  */
 template<class T>
 T* Vector<T>::operator[](int pIndex) {
-    return _matriz[pIndex];
+    if(_matrizFlag) {
+		return _matriz[pIndex];
+	} else {
+		return &(_arreglo[pIndex]);
+	}
+
 }
 
 /**
@@ -131,5 +140,14 @@ void Vector<T>::print() {
         cout << endl;
     }
 }
+
+template<class T>
+void Vector<T>::printArray() {
+    for (int fila = Constants::START; fila < _filas; fila++) {
+            cout << _arreglo[fila]<< "| ";
+        cout << endl;
+    }
+}
+
 
 #endif /* VECTOR_H_ */
