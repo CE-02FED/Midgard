@@ -24,7 +24,7 @@ MainLogic::MainLogic()
     (*matriz)[1][1]=4;
     (*matriz)[1][2]=2;
 
-    runLogic();
+    runLogic()  ;
 
     //matriz = initMatriz();
 }
@@ -39,8 +39,7 @@ void MainLogic::runLogic()
     ageThread->run();
 
     CrazyThread* mainThread = new CrazyThread((void*)mainGame, nullptr);
-    mainThread->run();
-
+    mainThread->run();      
 }
 
 void MainLogic::mainGame()
@@ -76,6 +75,30 @@ void MainLogic::mainGame()
 
     }
 }
+
+
+void MainLogic::indidvidualFight()
+{
+    for(int i =0; i< matriz->getHeight(); i++)
+    {
+        for(int j=0; j< matriz->getWidth();j++)
+        {
+            if(matriz[i][j]);
+        }
+
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
 
 
 Vector<int>* MainLogic::getParents(int* pRaza, int* pIndividualID)
@@ -158,7 +181,6 @@ void MainLogic::evolution()
         _DwarvesPopulation = ((Dwarves*)&_Evolution->evolvePopulation(*_DwarvesPopulation));
         _ElvesPopulation = (Elves*)&_Evolution->evolvePopulation(*_ElvesPopulation);
         */
-
 
         pthread_mutex_unlock(&mutex);
         usleep(1000);
@@ -291,8 +313,6 @@ bool MainLogic::EddaReligiosaMethod( bool pImprovePopulation)
     else return false;
 }
 
-
-
 bool MainLogic::EddaCienciaTecnologiaMethod(bool pImprovePopulation)
 {
     if(pImprovePopulation)
@@ -381,10 +401,8 @@ bool MainLogic::EddaSupremaciaMethod(bool pImprovePopulation)
         return true;
     }
     else return false;
-
-
-
 }
+
 void MainLogic::EddaPazMundialMethod()
 {
     Population* unionDePueblos = new Population();

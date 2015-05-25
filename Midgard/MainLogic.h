@@ -79,6 +79,7 @@ public:
 
     static void HappyNewYear();
     static void mainGame();
+    void indidvidualFight();
 };
 
 #endif // MAINLOGIC_H

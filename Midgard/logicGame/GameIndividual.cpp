@@ -27,8 +27,6 @@ void GameIndividual::createIndividual(int pCualidades[])
  */
 BitVector* GameIndividual::generateCromosoma(int pCualidades[])
 {
-
-
     BitVector* tmpCromosoma = new BitVector(cantidadCualidades);
 
     for(int i =0; i< this->cantidadCualidades; i++)
@@ -50,7 +48,6 @@ BitVector* GameIndividual::generateCromosoma(int pCualidades[])
             tmpCromosoma->insertByIndex(i,Skill);
         }
         //std::cout<<"Skill " << i<<": "<<to_string(tmpCromosoma->getByIndex(i))<<std::endl;
-
     }
     *_Genes=*tmpCromosoma;
     return _Genes;
@@ -73,8 +70,9 @@ string GameIndividual::findPath(Vector<int> pMatrizJuego, int posicionInicialI,i
 {
     _encontrarCamino = new Pathfinding((Vector<short>*)&pMatrizJuego);
 
-    _encontrarCamino->find( posicionInicialI, posicionInicialJ, posicionFinalI, posicionFinalJ);
 
+
+    return _encontrarCamino->find( posicionInicialI, posicionInicialJ, posicionFinalI, posicionFinalJ);
 
 }
 
