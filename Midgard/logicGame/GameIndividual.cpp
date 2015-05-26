@@ -33,18 +33,18 @@ BitVector* GameIndividual::generateCromosoma(int pCualidades[])
     {
         if (pCualidades[i] == PrioridadAlta)
         {
-            int Skill = randomClass::randRange(MidValue,maxSkill);
+            int Skill = _random->randRange(MidValue,maxSkill);
             tmpCromosoma->insertByIndex(i,Skill);
 
         }
         if (pCualidades[i]== PrioridadBaja)
         {
-            int Skill = randomClass::randRange(lowestValue,MidValue);
+            int Skill = _random->randRange(lowestValue,MidValue);
             tmpCromosoma->insertByIndex(i,Skill);
         }
         else
         {
-            int Skill = randomClass::getRandom(maxSkill);
+            int Skill = _random->getRandom(maxSkill);
             tmpCromosoma->insertByIndex(i,Skill);
         }
         //std::cout<<"Skill " << i<<": "<<to_string(tmpCromosoma->getByIndex(i))<<std::endl;

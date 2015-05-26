@@ -11,7 +11,7 @@ Constants* Constants::getInstance(){
 }
 Constants::Constants(){
 //SKILLSQUANTITY=xmlDocument.getDoc().child("ConstatsData").attribute("skillQuantity").as_int();
-MAXSKILL= xmlDocument.getvMaxSkill();
+//MAXSKILL= xmlDocument.getvMaxSkill();
 MAXPOPULATION =xmlDocument.getMaxPopulation();
 //GENERATIONS= xmlDocument.getGenerations();
 

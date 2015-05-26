@@ -3,6 +3,7 @@
 //#include "FitnessCalculation.h"
 #include "../res/BitVector.h"
 #include "../res/Constants.h"
+#include "../res/Random.h"
 
 
 #define maxSkill 255
@@ -11,7 +12,7 @@ class Individuals
 {
 protected:
     int _Fitness=0;
-
+    Random* _random;
     int _ID;
     int _Age=0;
     int _MotherID = -1; // si es < 0 significa que estos son la primera generacion

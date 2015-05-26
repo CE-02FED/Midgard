@@ -166,9 +166,9 @@ void Population::CambioEdda(Vector<int> pSkills)
         for(int j =0; j< Constants::SKILLSQUANTITY; j++)
         {
             int newSkill = *(tmpInd->getDato()->getGenes()->getByIndex(j) + pSkills[j]);
-            if(newSkill>255)
+            if(newSkill>Constants::MAXSKILL)
             {
-                newSkill = 255;
+                newSkill = Constants::MAXSKILL;
             }
             tmpInd->getDato()->getGenes()->insertByIndex(j,newSkill);
         }

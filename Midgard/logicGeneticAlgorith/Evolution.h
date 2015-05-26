@@ -6,6 +6,7 @@
 #include "../res/randomClass.h"
 #include "../res/Constants.h"
 #include "../res/lista.h"
+#include "../res/Random.h"
 #include <cmath>
 #include <cstdlib>
 
@@ -18,6 +19,7 @@ class Population;
 class Evolution
 {
 private:
+    Random* _random;
     double _mutationRate = 2.0;
     double _uniformRate = 0.9;
     bool _PreserveTheBest = true; // Mantiene al mejor individuo

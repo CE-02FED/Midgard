@@ -2,6 +2,7 @@
 
 Evolution::Evolution()
 {
+     _random = new Random();
 }
 
 /**
@@ -82,7 +83,7 @@ Individuals* Evolution::fathersSelection(Population pPopulation)
         i++;
      }
 
-    int ran=randomClass::getRandom(98);
+    int ran=_random->getRandom(98);
     Individuals* randomFather= fathers[ran];
     return randomFather;
 
@@ -99,10 +100,10 @@ void Evolution::Mutation(Individuals* pIndividual)
 {
     for(int i=0;i < Constants::SKILLSQUANTITY ; i++)
     {
-        if (randomClass::randRange(0.0,10.0) <= _mutationRate)
+        if (_random->randRange(0.0,10.0) <= _mutationRate)
         {
 
-           pIndividual->getGenes()->Flip(randomClass::getRandom(80));
+           pIndividual->getGenes()->Flip(_random->getRandom(80));
         }
 
     }
@@ -136,7 +137,8 @@ lista<Individuals>* Evolution::CrossOver(Individuals pFatherA, Individuals pFath
 
     for (int Indice = 0; Indice < Constants::SKILLSQUANTITY ; Indice++)
     {
-        int tmpPuntoCruce = rand()%cantidadBits;
+        //int tmpPuntoCruce = rand()%cantidadBits;
+        int tmpPuntoCruce = _random->getRandom(cantidadBits);
         u_int8_t tmpMask = (char) Mask;
         u_int8_t maskA = (tmpMask << tmpPuntoCruce);
         u_int8_t maskB = ~(maskA);

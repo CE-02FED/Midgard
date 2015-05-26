@@ -3,8 +3,8 @@
 
 #include <QMainWindow>
 #include <QApplication>
-#include <QtMultimedia>
-#include <QMediaPlaylist>
+//#include <QtMultimedia>
+//#include <QMediaPlaylist>
 #include "GuiFacade.h"
 
 namespace Ui {

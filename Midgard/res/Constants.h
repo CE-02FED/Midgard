@@ -11,7 +11,7 @@ class Constants{
     public:
     static Constants* getInstance();
         const static int SKILLSQUANTITY=10;
-        int MAXSKILL;
+        const static int MAXSKILL=255;
         int MAXPOPULATION;
         static const size_t DEFAULTELEMENTSIZE = 8;
         static const int START = 0;

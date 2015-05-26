@@ -4,6 +4,7 @@
 
 Individuals::Individuals()
 {
+    _random = new Random();
     static int x=0;
     this->cantidadCualidades = Constants::SKILLSQUANTITY;
     _Genes = new BitVector(cantidadCualidades);
@@ -14,6 +15,7 @@ Individuals::Individuals()
 
 Individuals::Individuals(int pID)
 {
+    _random = new Random();
     this->cantidadCualidades = Constants::SKILLSQUANTITY;
     _Genes = new BitVector(cantidadCualidades);
     this->_ID = pID;
@@ -80,7 +82,7 @@ void Individuals::generateCromosoma()
 
     for(int i =0; i< cantidadCualidades; i++)
     {
-       int Skill = rand()%256;
+       int Skill = _random->getRandom(256);
 
        tmpCromosoma->insertByIndex(i,Skill); // se agrega cualidad de derecha a izquierda
        //std::cout<< "in Generate Cromosoma skill: " << std::to_string(tmpCromosoma->getByIndex(i)) << std::endl;
