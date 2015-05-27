@@ -79,12 +79,12 @@ private:
     static int EddaActual;
 
 public:
+    Vector<int> *getPuebloInfo(int pPueblo);
     void fight(Individuals* individual1, Individuals *individual2);
     MainLogic();
     void runLogic();
     Vector<int> *getMap();
     Vector<int> *getParents(int *pRaza, int *pIndividualID);
-    Vector<int> *getPuebloInfo(int pPueblo);
 
     static void HappyNewYear();
     static void mainGame();
