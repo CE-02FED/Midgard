@@ -19,11 +19,20 @@ MainLogic::MainLogic()
 
 
     archivoXML = new docXML();
-    matriz = new Vector<int> (3,3);
+    Map::getInstance()->anadirObjeto(0,0,0,20);
+    Map::getInstance()->anadirObjeto(20,20,0,10);
+    Map::getInstance()->anadirObjeto(15,15,0,4);
+    Map::getInstance()->anadirObjeto(11,11,0,30);
+    Map::getInstance()->anadirObjeto(3,3,0,6);
+
+
+
+
+    /*matriz = new Vector<int> (3,3);
     matriz->llenarMatriz(0);
     (*matriz)[0][0]=3;
     (*matriz)[1][1]=4;
-    (*matriz)[1][2]=2;
+    (*matriz)[1][2]=2;*/
     _random = new Random();
 
     runLogic()  ;
@@ -144,8 +153,9 @@ Vector<int>* MainLogic::getParents(int* pRaza, int* pIndividualID)
 
 Vector<int>* MainLogic::getMap()
 {        
-    return matriz;
+    return Map::getInstance()->getMapMatriz();
 }
+
 Vector<int> *MainLogic::getPuebloInfo(int pPueblo)
 {
     Vector<int>* puebloInfo = new Vector<int>(3);

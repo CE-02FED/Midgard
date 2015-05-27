@@ -16,6 +16,7 @@
 #include <unistd.h>
 #include <cmath>
 #include <cstdlib>
+#include "logicGame/Map.h"
 
 #define darkElves 1
 #define elves 2
