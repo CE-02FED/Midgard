@@ -7,6 +7,7 @@ Dwarves* MainLogic::_DwarvesPopulation;
 Evolution* MainLogic::_Evolution;
 int MainLogic::Age=0;
 int MainLogic::EddaActual=0;
+Random* MainLogic::_random=0;
 
 MainLogic::MainLogic()
 {
@@ -23,6 +24,7 @@ MainLogic::MainLogic()
     (*matriz)[0][0]=3;
     (*matriz)[1][1]=4;
     (*matriz)[1][2]=2;
+    _random = new Random();
 
     runLogic()  ;
 
@@ -142,6 +144,38 @@ Vector<int>* MainLogic::getParents(int* pRaza, int* pIndividualID)
 Vector<int>* MainLogic::getMap()
 {        
     return matriz;
+}
+
+void MainLogic::fight(Individuals* individual1, Individuals* individual2){
+    int sumaFit= *(individual1->getFitness())+*(individual2->getFitness());
+    Individuals* probabilidad[cien];
+    int redondeo=round(((*(individual1->getFitness())+floatCero)/sumaFit)*cien);
+
+    for(int i=cero;i<cien;i++){
+        if(redondeo<=i){
+            probabilidad[i]=individual1;
+        }
+        else{
+            probabilidad[i]=individual2;
+        }
+
+    }
+
+    int ran=_random->getRandom(cien);
+    Individuals* survivor= probabilidad[ran];
+    if(survivor->getId()==individual1->getId()){
+
+    _GiantsPopulation->deleteIndividualList(individual2);
+    _DarkElvesPopulation->deleteIndividualList(individual2);
+    _DwarvesPopulation->deleteIndividualList(individual2);
+    _ElvesPopulation->deleteIndividualList(individual2);
+    }
+    else{
+        _GiantsPopulation->deleteIndividualList(individual1);
+        _DarkElvesPopulation->deleteIndividualList(individual1);
+        _DwarvesPopulation->deleteIndividualList(individual1);
+        _ElvesPopulation->deleteIndividualList(individual1);
+    }
 }
 
 void MainLogic::HappyNewYear()

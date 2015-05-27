@@ -11,8 +11,11 @@
 #include "logicGame/GameIndividual.h"
 #include "res/crazythread.h"
 #include "res/vector.h"
+#include "res/Random.h"
 #include "DataAccess/docXML.h"
 #include <unistd.h>
+#include <cmath>
+#include <cstdlib>
 
 #define darkElves 1
 #define elves 2
@@ -45,12 +48,16 @@
 #define supersticion 7
 #define sacrificio 8
 #define invocacion 9
+#define primerElemento 0
+#define cero 0
+#define floatCero 0.0
+#define cien 100
 
 using namespace std;
-
 class MainLogic
 {
 private:
+    static Random* _random;
     static DarkElves* _DarkElvesPopulation;
     static Elves* _ElvesPopulation;
     static Giants* _GiantsPopulation;
@@ -72,6 +79,7 @@ private:
     static int EddaActual;
 
 public:
+    void fight(Individuals* individual1, Individuals *individual2);
     MainLogic();
     void runLogic();
     Vector<int> *getMap();
