@@ -10,7 +10,7 @@ namespace randomClass {
     int  randRange(int pMin, int pMax);
     int getRandom(int pLimit);
     void start();
-};
+}
 
 
 #endif // RANDOMCLASS_H

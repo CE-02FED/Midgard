@@ -35,7 +35,7 @@ private:
 
 public:
     Evolution();
-     Population evolvePopulation(Population pPopulation);
+     Population& evolvePopulation(Population &pPopulation);
 };
 
 #endif // EVOLUTION_H

@@ -176,11 +176,11 @@ void MainLogic::evolution()
     {
         pthread_mutex_lock(&mutex);
         generationCount++;
-        /*_DarkElvesPopulation = (DarkElves*)&(_Evolution->evolvePopulation(*_DarkElvesPopulation));
+        _DarkElvesPopulation = (DarkElves*)&(_Evolution->evolvePopulation(*_DarkElvesPopulation));
         _GiantsPopulation = (Giants*)&_Evolution->evolvePopulation(*_GiantsPopulation);
         _DwarvesPopulation = ((Dwarves*)&_Evolution->evolvePopulation(*_DwarvesPopulation));
         _ElvesPopulation = (Elves*)&_Evolution->evolvePopulation(*_ElvesPopulation);
-        */
+
 
         pthread_mutex_unlock(&mutex);
         usleep(1000);
