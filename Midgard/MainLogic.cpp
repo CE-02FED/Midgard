@@ -172,7 +172,7 @@ void MainLogic::evolution()
 
     // Evolve our population until we reach an optimum solution
     int generationCount = 0;
-    while (generationCount <Constants::GENERATIONS)
+    while (generationCount <Constants::getInstance()->GENERATIONS)
     {
         pthread_mutex_lock(&mutex);
         generationCount++;

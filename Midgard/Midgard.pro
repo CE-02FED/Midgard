@@ -37,7 +37,9 @@ SOURCES += main.cpp \
     DataAccess/jsonreadercpp.cpp \
     DataAccess/jsonwritercpp.cpp \
     res/Constants.cpp \
-    res/Random.cpp
+    res/Random.cpp \
+    Random/arduino.cpp \
+    Random/randomNumbers.cpp
 
 
 RESOURCES += qml.qrc
@@ -95,4 +97,6 @@ HEADERS += \
     res/lista.h \
     res/nodos.h \
     logicGame/pathfinding.h \
-    res/Random.h
+    res/Random.h \
+    Random/arduino.h \
+    Random/randomNumbers.h
