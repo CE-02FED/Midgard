@@ -16,6 +16,7 @@
 #define indvFitness 2
 #define GetMap 1
 #define Genealogia 2
+#define PuebloInfo 4
 #define Raza 0
 #define individuoID 1
 
@@ -42,6 +43,7 @@ private:
     void leerJson(string pMensaje);
     void getMap();
     void getGenealogia(Vector<int> *pDatos);
+    void getPuebloInfo(string pPueblo);
 };
 
 #endif // LOGICFACADE_H

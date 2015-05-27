@@ -14,6 +14,7 @@ public:
     string writeMap(Vector<int> pMatriz);
     string writeFamily(int pFather, int pMother, int pFitness);
     string writeFight(int pPopulation1, int pPopulation2);
+    string writePuebloInfo(int pLowestFitness, int pHighestFitnesss,int pAmountPeople);
 
     //GUI
     string writeFamilyFromGUI(int pRaza, int pIndividuoID);

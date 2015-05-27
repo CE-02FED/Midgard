@@ -84,6 +84,7 @@ public:
     void runLogic();
     Vector<int> *getMap();
     Vector<int> *getParents(int *pRaza, int *pIndividualID);
+    Vector<int> *getPuebloInfo(int pPueblo);
 
     static void HappyNewYear();
     static void mainGame();

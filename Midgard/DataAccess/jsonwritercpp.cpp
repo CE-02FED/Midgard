@@ -22,7 +22,7 @@ string jsonWriterCpp::writeMap(Vector<int> pMatriz)
            {
                for(int j=0; j<(pMatriz).getWidth();j++ )
                {
-                   cout << "matriz: " << to_string(pMatriz[i][j]) << endl;
+                   //cout << "matriz: " << to_string(pMatriz[i][j]) << endl;
                    newMatriz += to_string(pMatriz[i][j]) + "#" ;
                }
 
@@ -71,6 +71,23 @@ string jsonWriterCpp::writeFight(int pPopulation1, int pPopulation2)
            pMe.append(" }");
            cout<<pMe<<endl;
            return pMe;
+}
+
+string jsonWriterCpp::writePuebloInfo(int pLowestFitness, int pHighestFitnesss, int pAmountPeople)
+{
+    string pMe="{";
+           string lowestFitness=to_string(pLowestFitness);
+           string highestFitness=to_string(pHighestFitnesss);
+           string peopleAmount=to_string(pAmountPeople);
+           pMe.append("\"Fittest\" : \""+highestFitness+"\" ,");
+           pMe.append("\"worstFitness\" : \""+lowestFitness+"\" ,");
+           pMe.append("\"amountPeople\" : \""+peopleAmount+"\" }");
+
+
+        //pMe.append(" }");
+        cout << "mando write PuebloInfo" <<endl;
+        cout<<pMe<<endl;
+        return pMe;
 }
 
 // GUIWRITER

@@ -37,9 +37,8 @@ SOURCES += main.cpp \
     DataAccess/jsonreadercpp.cpp \
     DataAccess/jsonwritercpp.cpp \
     res/Constants.cpp \
-    res/Random.cpp \
-    Random/arduino.cpp \
-    Random/randomNumbers.cpp
+    res/Random.cpp
+
 
 
 RESOURCES += qml.qrc
