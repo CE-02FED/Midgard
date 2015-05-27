@@ -17,7 +17,7 @@ Evolution::Evolution()
 Population& Evolution:: evolvePopulation(Population &pPopulation)
 {
 
-    for (int i =0;i<((Constants::getInstance()->MAXPOPULATION)*0.08);i++)
+    for (int i =0;i<((Constants::getInstance()->MAXPOPULATION)*porcentajeNatalidad);i++)
     {
         //std::cout<<"interacion: "<<i<<endl;
         Individuals* FatherA = fathersSelection(pPopulation);
@@ -29,19 +29,19 @@ Population& Evolution:: evolvePopulation(Population &pPopulation)
         lista<Individuals>* newIndividualsList = CrossOver(*FatherA, *FatherB);
 
 
-        pPopulation.insertIndividualList(newIndividualsList->getElemento(0));
+        pPopulation.insertIndividualList(newIndividualsList->getElemento(primerElemento));
         pPopulation.upPopulation();
-        pPopulation.insertIndividualList(newIndividualsList->getElemento(1));
+        pPopulation.insertIndividualList(newIndividualsList->getElemento(segundoElemento));
         pPopulation.upPopulation();
     }
 
 
-    for(int i =0;i < pPopulation.getPopulationSize();i++)
+    for(int i =cero;i < pPopulation.getPopulationSize();i++)
     {
 
         Mutation(pPopulation.getIndividualbyIndex(i));
     }
-    while((pPopulation.getPopulationSize()-Constants::getInstance()->MAXPOPULATION)!=0){
+    while((pPopulation.getPopulationSize()-Constants::getInstance()->MAXPOPULATION)!=cero){
         pPopulation.deleteIndividualList(pPopulation.getFitless());
         pPopulation.downPopulation();
     }
@@ -63,12 +63,12 @@ Individuals* Evolution::fathersSelection(Population pPopulation)
 
 
     int totalFitness=pPopulation.getTotalFitness();
-    Individuals* fathers[100];
+    Individuals* fathers[porcentajePadres];
 
-    int j=0;
-    int i=0;
-    int redondeo=round(((*(pPopulation.getIndividualbyIndex(0)->getFitness())+0.0)/totalFitness)*100);
-    while(i<99){
+    int j=cero;
+    int i=cero;
+    int redondeo=round(((*(pPopulation.getIndividualbyIndex(primerElemento)->getFitness())+floatCero)/totalFitness)*cien);
+    while(i<porcentajePadres){
 
 
 
@@ -77,13 +77,13 @@ Individuals* Evolution::fathersSelection(Population pPopulation)
             if(j!=(pPopulation.getPopulationSize()-1)){
             j++;
             }
-            redondeo=redondeo+round(((*(pPopulation.getIndividualbyIndex(j)->getFitness())+0.0)/totalFitness)*100);
+            redondeo=redondeo+round(((*(pPopulation.getIndividualbyIndex(j)->getFitness())+floatCero)/totalFitness)*cien);
         }
         fathers[i]=pPopulation.getIndividualbyIndex(j);
         i++;
      }
 
-    int ran=_random->getRandom(98);
+    int ran=_random->getRandom(porcentajePadres-1);
     Individuals* randomFather= fathers[ran];
     return randomFather;
 
@@ -100,10 +100,10 @@ void Evolution::Mutation(Individuals* pIndividual)
 {
     for(int i=0;i < Constants::SKILLSQUANTITY ; i++)
     {
-        if (_random->randRange(0.0,10.0) <= _mutationRate)
+        if (_random->randRange(floatCero,maxMutation) <= _mutationRate)
         {
 
-           pIndividual->getGenes()->Flip(_random->getRandom(80));
+           pIndividual->getGenes()->Flip(_random->getRandom(maxCantidadBits));
         }
 
     }
@@ -135,7 +135,7 @@ lista<Individuals>* Evolution::CrossOver(Individuals pFatherA, Individuals pFath
     *tmpGenesIndividualB=*(pFatherB.getGenes());
 
 
-    for (int Indice = 0; Indice < Constants::SKILLSQUANTITY ; Indice++)
+    for (int Indice = cero; Indice < Constants::SKILLSQUANTITY ; Indice++)
     {
         //int tmpPuntoCruce = rand()%cantidadBits;
         int tmpPuntoCruce = _random->getRandom(cantidadBits);
@@ -162,8 +162,8 @@ lista<Individuals>* Evolution::CrossOver(Individuals pFatherA, Individuals pFath
     newIndividualB->setFathers(pFatherA.getId(),pFatherB.getId());
 
     lista<Individuals>* list= new lista<Individuals>();
-    list->agregar(newIndividualA,0);
-    list->agregar(newIndividualB,0);
+    list->agregar(newIndividualA,primerElemento);
+    list->agregar(newIndividualB,primerElemento);
 
 
     return list;

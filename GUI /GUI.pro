@@ -13,7 +13,7 @@ TEMPLATE = app
 LIBS += -ljsoncpp
 CONFIG += C++11
 CONFIG += thread
-
+QT+= multimedia
 
 
 SOURCES += main.cpp\

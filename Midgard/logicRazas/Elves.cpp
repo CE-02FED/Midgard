@@ -1,6 +1,6 @@
 #include "Elves.h"
 
-Elves::Elves(int pSizePopulation, bool pStart) : Population(pSizePopulation,pStart)
+Elves::Elves(int pSizePopulation, bool pStart) : Population(pSizePopulation)
 {
     _PopulationSize = (int*) malloc(sizeof(int));
     *_PopulationSize = Constants::getInstance()->MAXPOPULATION;

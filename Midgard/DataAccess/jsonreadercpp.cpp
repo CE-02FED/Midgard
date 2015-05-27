@@ -18,27 +18,27 @@ Vector<int>* jsonReaderCpp::readMap (string pJson)
     string tmpMap=root["map"].asString();
 
     Vector<int>* newMatriz = new Vector<int>(Height, Width) ;
+    string numero = "";
+            int index = 0, jindex = 0;
+            for (int i = 0; i < tmpMap.length(); i++) {
+                if (index >= Height) {
+                    break;
+                }
+                if (jindex >= Width) {
+                    jindex = 0;
+                    index++;
+                }
+                if (tmpMap[i] == '#') {
+                    (*newMatriz)[index][jindex] = stoi(numero);
+                    jindex++;
+                    numero = "";
+                }
+                else {
+                    numero += tmpMap[i];
+                }
+            }
+      return newMatriz;
 
-        string numero = "";
-        int index = 0, jindex = 0;
-        for (int i = 0; i < tmpMap.length(); i++) {
-            if (index >= Height) {
-                break;
-            }
-            if (jindex >= Width) {
-                jindex = 0;
-                index++;
-            }
-            if (tmpMap[i] == '#') {
-                (*newMatriz)[index][jindex] = stoi(numero);
-                jindex++;
-                numero = "";
-            }
-            else {
-                numero += tmpMap[i];
-            }
-        }
-  return newMatriz;
 }
 
 Vector<int>* jsonReaderCpp::readFight(string pJson)
@@ -62,6 +62,30 @@ Vector<int>* jsonReaderCpp::readFight(string pJson)
     *(*arregloRazas)[1] = Population2;
 
     return arregloRazas;
+
+}
+
+Vector<int> *jsonReaderCpp::readPubloInfo(string pJson)
+{
+    Json::Value root;
+    Json::Reader reader;
+
+    bool parsingSuccessful= reader.parse(pJson,root,false);
+    if (!parsingSuccessful)
+    {
+        cout<<"Failed to parse configuration\n"
+              << reader.getFormattedErrorMessages();
+    }
+    cout<<root.toStyledString()<<endl;
+
+    int pueblo= stoi(root["pueblo"].asString());
+    cout << "estoy readPuebloInfo" << endl;
+
+    Vector<int>* puebloVector = new Vector<int>(2);
+
+    *(*puebloVector)[0] = pueblo;
+
+    return puebloVector;
 
 }
 

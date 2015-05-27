@@ -7,26 +7,34 @@ Dwarves* MainLogic::_DwarvesPopulation;
 Evolution* MainLogic::_Evolution;
 int MainLogic::Age=0;
 int MainLogic::EddaActual=0;
+Random* MainLogic::_random=0;
 
 MainLogic::MainLogic()
 {
-    _DarkElvesPopulation = new DarkElves(50, true);
-    _GiantsPopulation = new Giants(50, true);
-    _DwarvesPopulation = new Dwarves(50, true);
-    _ElvesPopulation = new Elves(50, true);
+    _DarkElvesPopulation = new DarkElves(Constants::getInstance()->MAXPOPULATION, true);
+    _GiantsPopulation = new Giants(Constants::getInstance()->MAXPOPULATION, true);
+    _DwarvesPopulation = new Dwarves(Constants::getInstance()->MAXPOPULATION, true);
+    _ElvesPopulation = new Elves(Constants::getInstance()->MAXPOPULATION, true);
     _Evolution = new Evolution();
 
 
     archivoXML = new docXML();
-    matriz = new Vector<int> (3,3);
+    matriz = new Vector<int> (archivoXML->getMatrizHeight(),archivoXML->getMatrizWidth());
     matriz->llenarMatriz(0);
+    matriz = initMatriz();
+
     (*matriz)[0][0]=3;
-    (*matriz)[1][1]=4;
-    (*matriz)[1][2]=2;
+    (*matriz)[1][1]=21;
+    (*matriz)[1][2]=1;
+    (*matriz)[4][4]=53;
+    (*matriz)[5][3]=6;
+    (*matriz)[5][1]=59;
+    //matriz->print();
+    _random = new Random();
 
     runLogic()  ;
 
-    //matriz = initMatriz();
+    //
 }
 
 void MainLogic::runLogic()
@@ -139,9 +147,75 @@ Vector<int>* MainLogic::getParents(int* pRaza, int* pIndividualID)
     return Family2;
 }
 
+Vector<int> *MainLogic::getPuebloInfo(int pPueblo)
+{
+    Vector<int>* puebloInfo = new Vector<int>(3);
+
+    switch (pPueblo) {
+    case darkElves:
+        *(*puebloInfo)[0]= *(_DarkElvesPopulation->getFittest()->getFitness());
+        *(*puebloInfo)[1]= *(_DarkElvesPopulation->getFitless()->getFitness());
+        *(*puebloInfo)[2]= _DarkElvesPopulation->getPopulationSize();
+        break;
+    case elves:
+        *(*puebloInfo)[0]= *(_ElvesPopulation->getFittest()->getFitness());
+        *(*puebloInfo)[1]= *(_ElvesPopulation->getFitless()->getFitness());
+        *(*puebloInfo)[2]= _ElvesPopulation->getPopulationSize();
+
+        break;
+    case dwarves:
+        *(*puebloInfo)[0]= *(_DwarvesPopulation->getFittest()->getFitness());
+        *(*puebloInfo)[1]= *(_DwarvesPopulation->getFitless()->getFitness());
+        *(*puebloInfo)[2]= _DwarvesPopulation->getPopulationSize();
+
+        break;
+    case giants:
+        *(*puebloInfo)[0]= *(_GiantsPopulation->getFittest()->getFitness());
+        *(*puebloInfo)[1]= *(_GiantsPopulation->getFitless()->getFitness());
+        *(*puebloInfo)[2]= _GiantsPopulation->getPopulationSize();
+        break;
+    default:
+        break;
+    }
+
+    return puebloInfo;
+}
+
 Vector<int>* MainLogic::getMap()
 {        
     return matriz;
+}
+
+void MainLogic::fight(Individuals* individual1, Individuals* individual2){
+    int sumaFit= *(individual1->getFitness())+*(individual2->getFitness());
+    Individuals* probabilidad[cien];
+    int redondeo=round(((*(individual1->getFitness())+floatCero)/sumaFit)*cien);
+
+    for(int i=cero;i<cien;i++){
+        if(redondeo<=i){
+            probabilidad[i]=individual1;
+        }
+        else{
+            probabilidad[i]=individual2;
+        }
+
+    }
+
+    int ran=_random->getRandom(cien);
+    Individuals* survivor= probabilidad[ran];
+    if(survivor->getId()==individual1->getId()){
+
+    _GiantsPopulation->deleteIndividualList(individual2);
+    _DarkElvesPopulation->deleteIndividualList(individual2);
+    _DwarvesPopulation->deleteIndividualList(individual2);
+    _ElvesPopulation->deleteIndividualList(individual2);
+    }
+    else{
+        _GiantsPopulation->deleteIndividualList(individual1);
+        _DarkElvesPopulation->deleteIndividualList(individual1);
+        _DwarvesPopulation->deleteIndividualList(individual1);
+        _ElvesPopulation->deleteIndividualList(individual1);
+    }
 }
 
 void MainLogic::HappyNewYear()
@@ -172,7 +246,7 @@ void MainLogic::evolution()
 
     // Evolve our population until we reach an optimum solution
     int generationCount = 0;
-    while (generationCount <Constants::GENERATIONS)
+    while (generationCount <Constants::getInstance()->GENERATIONS)
     {
         pthread_mutex_lock(&mutex);
         generationCount++;
@@ -198,8 +272,8 @@ Vector<int> *MainLogic::initMatriz()
     int Width = archivoXML->getMatrizWidth();
     Vector<int>* newMatriz = new Vector<int>(Width,Height);
     string tmpMap = archivoXML->getMatriz();
-        string numero = "";
 
+        string numero = "";
         int index = 0, jindex = 0;
         for (int i = 0; i < tmpMap.length(); i++) {
             if (index >= Height) {
@@ -219,7 +293,6 @@ Vector<int> *MainLogic::initMatriz()
             }
         }
   return newMatriz;
-
 }
 
 bool MainLogic::EddaAntiguaMethod(bool pImprovePopulation)

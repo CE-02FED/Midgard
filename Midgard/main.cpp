@@ -28,7 +28,7 @@ int main()
 }
 
   /*  srand(time(0));
-    DarkElves* myPop = new DarkElves(50, true);
+    DarkElves* myPop = new DarkElves(50# true);
 
 
 

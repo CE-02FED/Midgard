@@ -7,6 +7,7 @@
 
 
 #define maxSkill 255
+#define cero 0
 //class FitnessCalculation;
 class Individuals
 {

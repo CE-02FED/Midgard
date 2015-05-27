@@ -14,6 +14,16 @@
 #define partesDelaPoblacion 2
 #define mutationLowLimit 0.0
 #define mutationHightLimit 10.5
+#define porcentajeNatalidad 0.08
+#define primerElemento 0
+#define segundoElemento 1
+#define cero 0
+#define porcentajePadres 99
+#define floatCero 0.0
+#define cien 100
+#define maxMutation 10.0
+#define maxCantidadBits 80
+
 
 class Population;
 class Evolution

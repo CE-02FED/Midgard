@@ -5,12 +5,12 @@
 Individuals::Individuals()
 {
     _random = new Random();
-    static int x=0;
+    static int generadorID=cero;
     this->cantidadCualidades = Constants::SKILLSQUANTITY;
     _Genes = new BitVector(cantidadCualidades);
-    this->_ID=x++;
+    this->_ID=generadorID++;
     this->createIndividual();
-    this->_Fitness=0;    
+    this->_Fitness=cero;
 }
 
 Individuals::Individuals(int pID)
@@ -20,16 +20,16 @@ Individuals::Individuals(int pID)
     _Genes = new BitVector(cantidadCualidades);
     this->_ID = pID;
     this->createIndividual();
-    this->_Fitness=0;   
+    this->_Fitness=cero;
 }
 int Individuals::calculateFitness(BitVector* pIndividualGenes) // VERIFICAR BIEN
 {
 
-    int tmpFitness =0;
+    int tmpFitness =cero;
 
-    for(int i=0; i< Constants::SKILLSQUANTITY; i++)
+    for(int i=cero; i< Constants::SKILLSQUANTITY; i++)
     {
-        //cout << "habiilidad: " << to_string(pIndividualGenes->getByIndex(i)) << endl;
+
         u_int8_t skillValue = (pIndividualGenes->getByIndex(i));
 
         tmpFitness+= skillValue;
@@ -39,7 +39,7 @@ int Individuals::calculateFitness(BitVector* pIndividualGenes) // VERIFICAR BIEN
 
 void Individuals::setIndividualID(int pID)
 {
-   // std::cout<<"ID Nuevo Individuo "<<pID<<std::endl;
+
     this->_ID = pID;
 }
 
@@ -80,9 +80,9 @@ void Individuals::generateCromosoma()
 {
     BitVector* tmpCromosoma = new BitVector(cantidadCualidades);
 
-    for(int i =0; i< cantidadCualidades; i++)
+    for(int i =cero; i< cantidadCualidades; i++)
     {
-       int Skill = _random->getRandom(256);
+       int Skill = _random->getRandom(maxSkill+1);
 
        tmpCromosoma->insertByIndex(i,Skill); // se agrega cualidad de derecha a izquierda
        //std::cout<< "in Generate Cromosoma skill: " << std::to_string(tmpCromosoma->getByIndex(i)) << std::endl;
@@ -106,7 +106,7 @@ BitVector* Individuals::getGenes()
 
 int* Individuals::getFitness() {
 
-    if ( _Fitness== 0) {          // error con _Fitness
+    if ( _Fitness== cero) {          // error con _Fitness
          _Fitness = this->calculateFitness(_Genes);
     }
 

@@ -40,6 +40,7 @@ SOURCES += main.cpp \
     res/Random.cpp
 
 
+
 RESOURCES += qml.qrc
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
@@ -95,4 +96,6 @@ HEADERS += \
     res/lista.h \
     res/nodos.h \
     logicGame/pathfinding.h \
-    res/Random.h
+    res/Random.h \
+    Random/arduino.h \
+    Random/randomNumbers.h
