@@ -13,8 +13,8 @@ using namespace std ;
 
 class docXML {
 private:    
-    unsigned int elmentSize, maxPopulation, MaxSkill, skillsQuantity,matrizWidth,matrizHeight, generations;
-    string matriz;
+    unsigned int maxPopulation, BITS_PER_SECOND,matrizWidth,matrizHeight, generations;
+    string matriz,ARDUINO_PATH;
     pugi::xml_document doc;
     pugi::xml_node rootNode;
 
@@ -27,15 +27,13 @@ public:
         return doc;
     }
 
-    int getGenerations(){return this->generations;}
-
-    int getElementSize(){ return this->elmentSize;}
+    int getGenerations(){return this->generations;}    
 
     int getMaxPopulation(){ return this->maxPopulation;}
 
-    int getvMaxSkill(){return this->MaxSkill;}
+    int getvBitsPerSecond(){return this->BITS_PER_SECOND;}
 
-    int getSkillQuantity(){return this->skillsQuantity;}
+    string getArduinoPath(){return this->ARDUINO_PATH;}
 
     int getMatrizWidth(){return this->matrizWidth;}
 
