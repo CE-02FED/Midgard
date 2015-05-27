@@ -1,6 +1,6 @@
 #include "Giants.h"
 
-Giants::Giants(int pSizePopulation, bool pStart) : Population(pSizePopulation,pStart)
+Giants::Giants(int pSizePopulation, bool pStart) : Population(pSizePopulation)
 {   _PopulationSize = (int*) malloc(sizeof(int));
     *_PopulationSize = pSizePopulation;
 

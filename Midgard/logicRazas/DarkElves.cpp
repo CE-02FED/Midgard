@@ -1,8 +1,7 @@
 #include "DarkElves.h"
 
-DarkElves::DarkElves(int pSizePopulation, bool pStart) : Population(pSizePopulation,pStart)
+DarkElves::DarkElves(int pSizePopulation, bool pStart) : Population(pSizePopulation)
 {
-    //Population::Population(pSizePopulation,false);
     _PopulationSize = (int*) malloc(sizeof(int));
     *_PopulationSize = Constants::getInstance()->MAXPOPULATION;
    _CantidadCualidades = Constants::SKILLSQUANTITY;

@@ -11,6 +11,9 @@
 #include <iostream>
 #include "../res/vector.h"
 
+#define cero 0
+#define primerElemento 0
+
 
 class Evolution;
 class Population
@@ -18,7 +21,7 @@ class Population
 protected:
     Individuals* _Individuals[];
     int _CantidadCualidades;
-    int* _PopulationSize=0;
+    int* _PopulationSize=cero;
     //std::unordered_map <int,Individuals>* _IndividualList;
     static lista<Individuals>* _IndividualList;
 
@@ -29,7 +32,7 @@ public:
     Population();
     Individuals* getFitless();
     void deleteIndividualList(Individuals* pIndividual);
-    Population(int pSizePopulation, bool pStart);
+    Population(int pSizePopulation);
     void upPopulation();
     void downPopulation();
     Individuals *getIndividualbyIndex(int pIndex);

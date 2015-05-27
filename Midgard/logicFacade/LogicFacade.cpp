@@ -103,7 +103,6 @@ LogicFacade *LogicFacade::getInstance()
 
         _facade = new LogicFacade();
 
-    else
         return _facade;
 
 }

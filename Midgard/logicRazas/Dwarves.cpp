@@ -1,6 +1,6 @@
 #include "Dwarves.h"
 
-Dwarves::Dwarves(int pSizePopulation, bool pStart) : Population(pSizePopulation,pStart)
+Dwarves::Dwarves(int pSizePopulation, bool pStart) : Population(pSizePopulation)
 {
     _PopulationSize = (int*) malloc(sizeof(int));
     *_PopulationSize = Constants::getInstance()->MAXPOPULATION;
