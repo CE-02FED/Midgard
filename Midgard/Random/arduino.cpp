@@ -1,6 +1,3 @@
-#define ARDUINO_PATH "/dev/ttyACM0"
-#define CARACTER_SALIDA '#'
-
 #include "arduino.h"
 
 Arduino::Arduino(int pSpeed) {
@@ -40,8 +37,7 @@ string Arduino::read() {
 }
 
 void Arduino::write(string pMsg) {
-    while (1) //_serial->rdbuf()->in_avail() == 0)
-    {
+    while (1) {
         struct timespec timer, timer2;
         timer.tv_sec = 3;
         timer.tv_nsec = 0;
