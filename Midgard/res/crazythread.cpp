@@ -11,6 +11,7 @@ CrazyThread::CrazyThread(void *func, void *arg)
 CrazyThread::~CrazyThread()
 {
 
+
 }
 
 void CrazyThread::run()

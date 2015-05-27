@@ -49,19 +49,14 @@ void Population::insertIndividualList(Individuals* pIndividual)
     //_ID++;
 
 }
-bool Population::deleteIndividualList(Individuals* pIndividual){
+void Population::deleteIndividualList(Individuals* pIndividual){
 
   int id= pIndividual->getId();
-  std::cout<<"Id IND"<<id<<std::endl;
   for(int i=cero;i<_IndividualList->getNumEle();i++){
       if(id==_IndividualList->getElemento(i)->getId()){
-          std::cout<<"Elimino Id IND"<<_IndividualList->getElemento(i)->getId()<<std::endl;
           _IndividualList->eliminar(i);
-          return true;
-
       }
   }
-  return false;
 }
 
 int Population::getPopulationSize()

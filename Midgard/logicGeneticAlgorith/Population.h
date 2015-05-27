@@ -31,7 +31,7 @@ public:
     static Evolution* _Evolution;
     Population();
     Individuals* getFitless();
-    bool deleteIndividualList(Individuals* pIndividual);
+    void deleteIndividualList(Individuals* pIndividual);
     Population(int pSizePopulation);
     void upPopulation();
     void downPopulation();
