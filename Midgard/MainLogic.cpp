@@ -7,34 +7,37 @@ Dwarves* MainLogic::_DwarvesPopulation;
 Evolution* MainLogic::_Evolution;
 int MainLogic::Age=0;
 int MainLogic::EddaActual=0;
-Random* MainLogic::_random=0;
+Random* MainLogic::_random;
 
 MainLogic::MainLogic()
 {
-    _DarkElvesPopulation = new DarkElves(Constants::getInstance()->MAXPOPULATION, true);
-    _GiantsPopulation = new Giants(Constants::getInstance()->MAXPOPULATION, true);
-    _DwarvesPopulation = new Dwarves(Constants::getInstance()->MAXPOPULATION, true);
-    _ElvesPopulation = new Elves(Constants::getInstance()->MAXPOPULATION, true);
+    _DarkElvesPopulation = new DarkElves(50, true);
+    _GiantsPopulation = new Giants(50, true);
+    _DwarvesPopulation = new Dwarves(50, true);
+    _ElvesPopulation = new Elves(50, true);
     _Evolution = new Evolution();
 
 
     archivoXML = new docXML();
-    matriz = new Vector<int> (archivoXML->getMatrizHeight(),archivoXML->getMatrizWidth());
-    matriz->llenarMatriz(0);
-    matriz = initMatriz();
+    Map::getInstance()->anadirObjeto(0,0,0,20);
+    Map::getInstance()->anadirObjeto(20,20,0,10);
+    Map::getInstance()->anadirObjeto(15,15,0,4);
+    Map::getInstance()->anadirObjeto(11,11,0,30);
+    Map::getInstance()->anadirObjeto(3,3,0,6);
 
+
+
+
+    /*matriz = new Vector<int> (3,3);
+    matriz->llenarMatriz(0);
     (*matriz)[0][0]=3;
-    (*matriz)[1][1]=21;
-    (*matriz)[1][2]=1;
-    (*matriz)[4][4]=53;
-    (*matriz)[5][3]=6;
-    (*matriz)[5][1]=59;
-    //matriz->print();
+    (*matriz)[1][1]=4;
+    (*matriz)[1][2]=2;*/
     _random = new Random();
 
     runLogic()  ;
 
-    //
+    //matriz = initMatriz();
 }
 
 void MainLogic::runLogic()
@@ -49,6 +52,7 @@ void MainLogic::runLogic()
     CrazyThread* mainThread = new CrazyThread((void*)mainGame, nullptr);
     mainThread->run();      
 }
+
 
 void MainLogic::mainGame()
 {
@@ -147,6 +151,11 @@ Vector<int>* MainLogic::getParents(int* pRaza, int* pIndividualID)
     return Family2;
 }
 
+Vector<int>* MainLogic::getMap()
+{        
+    return Map::getInstance()->getMapMatriz();
+}
+
 Vector<int> *MainLogic::getPuebloInfo(int pPueblo)
 {
     Vector<int>* puebloInfo = new Vector<int>(3);
@@ -181,16 +190,16 @@ Vector<int> *MainLogic::getPuebloInfo(int pPueblo)
     return puebloInfo;
 }
 
-Vector<int>* MainLogic::getMap()
-{        
-    return matriz;
-}
-
 void MainLogic::fight(Individuals* individual1, Individuals* individual2){
+    pthread_mutex_t mutex= PTHREAD_MUTEX_INITIALIZER;
+    pthread_mutex_lock(&mutex);
     int sumaFit= *(individual1->getFitness())+*(individual2->getFitness());
+    std::cout<<"fitness i1 "<<*(individual1->getFitness())<<std::endl;
+    std::cout<<"fitness i2 "<<*(individual2->getFitness())<<std::endl;
+    std::cout<<"sumafit "<<sumaFit<<std::endl;
     Individuals* probabilidad[cien];
     int redondeo=round(((*(individual1->getFitness())+floatCero)/sumaFit)*cien);
-
+       std::cout<<"redondeo "<<redondeo<<std::endl;
     for(int i=cero;i<cien;i++){
         if(redondeo<=i){
             probabilidad[i]=individual1;
@@ -202,19 +211,37 @@ void MainLogic::fight(Individuals* individual1, Individuals* individual2){
     }
 
     int ran=_random->getRandom(cien);
+    std::cout<<"Random "<<ran<<std::endl;
     Individuals* survivor= probabilidad[ran];
+    pthread_mutex_unlock(&mutex);
     if(survivor->getId()==individual1->getId()){
 
-    _GiantsPopulation->deleteIndividualList(individual2);
-    _DarkElvesPopulation->deleteIndividualList(individual2);
-    _DwarvesPopulation->deleteIndividualList(individual2);
-    _ElvesPopulation->deleteIndividualList(individual2);
+    if(_GiantsPopulation->deleteIndividualList(individual2)){
+        _GiantsPopulation->downPopulation();
+    }
+    if(_DarkElvesPopulation->deleteIndividualList(individual2)){
+        _DarkElvesPopulation->downPopulation();
+    }
+    if(_DwarvesPopulation->deleteIndividualList(individual2)){
+        _DwarvesPopulation->downPopulation();
+    }
+    if(_ElvesPopulation->deleteIndividualList(individual2)){
+        _ElvesPopulation->downPopulation();
+    }
     }
     else{
-        _GiantsPopulation->deleteIndividualList(individual1);
-        _DarkElvesPopulation->deleteIndividualList(individual1);
-        _DwarvesPopulation->deleteIndividualList(individual1);
-        _ElvesPopulation->deleteIndividualList(individual1);
+        if(_GiantsPopulation->deleteIndividualList(individual1)){
+            _GiantsPopulation->downPopulation();
+        }
+        if(_DarkElvesPopulation->deleteIndividualList(individual1)){
+            _DarkElvesPopulation->downPopulation();
+        }
+        if(_DwarvesPopulation->deleteIndividualList(individual1)){
+            _DwarvesPopulation->downPopulation();
+        }
+        if(_ElvesPopulation->deleteIndividualList(individual1)){
+            _ElvesPopulation->downPopulation();
+        }
     }
 }
 
@@ -272,8 +299,8 @@ Vector<int> *MainLogic::initMatriz()
     int Width = archivoXML->getMatrizWidth();
     Vector<int>* newMatriz = new Vector<int>(Width,Height);
     string tmpMap = archivoXML->getMatriz();
-
         string numero = "";
+
         int index = 0, jindex = 0;
         for (int i = 0; i < tmpMap.length(); i++) {
             if (index >= Height) {
@@ -293,6 +320,7 @@ Vector<int> *MainLogic::initMatriz()
             }
         }
   return newMatriz;
+
 }
 
 bool MainLogic::EddaAntiguaMethod(bool pImprovePopulation)

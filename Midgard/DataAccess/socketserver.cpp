@@ -78,10 +78,10 @@ void * SocketServer::controladorCliente(void *obj)
         string mensaje;
         while (1) {
              pthread_mutex_lock(&mutex);
-            char buffer[10000] = {0};
-            int bytes = recv(data->descriptor,buffer,10000,0);
+            char buffer[100000] = {0};
+            int bytes = recv(data->descriptor,buffer,100000,0);
             mensaje.append(buffer,bytes);
-            if(bytes < 10000)
+            if(bytes < 100000)
                 break;
             pthread_mutex_unlock(&mutex);
         }
@@ -98,6 +98,7 @@ void * SocketServer::controladorCliente(void *obj)
 void SocketServer::setMensaje(const char *msn)
 {
     for(unsigned int i = 0 ; i < clientes.size() ; i++)
+
         send(clientes[i],msn,strlen(msn),0);
         //cout << "bytes enviados "<< send(clientes[i],msn,strlen(msn),0);
 }

@@ -37,7 +37,8 @@ SOURCES += main.cpp \
     DataAccess/jsonreadercpp.cpp \
     DataAccess/jsonwritercpp.cpp \
     res/Constants.cpp \
-    res/Random.cpp
+    res/Random.cpp \
+    logicGame/Map.cpp
 
 
 
@@ -98,4 +99,5 @@ HEADERS += \
     logicGame/pathfinding.h \
     res/Random.h \
     Random/arduino.h \
-    Random/randomNumbers.h
+    Random/randomNumbers.h \
+    logicGame/Map.h
