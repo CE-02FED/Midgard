@@ -39,7 +39,7 @@ void Map::anadirObjeto(int pFila, int pColumna, Individuals *pObjeto, int pEleme
     pthread_mutex_lock(&mutex);
     (*_mapMatriz)[pFila][pColumna]=pElemento;
     pthread_mutex_unlock(&mutex);
-    //(*_objectMatriz)[pFila][pColumna]=pObjeto;
+    (*_objectMatriz)[pFila][pColumna]=pObjeto;
 }
 
 

@@ -27,7 +27,7 @@ public:
     void setFathers(int pIDFather, int pIDMother);
     int getFathers();
 
-    string findPath(Vector<int> pMatrizJuego, int posicionInicialI,int posicionInicialJ,
+    Vector<int>* findPath(Vector<int> pMatrizJuego, int posicionInicialI,int posicionInicialJ,
                     int posicionFinalI,int posicionFinalJ);
 };
 

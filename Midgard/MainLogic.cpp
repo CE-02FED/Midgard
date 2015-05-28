@@ -97,7 +97,7 @@ void MainLogic::anadirAMatriz(Population* pPoblacion, int pLimiteFilaInicial, in
         _random->start();
         int I = _random->randRange(pLimiteFilaInicial,pLimiteFilaFinal);
         int J=  _random->randRange(pLimiteColumnaInicial,pLimiteColumnaFinal);
-        Map::getInstance()->anadirObjeto(I,J,pPoblacion->getIndividualList()->getElemento(i),_random->getRandom(60));
+        Map::getInstance()->anadirObjeto(I,J,pPoblacion->getIndividualList()->getElemento(i)->getId(),_random->getRandom(60));
         pthread_mutex_unlock(&mutex);
         sleep(2);
     }
