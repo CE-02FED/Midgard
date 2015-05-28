@@ -101,3 +101,6 @@ HEADERS += \
     Random/arduino.h \
     Random/randomNumbers.h \
     logicGame/Map.h
+
+OTHER_FILES += \
+    res/MidgardConstants.xml

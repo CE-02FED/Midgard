@@ -18,6 +18,10 @@
 #include <cstdlib>
 #include "logicGame/Map.h"
 
+#define limiteEdda 200
+
+
+
 #define darkElves 1
 #define elves 2
 #define dwarves 3
@@ -38,6 +42,9 @@
 #define despreciable -40
 #define noCambia 0
 #define alto 15
+
+#define limiteFiguras 70
+
 
 #define vida 0
 #define inteligencia 1
@@ -60,9 +67,10 @@ class MainLogic
 private:
     static Random* _random;
     static DarkElves* _DarkElvesPopulation;
-    static Elves* _ElvesPopulation;
+    static Elves* _ElvesPopulation;    
     static Giants* _GiantsPopulation;
     static Dwarves* _DwarvesPopulation;
+    static Elves* _ElvesPopulation2;
     static Evolution* _Evolution;
     docXML* archivoXML;
     Vector<int>* matriz;
@@ -90,6 +98,9 @@ public:
     static void HappyNewYear();
     static void mainGame();
     void indidvidualFight();
+
+    static void actualizaMatriz();
+    static void anadirAMatriz(Population *pPoblacion, int pLimiteFilaInicial, int pLimiteColumnaInicial, int pLimiteFilaFinal, int pLimiteColumnaFinal);
 };
 
 #endif // MAINLOGIC_H
