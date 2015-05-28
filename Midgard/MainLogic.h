@@ -68,7 +68,7 @@ private:
     static Random* _random;
     static DarkElves* _DarkElvesPopulation;
     static Elves* _ElvesPopulation;    
-    static Giants* _GiantsPopulation;
+    //static Giants* _GiantsPopulation;
     static Dwarves* _DwarvesPopulation;
     static Elves* _ElvesPopulation2;
     static Evolution* _Evolution;

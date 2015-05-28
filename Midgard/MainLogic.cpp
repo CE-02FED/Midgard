@@ -79,7 +79,7 @@ void MainLogic::actualizaMatriz()
          anadirAMatriz(_ElvesPopulation2,0,0,10,10);
          anadirAMatriz(_ElvesPopulation,14,0,24,10);
          anadirAMatriz(_DwarvesPopulation,0,12,10,24);
-         anadirAMatriz(_DarkElvesPopulation,14,12,24,24);
+         anadirAMatriz(_DarkElvesPopulation,24,12,24,14);
     }
 
 }
@@ -92,8 +92,7 @@ void MainLogic::anadirAMatriz(Population* pPoblacion, int pLimiteFilaInicial, in
     pthread_mutex_t mutex= PTHREAD_MUTEX_INITIALIZER;
 
     for(int i=0; i<limiteFiguras; i++)
-    {
-        cout << "entro matriz" << endl;
+    {        
         pthread_mutex_lock(&mutex);
         _random->start();
         int I = _random->randRange(pLimiteFilaInicial,pLimiteFilaFinal);
