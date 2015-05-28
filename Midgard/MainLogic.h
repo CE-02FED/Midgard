@@ -86,6 +86,8 @@ private:
 
     static int Age;
     static int EddaActual;
+    static int contador;
+    static int generationCount;
 
 public:
     Vector<int> *getPuebloInfo(int pPueblo);
