@@ -36,7 +36,7 @@ class Constants{
 
     private:
          Constants();
-         docXML xmlDocument;
+         docXML* xmlDocument;
          static Constants* m_pInstancia;
          //xmlp heapxml;
 };

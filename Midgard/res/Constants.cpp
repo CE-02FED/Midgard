@@ -10,13 +10,15 @@ Constants* Constants::getInstance(){
     }
     return m_pInstancia;
 }
-Constants::Constants(){
 
-MAXPOPULATION =xmlDocument.getMaxPopulation();
-GENERATIONS= xmlDocument.getGenerations();
-HEIGHT= xmlDocument.getMatrizHeight();
-WIDTH= xmlDocument.getMatrizWidth();
-MATRIZ= xmlDocument.getMatriz();
+Constants::Constants(){
+xmlDocument = new docXML();
+
+MAXPOPULATION =xmlDocument->getMaxPopulation();
+GENERATIONS= xmlDocument->getGenerations();
+HEIGHT= xmlDocument->getMatrizHeight();
+WIDTH= xmlDocument->getMatrizWidth();
+MATRIZ= xmlDocument->getMatriz();
 
 }
 string Constants::punteroToString(void* puntero){
