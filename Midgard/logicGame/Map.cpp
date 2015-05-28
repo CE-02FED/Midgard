@@ -33,7 +33,7 @@ Map *Map::getInstance()
 
 }
 
-void Map::anadirObjeto(int pFila, int pColumna, int pObjeto, int pElemento)
+void Map::anadirObjeto(int pFila, int pColumna, Individuals *pObjeto, int pElemento)
 {
     pthread_mutex_t    mutex= PTHREAD_MUTEX_INITIALIZER;
     pthread_mutex_lock(&mutex);
