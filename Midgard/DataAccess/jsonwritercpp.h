@@ -1,7 +1,7 @@
 #ifndef JSONWRITERCPP_H
 #define JSONWRITERCPP_H
 #include <iostream>
-#include"res/vector.h"
+#include"../res/vector.h"
 
 
 using namespace std;

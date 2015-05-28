@@ -2,7 +2,7 @@
 #define JSONREADERCPP_H
 #include <json/json.h>
 #include <iostream>
-#include "res/vector.h"
+#include "../res/vector.h"
 using namespace std;
 class jsonReaderCpp
 {

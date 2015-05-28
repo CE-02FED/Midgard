@@ -9,6 +9,8 @@ QMAKE_CXXFLAGS +=
 
 QT += qml quick widgets
 LIBS += -ljsoncpp
+LIBS += -lserial
+LIBS += -L/usr/local/lib
 
 SOURCES += main.cpp \
     DataAccess/docXML.cpp \
@@ -38,7 +40,9 @@ SOURCES += main.cpp \
     DataAccess/jsonwritercpp.cpp \
     res/Constants.cpp \
     res/Random.cpp \
-    logicGame/Map.cpp
+    logicGame/Map.cpp \
+    Random/arduino.cpp \
+    Random/randomNumbers.cpp
 
 
 

@@ -4,75 +4,89 @@
 #ifndef _PRIORITYQUEUE_H
 #define _PRIORITYQUEUE_H
 
-template<class T>class NodeQ;
+template<class T>class Node;
 template<class T>
 class PriorityQueue {
 private:
-    NodeQ<T>* _head;
+    Node<T>* _head;
     unsigned int lenght;
-    void pushNode(NodeQ<T>*);
+    void pushNode(Node<T>*);
 public:
-    PriorityQueue();
-    void push(T*);
-    void push(T);
-    void pop();
-    bool empty();
-    int size();
-    T top();
+    PriorityQueue();					//Constructor
+    void push(T*);						//Inserta objeto en la cola
+    void push(T);						//Inserta objeto en la cola
+    void pop();							//Eliminar elemento de la cola
+    bool empty();						//Verifica si la cola esta vacia
+    int size();							//Retorna tamano de la cola
+    T top();							//Extraer elemento de la cola
 };
 
 template<class T>
-class NodeQ
+class Node
 {
 friend class PriorityQueue<T>;
 
 private:
     T* data;
-    NodeQ<T> *next;
+    Node<T> *next;
 public:
-    NodeQ();
-    NodeQ(T *); //Constructor
-    NodeQ(T); //Constructor
-    ~NodeQ(); //Destructor
-    T *getData(); //Devuelve el dato del objeto
-    NodeQ<T> *getNextNode();//Siguiente nodo
+    Node();
+    Node(T *); 							//Constructor
+    Node(T); 							//Constructor
+    ~Node(); 							//Destructor
+    T *getData(); 						//Retorna el dato del objeto
+    Node<T> *getNextNode();				//Siguiente nodo
 };
 
+/**
+ * 	@brief Constructor de la cola
+ */
 template<class T>
 PriorityQueue<T>::PriorityQueue(){
 	_head = 0;
 	lenght = 0;
 }
 
+/**
+ * 	@brief Constructor del nodo
+ */
 template<class T>
-NodeQ<T>::NodeQ(){
+Node<T>::Node(){
 	data = 0;
 	next = 0;
 }
 
-#endif //PROJECTMIDGARD_PRIORITYQUEUE_H
+/**
+ * 	@brief Agrega objeto a la lista
+ * 	@param Puntero de objeto a agregar
+ */
 template<class T>
 void PriorityQueue<T>::push(T *dato) {
 }
 
-template<class T>
-void PriorityQueue<T>::push(T dato) {
-    pushNode(new NodeQ<T>(dato));
-}
 /**
- * Metodo para insertar en cola de prioridad
+ * 	@brief Agrega objeto a la lista
+ * 	@param Objeto a agregar
  */
 template<class T>
-void PriorityQueue<T>::pushNode(NodeQ<T>* node) {
+void PriorityQueue<T>::push(T dato) {
+    pushNode(new Node<T>(dato));
+}
+/**
+ * @brief Inserta nodo en la cola de prioridad
+ * @param Nodo a agregar
+ */
+template<class T>
+void PriorityQueue<T>::pushNode(Node<T>* node) {
     if (lenght==0) _head = node;
     else
     {
-        NodeQ<T> *prevNodeToCompare = 0;
-        NodeQ<T> *nodeToCompare = _head;
+        Node<T> *prevNodeToCompare = 0;
+        Node<T> *nodeToCompare = _head;
         for (int i = 0; i < lenght; ++i) {
             T dato = *nodeToCompare->getData();
             if (dato<*node->getData()){
-                if (prevNodeToCompare == 0) {//insert in head
+                if (prevNodeToCompare == 0) {
                     node->next = _head;
                     _head = node;
                 }
@@ -81,60 +95,93 @@ void PriorityQueue<T>::pushNode(NodeQ<T>* node) {
                     node->next = nodeToCompare;
                 }
                 lenght++;
-                return;// exit after insert
+                return;
             }
             prevNodeToCompare = nodeToCompare;
             nodeToCompare = nodeToCompare->getNextNode();
         }
-        prevNodeToCompare->next=node;// insert al final
+        prevNodeToCompare->next=node;
     }
     lenght++;
 }
 
+/**
+ * 	@brief Retrona primer elemento de la cola
+ */
 template<class T>
 T PriorityQueue<T>::top() {
     return *(_head->getData());
 }
 
+/**
+ * @brief Elimina primer elemento de la cola
+ */
 template<class T>
 void PriorityQueue<T>::pop() {
-    NodeQ<T> * headTemp = _head;//Nodo para liberarlo
+    Node<T> * headTemp = _head;//Nodo para liberarlo
     _head = _head->getNextNode();
     lenght--;//Actualiza largo
     free(headTemp);//GarbageCollection
 }
 
+/**
+ * @brief Verifica si esta vacia la cola
+ */
 template<class T>
 bool PriorityQueue<T>::empty() {
     return lenght == 0;
 }
+
+
+/**
+ * 	@brief Retorna tamano de la cola
+ */
 template<class T>
 int PriorityQueue<T>::size() {
     return lenght;
 }
 
-
-//Nodes Methods
+/**
+ * 	@brief Inserta objeto en el nodo
+ */
 template<class T>
-NodeQ<T>::NodeQ(T * t) {
+Node<T>::Node(T * t) {
     data = t;
     next = 0;
 }
+
+/**
+ * 	@Inserta objeto en el nodo
+ */
 template<class T>
-NodeQ<T>::NodeQ(T t) {
+Node<T>::Node(T t) {
     data = static_cast<T*>(malloc(sizeof(T)));
     *data = t;
     next = 0;
 }
+
+/**
+ * @brief Destructor
+ */
 template<class T>
-NodeQ<T>::~NodeQ() {
+Node<T>::~Node() {
     next = 0;
 }
+
+/**
+ * 	@brief Obtener dato del nodo
+ */
 template<class T>
-T *NodeQ<T>::getData() {
+T *Node<T>::getData() {
     return data;
 }
+
+/**
+ * @brief Obtener siguiente nodo
+ */
 template<class T>
-NodeQ<T> *NodeQ<T>::getNextNode() {
+Node<T> *Node<T>::getNextNode() {
     return next;
 }
+
+#endif //PROJECTMIDGARD_PRIORITYQUEUE_H

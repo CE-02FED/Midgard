@@ -7,6 +7,7 @@
 #include "logicRazas/Elves.h"
 #include "logicRazas/Dwarves.h"
 #include "DataAccess/socketserver.h"
+#include "Random/randomNumbers.h"
 
 
 
@@ -17,16 +18,29 @@ using namespace std;
 
 int main()
 {
-    LogicFacade* w = LogicFacade::getInstance();
+    /*LogicFacade* w = LogicFacade::getInstance();
     MainLogic* d = new MainLogic();
 
 
-    w->runLogic(d);
+    w->runLogic(d);*/
 
-    while(1)
-    {
+    RandomNumbers* random = RandomNumbers::getInstance();
+    Vector<int>* arreglo = new Vector<int>(10000);
+    int pos = 0;
 
-    }
+    while (pos < arreglo->lenght()) {
+
+            struct timespec timer, timer2;
+            timer.tv_sec = 0;
+            timer.tv_nsec = 100;
+            nanosleep(&timer, &timer2);
+
+            *(*arreglo)[pos] = random->get();
+            cout << *(*arreglo)[pos] << endl;
+            pos++;
+
+        }
+    random->~RandomNumbers();
 }
 
 

@@ -14,6 +14,14 @@ Pathfinding::Pathfinding(Vector<short>* pMap) {
 
 }
 
+Vector<int>* Pathfinding::calcularRuta(int pXInicio, int pYInicio,
+						 	 	 	 	 int pXFinal, int pYFinal) {
+	string rutaString = this->find( pXInicio, pYInicio,
+									pXFinal, pYFinal);
+	Vector<int>* ruta = obtenerRuta(rutaString, pXInicio, pYInicio);
+	return ruta;
+}
+
 string Pathfinding::find(int pXInicio, int pYInicio,
 						 int pXFinal, int pYFinal) {
 
@@ -122,5 +130,18 @@ int Pathfinding::calcularPosHorizontal(int pPosX, char pCambio) {
 
 int Pathfinding::calcularPosVertical(int pPosY, char pCambio) {
 	return pPosY + _direccionY[atoi(&pCambio)];
+}
+
+Vector<int>* Pathfinding::obtenerRuta(string pRuta, int pPosX, int pPosY) {
+	Vector<int>* ruta = new Vector<int>(pRuta.length(),2);
+	int actualPosX = pPosX;
+	int actualPosY = pPosY;
+	for (int i = 0; i < pRuta.length(); i++) {
+		int valorX = calcularPosHorizontal(actualPosX, pRuta.at(i));
+		int valorY = calcularPosVertical(actualPosY, pRuta.at(i));
+		(*ruta)[i][0] = actualPosX = valorX;
+		(*ruta)[i][1] = actualPosY = valorY;
+	}
+	return ruta;
 }
 

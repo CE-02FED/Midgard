@@ -1,7 +1,6 @@
-
 #ifndef RANDOMNUMBERS_
 #define RANDOMNUMBERS_
-#include "vector.h"
+#include "../res/vector.h"
 #include "arduino.h"
 #include <stdlib.h>
 #include <time.h>
@@ -15,10 +14,7 @@ public:
     int get();
 private:
     RandomNumbers();
-    static void* fill(void* var);
     static RandomNumbers* instancia;
-    Vector<int>* _numeros;
-    int* _posActual;
     Arduino* _arduino;
 
 };

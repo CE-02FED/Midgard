@@ -65,14 +65,14 @@ int GameIndividual::getFathers()
     return  *tmpFathersArray;
 }
 
-string GameIndividual::findPath(Vector<int> pMatrizJuego, int posicionInicialI,int posicionInicialJ,
+Vector<int>* GameIndividual::findPath(Vector<int> pMatrizJuego, int posicionInicialI,int posicionInicialJ,
                                 int posicionFinalI,int posicionFinalJ)
 {
     _encontrarCamino = new Pathfinding((Vector<short>*)&pMatrizJuego);
 
 
 
-    return _encontrarCamino->find( posicionInicialI, posicionInicialJ, posicionFinalI, posicionFinalJ);
+    return _encontrarCamino->calcularRuta( posicionInicialI, posicionInicialJ, posicionFinalI, posicionFinalJ);
 
 }
 
