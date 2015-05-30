@@ -10,12 +10,12 @@ using namespace std;
 
 class Pathfinding {
 private:
-	short _height;
-	short _width;
+    int _height;
+    int _width;
     Vector<int>* _map;
-	Vector<short>* _listaCerrada;
-	Vector<short>* _listaAbierta;
-	Vector<short>* _listaDireccion;
+    Vector<int>* _listaCerrada;
+    Vector<int>* _listaAbierta;
+    Vector<int>* _listaDireccion;
 	string find(int pXInicio, int pYInicio,
 				int pXFinal, int pYFinal);
 	int calcularPosHorizontal(int pPosX, char pCambio);

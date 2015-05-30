@@ -93,12 +93,13 @@ private:
 
     static int Age;
     static int EddaActual;
+    //static pthread_mutex_t mutex;
 
 
 public:
     Vector<int> *getPuebloInfo(int pPueblo);
 
-    void fight(Individuals* individual1, Individuals *individual2);
+    static void fight(Individuals* individual1, Individuals *individual2);
 
     MainLogic();
     void runLogic();

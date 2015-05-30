@@ -28,6 +28,8 @@ protected:
     bool veriBase(size_t pNum);
     static Pathfinding* _encontrarCamino;
     static int figuraID;
+    static bool termino;
+
 
 
 
@@ -53,9 +55,11 @@ public:
     int getCantidadCualidades();
     void isMyBirthDay();
 
-    Vector<int> *findPath(int posicionInicialI, int posicionInicialJ, int posicionFinalI, int posicionFinalJ);
+    bool findPath(int posicionInicialI, int posicionInicialJ, int posicionFinalI, int posicionFinalJ);
     static void moverIndividuo();
     static void setFigureID(int pNumber);
+    bool getTermino();
+    void setTermino(bool value);
 };
 
 #endif // INDIVIDUALS_H

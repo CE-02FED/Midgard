@@ -7,20 +7,20 @@
 
 class NodoMatriz {
 private:
-	short posX;		//Posicion de la fila
-	short posY;		//Posicion de la columna
-	short nivel;		//Distancia recorrida
-	short prioridad;	//Prioridad en la cola
+    int posX;		//Posicion de la fila
+    int posY;		//Posicion de la columna
+    int nivel;		//Distancia recorrida
+    int prioridad;	//Prioridad en la cola
 public:
 	NodoMatriz(int pPosX, int pPosY, int pNivel, int pPrioridad);
 	~NodoMatriz();
-	short getNivel();
-	short getPosX();
-	short getPosY();
-	short getPrioridad();
+    int getNivel();
+    int getPosX();
+    int getPosY();
+    int getPrioridad();
 	void updatePrioridad(int pPosXDestino, int pPosYDestino);
 	void elegirDiagonal(int pDireccion);
-	short calcularDistancia(int pPosXDestino, int pPosYDestino);
+    int calcularDistancia(int pPosXDestino, int pPosYDestino);
 	bool operator<(NodoMatriz nodo);
 };
 

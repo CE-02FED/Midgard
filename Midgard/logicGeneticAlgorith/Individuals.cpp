@@ -2,7 +2,10 @@
 
 Vector<int>* Individuals::_movimiento;
 Pathfinding* Individuals::_encontrarCamino;
+
+bool Individuals::termino =false;
 int Individuals::figuraID=1;
+
 
 
 Individuals::Individuals()
@@ -57,6 +60,18 @@ void Individuals::createIndividual()
     generateCromosoma();
 
 }
+
+
+bool Individuals::getTermino()
+{
+    return termino;
+}
+
+void Individuals::setTermino(bool value)
+{
+    termino = value;
+}
+
 
 int Individuals::getId(){
     return _ID;
@@ -137,27 +152,49 @@ int Individuals::getMadre()
     return this->_MotherID;
 }
 
-Vector<int>* Individuals::findPath( int posicionInicialI,int posicionInicialJ,
+bool Individuals::findPath( int posicionInicialI,int posicionInicialJ,
                                 int posicionFinalI,int posicionFinalJ)
 {
+    cout << "entre findPath"<<endl;
+
     _encontrarCamino = new Pathfinding();
 
+
+
     _movimiento = _encontrarCamino->calcularRuta(posicionInicialI,posicionInicialJ,posicionFinalI,posicionFinalJ);
+
+
+
     CrazyThread* movimientoThread = new CrazyThread((void*)moverIndividuo,nullptr);
+
     movimientoThread->run();
+
+    moverIndividuo();
+
+
+   while (!termino)
+    {
+    }
+    termino =false;
+    return true;
 }
 
 void Individuals::moverIndividuo()
 {
-    pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
+
 
     for(int i =0; i< _movimiento->getHeight(); i++)
     {
-        pthread_mutex_lock(&mutex);
-        Map::anadirObjeto((*_movimiento)[i][0],(*_movimiento)[i][1],nullptr,figuraID);
-        usleep(1000);
-        pthread_mutex_unlock(&mutex);
+        Map::anadirObjeto((*_movimiento)[i][0],(*_movimiento)[i][1],new Individuals(),figuraID);
+        if (i>1)
+        {
+        Map::anadirObjeto((*_movimiento)[i-1][0],(*_movimiento)[i-1][1],new Individuals(),0);
+        }
+        sleep(1);
     }
+
+    cout << "true"<< endl;
+    termino = true;
 
 }
 
