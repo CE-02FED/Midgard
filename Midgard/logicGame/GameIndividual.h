@@ -7,6 +7,7 @@
 #include "../logicGame/pathfinding.h"
 
 
+
 #define PrioridadAlta 1
 #define PrioridadBaja -1
 #define MidValue 125
@@ -27,8 +28,8 @@ public:
     void setFathers(int pIDFather, int pIDMother);
     int getFathers();
 
-    string findPath(Vector<int> pMatrizJuego, int posicionInicialI,int posicionInicialJ,
-                    int posicionFinalI,int posicionFinalJ);
+    Vector<int> *findPath(int posicionInicialI, int posicionInicialJ,
+                    int posicionFinalI, int posicionFinalJ);
 };
 
 #endif // GAMEINDIVIDUAL_H

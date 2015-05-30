@@ -194,19 +194,26 @@ void MainLogic::mainGame()
     }
 }
 
-
-void MainLogic::indidvidualFight()
+void MainLogic::iniciarFight()
 {
-    for(int i =0; i< matriz->getHeight(); i++)
-    {
-        for(int j=0; j< matriz->getWidth();j++)
-        {
-            if(matriz[i][j]);
-        }
+        int posicionIRaza1 = _random->randRange(1,10);
+        int posicionJRaza1 = _random->randRange(1,7);
+
+        int posicionIRaza2 = _random->randRange(17,23);
+        int posicionJRaza2 = _random->randRange(1,7);
+
+        int posicionIRaza3 = _random->randRange(17,10);
+        int posicionJRaza3 = _random->randRange(19,23);
+
+        int posicionIRaza4 = _random->randRange(17,23);
+        int posicionJRaza4 = _random->randRange(19,23);
+
+        /*Map::getInstance()->(*getObjectMatriz())[posicionIRaza1][posicionJRaza1]->findPath(8,0,12,0);
+        Map::getInstance()->(*getObjectMatriz())[posicionIRaza2][posicionJRaza2]->findPath(18,0,13,0);
+        Map::getInstance()->(*getObjectMatriz())[posicionIRaza3][posicionJRaza3]->findPath(8,20,12,23);
+        Map::getInstance()->(*getObjectMatriz())[posicionIRaza4][posicionJRaza4]->findPath(18,20,13,23);*/
 
     }
-
-}
 
 Vector<int>* MainLogic::getParents(int* pRaza, int* pIndividualID)
 {
@@ -357,7 +364,7 @@ void MainLogic::HappyNewYear()
 void MainLogic::evolution()
 {
     srand(time(0));
-    pthread_mutex_t mutex= PTHREAD_MUTEX_INITIALIZER;    
+    pthread_mutex_t mutex= PTHREAD_MUTEX_INITIALIZER;
     // Evolve our population until we reach an optimum solution
 
 

@@ -424,31 +424,10 @@ main.o: ../Midgard/main.cpp ../Midgard/res/BitVector.h \
 		../Midgard/logicGame/pathfinding.h \
 		../Midgard/res/priorityQueue.h \
 		../Midgard/res/nodoMatriz.h \
+		../Midgard/logicGame/Map.h \
 		../Midgard/logicRazas/DarkElves.h \
 		../Midgard/logicRazas/Elves.h \
-		../Midgard/logicRazas/Dwarves.h \
-		../Midgard/DataAccess/socketserver.h \
-		../Midgard/logicFacade/LogicFacade.h \
-		../Midgard/DataAccess/serversocket.h \
-		../Midgard/DataAccess/socket.h \
-		../Midgard/DataAccess/clientsocket.h \
-		../Midgard/DataAccess/SocketException.h \
-		../Midgard/DataAccess/connection.h \
-		../Midgard/res/thread.h \
-		../Midgard/MainLogic.h \
-		../Midgard/logicGame/Map.h \
-		../Midgard/DataAccess/jsonwriter.h \
-		../Midgard/libs/rapidjson/rapidjson.h \
-		../Midgard/libs/rapidjson/document.h \
-		../Midgard/libs/rapidjson/reader.h \
-		../Midgard/libs/rapidjson/internal/pow10.h \
-		../Midgard/libs/rapidjson/internal/stack.h \
-		../Midgard/libs/rapidjson/internal/strfunc.h \
-		../Midgard/libs/rapidjson/stringbuffer.h \
-		../Midgard/libs/rapidjson/writer.h \
-		../Midgard/DataAccess/jsonreader.h \
-		../Midgard/DataAccess/jsonreadercpp.h \
-		../Midgard/DataAccess/jsonwritercpp.h
+		../Midgard/logicRazas/Dwarves.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../Midgard/main.cpp
 
 docXML.o: ../Midgard/DataAccess/docXML.cpp ../Midgard/DataAccess/docXML.h \
@@ -490,10 +469,10 @@ LogicFacade.o: ../Midgard/logicFacade/LogicFacade.cpp ../Midgard/logicFacade/Log
 		../Midgard/logicGame/pathfinding.h \
 		../Midgard/res/priorityQueue.h \
 		../Midgard/res/nodoMatriz.h \
+		../Midgard/logicGame/Map.h \
 		../Midgard/logicRazas/Elves.h \
 		../Midgard/logicRazas/Dwarves.h \
 		../Midgard/logicRazas/Giants.h \
-		../Midgard/logicGame/Map.h \
 		../Midgard/DataAccess/jsonwriter.h \
 		../Midgard/libs/rapidjson/rapidjson.h \
 		../Midgard/libs/rapidjson/document.h \
@@ -520,9 +499,10 @@ GameIndividual.o: ../Midgard/logicGame/GameIndividual.cpp ../Midgard/logicGame/G
 		../Midgard/res/lista.h \
 		../Midgard/res/nodos.h \
 		../Midgard/logicGame/pathfinding.h \
-		../Midgard/res/vector.h \
 		../Midgard/res/priorityQueue.h \
-		../Midgard/res/nodoMatriz.h
+		../Midgard/res/nodoMatriz.h \
+		../Midgard/res/vector.h \
+		../Midgard/logicGame/Map.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o GameIndividual.o ../Midgard/logicGame/GameIndividual.cpp
 
 pathfinding.o: ../Midgard/logicGame/pathfinding.cpp ../Midgard/logicGame/pathfinding.h \
@@ -530,9 +510,14 @@ pathfinding.o: ../Midgard/logicGame/pathfinding.cpp ../Midgard/logicGame/pathfin
 		../Midgard/DataAccess/docXML.h \
 		../Midgard/res/pugiconfig.hpp \
 		../Midgard/DataAccess/pugixml.hpp \
-		../Midgard/res/vector.h \
 		../Midgard/res/priorityQueue.h \
-		../Midgard/res/nodoMatriz.h
+		../Midgard/res/nodoMatriz.h \
+		../Midgard/res/vector.h \
+		../Midgard/logicGame/Map.h \
+		../Midgard/logicGeneticAlgorith/Individuals.h \
+		../Midgard/res/BitVector.h \
+		../Midgard/res/Random.h \
+		../Midgard/res/randomClass.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o pathfinding.o ../Midgard/logicGame/pathfinding.cpp
 
 Evolution.o: ../Midgard/logicGeneticAlgorith/Evolution.cpp ../Midgard/logicGeneticAlgorith/Evolution.h \
@@ -606,7 +591,8 @@ DarkElves.o: ../Midgard/logicRazas/DarkElves.cpp ../Midgard/logicRazas/DarkElves
 		../Midgard/logicGame/GameIndividual.h \
 		../Midgard/logicGame/pathfinding.h \
 		../Midgard/res/priorityQueue.h \
-		../Midgard/res/nodoMatriz.h
+		../Midgard/res/nodoMatriz.h \
+		../Midgard/logicGame/Map.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o DarkElves.o ../Midgard/logicRazas/DarkElves.cpp
 
 Dwarves.o: ../Midgard/logicRazas/Dwarves.cpp ../Midgard/logicRazas/Dwarves.h \
@@ -627,7 +613,8 @@ Dwarves.o: ../Midgard/logicRazas/Dwarves.cpp ../Midgard/logicRazas/Dwarves.h \
 		../Midgard/logicGame/GameIndividual.h \
 		../Midgard/logicGame/pathfinding.h \
 		../Midgard/res/priorityQueue.h \
-		../Midgard/res/nodoMatriz.h
+		../Midgard/res/nodoMatriz.h \
+		../Midgard/logicGame/Map.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Dwarves.o ../Midgard/logicRazas/Dwarves.cpp
 
 Elves.o: ../Midgard/logicRazas/Elves.cpp ../Midgard/logicRazas/Elves.h \
@@ -648,7 +635,8 @@ Elves.o: ../Midgard/logicRazas/Elves.cpp ../Midgard/logicRazas/Elves.h \
 		../Midgard/logicGame/GameIndividual.h \
 		../Midgard/logicGame/pathfinding.h \
 		../Midgard/res/priorityQueue.h \
-		../Midgard/res/nodoMatriz.h
+		../Midgard/res/nodoMatriz.h \
+		../Midgard/logicGame/Map.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Elves.o ../Midgard/logicRazas/Elves.cpp
 
 Giants.o: ../Midgard/logicRazas/Giants.cpp ../Midgard/logicRazas/Giants.h \
@@ -669,7 +657,8 @@ Giants.o: ../Midgard/logicRazas/Giants.cpp ../Midgard/logicRazas/Giants.h \
 		../Midgard/logicGame/GameIndividual.h \
 		../Midgard/logicGame/pathfinding.h \
 		../Midgard/res/priorityQueue.h \
-		../Midgard/res/nodoMatriz.h
+		../Midgard/res/nodoMatriz.h \
+		../Midgard/logicGame/Map.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Giants.o ../Midgard/logicRazas/Giants.cpp
 
 BitVector.o: ../Midgard/res/BitVector.cpp ../Midgard/res/BitVector.h
@@ -704,10 +693,10 @@ MainLogic.o: ../Midgard/MainLogic.cpp ../Midgard/MainLogic.h \
 		../Midgard/logicGame/pathfinding.h \
 		../Midgard/res/priorityQueue.h \
 		../Midgard/res/nodoMatriz.h \
+		../Midgard/logicGame/Map.h \
 		../Midgard/logicRazas/Elves.h \
 		../Midgard/logicRazas/Dwarves.h \
-		../Midgard/logicRazas/Giants.h \
-		../Midgard/logicGame/Map.h
+		../Midgard/logicRazas/Giants.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o MainLogic.o ../Midgard/MainLogic.cpp
 
 jsonwriter.o: ../Midgard/DataAccess/jsonwriter.cpp ../Midgard/DataAccess/jsonwriter.h \
@@ -819,10 +808,10 @@ connection.o: ../Midgard/DataAccess/connection.cpp ../Midgard/DataAccess/connect
 		../Midgard/logicGame/pathfinding.h \
 		../Midgard/res/priorityQueue.h \
 		../Midgard/res/nodoMatriz.h \
+		../Midgard/logicGame/Map.h \
 		../Midgard/logicRazas/Elves.h \
 		../Midgard/logicRazas/Dwarves.h \
 		../Midgard/logicRazas/Giants.h \
-		../Midgard/logicGame/Map.h \
 		../Midgard/DataAccess/jsonwriter.h \
 		../Midgard/libs/rapidjson/rapidjson.h \
 		../Midgard/libs/rapidjson/document.h \

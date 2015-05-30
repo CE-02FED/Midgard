@@ -14,7 +14,8 @@
 #define cero 0
 #define primerElemento 0
 
-
+class Individuals;
+class Map;
 class Evolution;
 class Population
 {

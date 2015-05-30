@@ -3,6 +3,7 @@
 GameIndividual::GameIndividual(int pCualidades[])
 {
     GameIndividual::createIndividual(pCualidades);
+    _encontrarCamino = new Pathfinding();
 }
 void GameIndividual::createIndividual(int pCualidades[])
 {
@@ -65,16 +66,7 @@ int GameIndividual::getFathers()
     return  *tmpFathersArray;
 }
 
-string GameIndividual::findPath(Vector<int> pMatrizJuego, int posicionInicialI,int posicionInicialJ,
-                                int posicionFinalI,int posicionFinalJ)
-{
-    _encontrarCamino = new Pathfinding((Vector<short>*)&pMatrizJuego);
 
-
-
-    return _encontrarCamino->find( posicionInicialI, posicionInicialJ, posicionFinalI, posicionFinalJ);
-
-}
 
 
 

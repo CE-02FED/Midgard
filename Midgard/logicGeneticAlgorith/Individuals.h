@@ -4,11 +4,15 @@
 #include "../res/BitVector.h"
 #include "../res/Constants.h"
 #include "../res/Random.h"
+#include "../res/vector.h"
+#include "../logicGame/Map.h"
+#include "../logicGame/pathfinding.h"
 
 
 #define maxSkill 255
 #define cero 0
 //class FitnessCalculation;
+class Pathfinding;
 class Individuals
 {
 protected:
@@ -21,6 +25,7 @@ protected:
     BitVector* _Genes;
     int cantidadCualidades;    
     bool veriBase(size_t pNum);
+    Pathfinding* _encontrarCamino;
 
 
 public:
@@ -44,6 +49,7 @@ public:
     int getCantidadCualidades();
     void isMyBirthDay();
 
+    Vector<int> *findPath(int posicionInicialI, int posicionInicialJ, int posicionFinalI, int posicionFinalJ);
 };
 
 #endif // INDIVIDUALS_H

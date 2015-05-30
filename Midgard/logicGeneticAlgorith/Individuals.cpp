@@ -134,5 +134,10 @@ int Individuals::getMadre()
     return this->_MotherID;
 }
 
+Vector<int>* Individuals::findPath( int posicionInicialI,int posicionInicialJ,
+                                int posicionFinalI,int posicionFinalJ)
+{
+    return _encontrarCamino->calcularRuta(posicionInicialI,posicionInicialJ,posicionFinalI,posicionFinalJ);
 
+}
 

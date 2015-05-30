@@ -57,8 +57,6 @@ HEADERS += \
     DataAccess/docXML.h \
     DataAccess/pugiconfig.hpp \
     DataAccess/pugixml.hpp \
-    DataAccess/socketcliente.h \
-    DataAccess/socketserver.h \
     libs/rapidjson/internal/pow10.h \
     libs/rapidjson/internal/stack.h \
     libs/rapidjson/internal/strfunc.h \

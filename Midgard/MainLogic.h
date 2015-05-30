@@ -17,6 +17,7 @@
 #include <cmath>
 #include <cstdlib>
 #include "logicGame/Map.h"
+#include "res/Random.h"
 
 #define limiteEdda 200
 
@@ -93,9 +94,12 @@ private:
     static int Age;
     static int EddaActual;
 
+
 public:
     Vector<int> *getPuebloInfo(int pPueblo);
+
     void fight(Individuals* individual1, Individuals *individual2);
+
     MainLogic();
     void runLogic();
     Vector<int> *getMap();
@@ -103,11 +107,11 @@ public:
 
     static void HappyNewYear();
     static void mainGame();
-    void indidvidualFight();
 
     static void actualizaMatriz();
     static void anadirAMatriz(Vector<Population>* pPoblaciones,Vector<int>* pFilasIniciales, Vector<int>* pFilasFinales,
                               Vector<int>* pColumnasIniciales, Vector<int>* pColumnasFinales  );
+    void iniciarFight();
 };
 
 #endif // MAINLOGIC_H

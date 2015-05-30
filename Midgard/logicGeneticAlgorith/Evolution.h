@@ -24,7 +24,7 @@
 #define maxMutation 10.0
 #define maxCantidadBits 80
 
-
+class Individuals;
 class Population;
 class Evolution
 {
