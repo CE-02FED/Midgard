@@ -14,9 +14,9 @@
 
 #define WIDTH_SCENE 800
 #define HEIGHT_SCENE 800
-#define WIDTH_POS 2000
-#define HEIGHT_POS 2500
-#define PIXELS_POS 75
+#define WIDTH_POS 1875
+#define HEIGHT_POS 1875
+#define PIXELS_POS 72
 #define WIDTH_MAP 25
 #define HEIGHT_MAP 25
 
@@ -28,7 +28,7 @@ public:
 
     Scene();
     static QGraphicsScene* scene;
-    static void* paintMap();
+    void* paintMap();
     Vector<int> *getMap();
     void setMap(Vector<int>* pMatrix);
 

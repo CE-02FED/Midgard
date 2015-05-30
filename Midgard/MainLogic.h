@@ -20,8 +20,11 @@
 
 #define limiteEdda 200
 
+#define inicial
+#define cantIds 8
 
 
+#define cantVectores 4
 #define darkElves 1
 #define elves 2
 #define dwarves 3
@@ -103,7 +106,8 @@ public:
     void indidvidualFight();
 
     static void actualizaMatriz();
-    static void anadirAMatriz(Population *pPoblacion, int pLimiteFilaInicial, int pLimiteColumnaInicial, int pLimiteFilaFinal, int pLimiteColumnaFinal);
+    static void anadirAMatriz(Vector<Population>* pPoblaciones,Vector<int>* pFilasIniciales, Vector<int>* pFilasFinales,
+                              Vector<int>* pColumnasIniciales, Vector<int>* pColumnasFinales  );
 };
 
 #endif // MAINLOGIC_H

@@ -38,7 +38,7 @@ void ObjectsGui::mousePressEvent(QGraphicsSceneMouseEvent *event)
             _puebloInfo = new puebloInformation("DARK ELVES",_imageId,_guiFacade->getAmountPeople(),
                                                 _guiFacade->getFittest(), _guiFacade->getWorstFitness());
 
-            _puebloInfo = new puebloInformation("DARK ELVES",DARK_ELVES_IMG, 45, 3500, 123);
+            //_puebloInfo = new puebloInformation("DARK ELVES",DARK_ELVES_IMG, 45, 3500, 123);
             _puebloInfo->show();
         }
         //GIANTS
@@ -48,7 +48,7 @@ void ObjectsGui::mousePressEvent(QGraphicsSceneMouseEvent *event)
             _puebloInfo = new puebloInformation("GIANTS",_imageId,_guiFacade->getAmountPeople(),
                                                  _guiFacade->getFittest(), _guiFacade->getWorstFitness());
 
-             _puebloInfo = new puebloInformation("GIANTS",GIANTS_IMG, 87, 3365, 765);
+             //_puebloInfo = new puebloInformation("GIANTS",GIANTS_IMG, 87, 3365, 765);
              _puebloInfo->show();
 
         }
@@ -59,7 +59,7 @@ void ObjectsGui::mousePressEvent(QGraphicsSceneMouseEvent *event)
             _puebloInfo = new puebloInformation("DWARVES",_imageId,_guiFacade->getAmountPeople(),
                                                  _guiFacade->getFittest(), _guiFacade->getWorstFitness());
 
-             _puebloInfo = new puebloInformation("DWARVES",DWARVES_IMG, 34, 2770, 544);
+             //_puebloInfo = new puebloInformation("DWARVES",DWARVES_IMG, 34, 2770, 544);
              _puebloInfo->show();
 
         }
@@ -70,7 +70,7 @@ void ObjectsGui::mousePressEvent(QGraphicsSceneMouseEvent *event)
             _puebloInfo = new puebloInformation("ELVES",_imageId,_guiFacade->getAmountPeople(),
                                                 _guiFacade->getFittest(), _guiFacade->getWorstFitness());
 
-             _puebloInfo = new puebloInformation("ELVES",ELVES_IMG, 12, 2450, 56);
+             //_puebloInfo = new puebloInformation("ELVES",ELVES_IMG, 12, 2450, 56);
              _puebloInfo->show();
 
         }

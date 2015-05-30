@@ -34,17 +34,6 @@ MainLogic::MainLogic()
 
 
     archivoXML = new docXML();
-    /*Map::getInstance()->anadirObjeto(0,0,0,20);
-    Map::getInstance()->anadirObjeto(20,20,0,10);
-    Map::getInstance()->anadirObjeto(15,15,0,4);
-    Map::getInstance()->anadirObjeto(11,11,0,30);
-    Map::getInstance()->anadirObjeto(3,3,0,6);*/
-
-    /*matriz = new Vector<int> (3,3);
-    matriz->llenarMatriz(0);
-    (*matriz)[0][0]=3;
-    (*matriz)[1][1]=4;
-    (*matriz)[1][2]=2;*/
     _random = new Random();
 
     runLogic();
@@ -74,41 +63,88 @@ void MainLogic::runLogic()
 
 void MainLogic::actualizaMatriz()
 {
+    Vector<Population>* poblaciones = new Vector<Population>(4);
+    *(*poblaciones)[0]= *_DarkElvesPopulation;
+    *(*poblaciones)[1]= *_ElvesPopulation2;
+    *(*poblaciones)[2]= *_ElvesPopulation;
+    *(*poblaciones)[3]= *_DwarvesPopulation;
+
+    Vector<int>* filasIniciales = new Vector<int>(4);
+    *(*filasIniciales)[0] = 0;
+    *(*filasIniciales)[1] = 17;
+    *(*filasIniciales)[2] = 0;
+    *(*filasIniciales)[3] = 17;
+
+    Vector<int>* columnasIniciales = new Vector<int>(4);
+    *(*columnasIniciales)[0] = 0;
+    *(*columnasIniciales)[1] = 0;
+    *(*columnasIniciales)[2] = 19;
+    *(*columnasIniciales)[3] = 19;
+
+    Vector<int>* filasFinales = new Vector<int>(4);
+    *(*filasFinales)[0] = 10;
+    *(*filasFinales)[1] = 24;
+    *(*filasFinales)[2] = 10;
+    *(*filasFinales)[3] = 24;
+
+    Vector<int>* columnasFinales = new Vector<int>(4);
+    *(*columnasFinales)[0] = 7;
+    *(*columnasFinales)[1] = 7;
+    *(*columnasFinales)[2] = 24;
+    *(*columnasFinales)[3] = 24;
     while(true)
-    {
+    {        
+         anadirAMatriz(poblaciones,filasIniciales,filasFinales,columnasIniciales,columnasFinales);
+
+
                                       //Posiciones Matriz
+
+         /*
          anadirAMatriz(_ElvesPopulation2,0,0,10,10);
          anadirAMatriz(_ElvesPopulation,14,0,23,10);
          anadirAMatriz(_DwarvesPopulation,0,12,10,23);
-         anadirAMatriz(_DarkElvesPopulation,14,12,23,23);
+         anadirAMatriz(_DarkElvesPopulation,14,12,24,24);*/
+
     }
 
 }
 
 
-void MainLogic::anadirAMatriz(Population* pPoblacion, int pLimiteFilaInicial, int pLimiteColumnaInicial,
-                              int pLimiteFilaFinal, int pLimiteColumnaFinal )
+void MainLogic::anadirAMatriz(Vector<Population>* pPoblaciones,Vector<int>* pFilasIniciales, Vector<int>* pFilasFinales,
+                              Vector<int>* pColumnasIniciales, Vector<int>* pColumnasFinales  )
 {// VERIFICAR LIMITE POBLACION
 
     pthread_mutex_t mutex= PTHREAD_MUTEX_INITIALIZER;
 
-    for(int i=0; i<limiteFiguras; i++)
+    Vector<int>* idMatriz = new Vector<int>(cantIds);
+    *(*idMatriz)[0] =4;
+    *(*idMatriz)[1] =15;
+    *(*idMatriz)[2] =16;
+    *(*idMatriz)[3] =27;
+    *(*idMatriz)[4] =28;
+    *(*idMatriz)[5] =39;
+    *(*idMatriz)[6] =40;
+    *(*idMatriz)[7] =51;
+
+    for(int j=0; j< cantVectores;j++)
     {
+        for(int i=0; i<limiteFiguras; i++)
+        {
         pthread_mutex_lock(&mutex);
         _random->start();
 
-        int I = _random->randRange(pLimiteFilaInicial,pLimiteFilaFinal);
-        int J=  _random->randRange(pLimiteColumnaInicial,pLimiteColumnaFinal);
+        int posicionImatriz = _random->randRange( *(*pFilasIniciales)[j],*(*pFilasFinales)[j]);
+        int posicionJmatriz =  _random->randRange(*(*pColumnasIniciales)[j],*(*pColumnasFinales)[j]);
 
-
-        if(i <pPoblacion->getPopulationSize())
-        {
-            Map::getInstance()->anadirObjeto(I,J,pPoblacion->getIndividualList()->getElemento(i),_random->randRange(4,53));
+        if(i < (*pPoblaciones)[j]->getPopulationSize())
+        {            
+            Map::getInstance()->anadirObjeto(posicionImatriz,posicionJmatriz,(*pPoblaciones)[j]->getIndividualList()->getElemento(i),
+                                             _random->randRange(*(*idMatriz)[j+j],*(*idMatriz)[j+j+1]));
         }
         pthread_mutex_unlock(&mutex);
-        sleep(2);
+        usleep(100);
+        }
     }
-
 
 }
 
@@ -172,19 +208,9 @@ void MainLogic::indidvidualFight()
 
 }
 
-
-
-
-
-
-
-
-
-
-
-
 Vector<int>* MainLogic::getParents(int* pRaza, int* pIndividualID)
 {
+    contador++;
     Vector<int>* Family = new Vector<int>(3);
     switch (*pRaza) {
     case darkElves:
@@ -211,13 +237,7 @@ Vector<int>* MainLogic::getParents(int* pRaza, int* pIndividualID)
         break;
     default:
         break;
-    }
-    //return Family;
-    /*Vector<int>* Family2 = new Vector<int>(3);
-    Family2->llenarMatriz(0);
-    *(*Family2)[0] = 1;
-    *(*Family2)[1] = 2;
-    *(*Family2)[2] = 3;*/
+    }    
     return Family;
 }
 

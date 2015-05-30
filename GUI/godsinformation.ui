@@ -166,7 +166,7 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>310</y>
+      <y>300</y>
       <width>421</width>
       <height>21</height>
      </rect>
@@ -186,7 +186,7 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>350</y>
+      <y>320</y>
       <width>361</width>
       <height>21</height>
      </rect>
@@ -199,7 +199,27 @@
      </font>
     </property>
     <property name="text">
-     <string>There is little chance of beating them.</string>
+     <string>There is just a little chance to destroy them.</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_11">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>340</y>
+      <width>281</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>URW Gothic L</family>
+      <pointsize>10</pointsize>
+      <italic>true</italic>
+     </font>
+    </property>
+    <property name="text">
+     <string>Are you the chosen one?</string>
     </property>
    </widget>
   </widget>
