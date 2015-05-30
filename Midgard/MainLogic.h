@@ -111,7 +111,7 @@ public:
     static void actualizaMatriz();
     static void anadirAMatriz(Vector<Population>* pPoblaciones,Vector<int>* pFilasIniciales, Vector<int>* pFilasFinales,
                               Vector<int>* pColumnasIniciales, Vector<int>* pColumnasFinales  );
-    void iniciarFight();
+    static void iniciarFight();
 };
 
 #endif // MAINLOGIC_H

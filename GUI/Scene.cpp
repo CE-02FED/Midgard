@@ -12,8 +12,8 @@ Scene::Scene() : QGraphicsView()
     playlist = new QMediaPlaylist;
     for(int i = 0; i < 5; i++)
     {
-        playlist->addMedia(QUrl::fromLocalFile("/home/javier/WorkspaceQT/GUI/medieval2.mp3"));
-        playlist->addMedia(QUrl::fromLocalFile("/home/javier/WorkspaceQT/GUI/medieval2.mp3"));
+        playlist->addMedia(QUrl::fromLocalFile("/home/david/Documents/cLion-Projects/Midgard/GUI/medieval2.mp3"));
+        playlist->addMedia(QUrl::fromLocalFile("/home/david/Documents/cLion-Projects/Midgard/GUI/medieval2.mp3"));
 
     }
     playlist->setCurrentIndex(1);
@@ -28,7 +28,7 @@ Scene::Scene() : QGraphicsView()
 
 
     scene = new QGraphicsScene(0,0,WIDTH_POS,HEIGHT_POS);
-    QPixmap _background("/home/javier/WorkspaceQT/GUI/imagenes GUI/grass.png");
+    QPixmap _background("/home/david/Documents/cLion-Projects/Midgard/GUI/grass.png");
 
 
     setScene(scene);

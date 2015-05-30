@@ -10,8 +10,7 @@ Map::Map()
         _mapMatriz = new Vector<int>(Constants::getInstance()->WIDTH, Constants::getInstance()->HEIGHT);
         _mapMatriz->llenarMatriz(0);
         _objectMatriz = new Vector<Individuals>(Constants::getInstance()->WIDTH, Constants::getInstance()->HEIGHT);
-        _mapMatriz = initMatriz();
-        _mapMatriz->print();       
+        _mapMatriz = initMatriz();              
 }
 
 Vector<int> *Map::initMatriz()
@@ -19,8 +18,7 @@ Vector<int> *Map::initMatriz()
     int Height = Constants::getInstance()->HEIGHT;
     int Width = Constants::getInstance()->WIDTH;
 
-    string tmpMap=Constants::getInstance()->MATRIZ;
-    cout << tmpMap << endl;
+    string tmpMap=Constants::getInstance()->MATRIZ;    
 
     Vector<int>* newMatriz = new Vector<int>(Height, Width) ;
 

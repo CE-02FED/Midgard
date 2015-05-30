@@ -12,7 +12,7 @@ MainWindow::MainWindow(QWidget *parent) :
     playlist = new QMediaPlaylist;
     for(int i = 0; i < 10; i++)
     {
-        playlist->addMedia(QUrl::fromLocalFile("/home/javier/WorkspaceQT/GUI/heaven-help-us.mp3"));
+        playlist->addMedia(QUrl::fromLocalFile("/home/david/Documents/cLion-Projects/Midgard/GUI/heaven-help-us.mp3"));
     }
     playlist->setCurrentIndex(1);
 
@@ -23,7 +23,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
     buttonSound = new QMediaPlayer;
-    buttonSound->setMedia(QUrl::fromLocalFile("/home/javier/WorkspaceQT/GUI/button-40.wav"));
+    buttonSound->setMedia(QUrl::fromLocalFile("/home/david/Documents/cLion-Projects/Midgard/GUI/button-40.wav"));
     buttonSound->setVolume(30);
 }
 

@@ -1,5 +1,8 @@
 #include "Individuals.h"
 
+Vector<int>* Individuals::_movimiento;
+Pathfinding* Individuals::_encontrarCamino;
+int Individuals::figuraID=1;
 
 
 Individuals::Individuals()
@@ -10,7 +13,7 @@ Individuals::Individuals()
     _Genes = new BitVector(cantidadCualidades);
     this->_ID=generadorID++;
     this->createIndividual();
-    this->_Fitness=cero;
+    this->_Fitness=cero;    
 }
 
 Individuals::Individuals(int pID)
@@ -137,7 +140,29 @@ int Individuals::getMadre()
 Vector<int>* Individuals::findPath( int posicionInicialI,int posicionInicialJ,
                                 int posicionFinalI,int posicionFinalJ)
 {
-    return _encontrarCamino->calcularRuta(posicionInicialI,posicionInicialJ,posicionFinalI,posicionFinalJ);
+    _encontrarCamino = new Pathfinding();
 
+    _movimiento = _encontrarCamino->calcularRuta(posicionInicialI,posicionInicialJ,posicionFinalI,posicionFinalJ);
+    CrazyThread* movimientoThread = new CrazyThread((void*)moverIndividuo,nullptr);
+    movimientoThread->run();
+}
+
+void Individuals::moverIndividuo()
+{
+    pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
+
+    for(int i =0; i< _movimiento->getHeight(); i++)
+    {
+        pthread_mutex_lock(&mutex);
+        Map::anadirObjeto((*_movimiento)[i][0],(*_movimiento)[i][1],nullptr,figuraID);
+        usleep(1000);
+        pthread_mutex_unlock(&mutex);
+    }
+
+}
+
+void Individuals::setFigureID(int pNumber)
+{
+    figuraID = pNumber;
 }
 

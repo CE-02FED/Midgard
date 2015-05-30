@@ -11,6 +11,7 @@
 
 #define maxSkill 255
 #define cero 0
+#define cantPosiciones
 //class FitnessCalculation;
 class Pathfinding;
 class Individuals
@@ -25,7 +26,9 @@ protected:
     BitVector* _Genes;
     int cantidadCualidades;    
     bool veriBase(size_t pNum);
-    Pathfinding* _encontrarCamino;
+    static Pathfinding* _encontrarCamino;
+    static int figuraID;
+
 
 
 public:
@@ -39,6 +42,7 @@ public:
     int getPadre();
     int getMadre();
 
+    static Vector<int>* _movimiento;
 
     void generateCromosoma();
     void createIndividual();
@@ -50,6 +54,8 @@ public:
     void isMyBirthDay();
 
     Vector<int> *findPath(int posicionInicialI, int posicionInicialJ, int posicionFinalI, int posicionFinalJ);
+    static void moverIndividuo();
+    static void setFigureID(int pNumber);
 };
 
 #endif // INDIVIDUALS_H

@@ -59,6 +59,9 @@ void MainLogic::runLogic()
     CrazyThread* matrizThread = new CrazyThread((void*)actualizaMatriz,nullptr);
     matrizThread->run();
 
+    CrazyThread* fightThread = new CrazyThread((void*)actualizaMatriz,nullptr);
+    fightThread->run();
+
 }
 
 void MainLogic::actualizaMatriz()
@@ -137,9 +140,11 @@ void MainLogic::anadirAMatriz(Vector<Population>* pPoblaciones,Vector<int>* pFil
         int posicionJmatriz =  _random->randRange(*(*pColumnasIniciales)[j],*(*pColumnasFinales)[j]);
 
         if(i < (*pPoblaciones)[j]->getPopulationSize())
-        {            
-            Map::getInstance()->anadirObjeto(posicionImatriz,posicionJmatriz,(*pPoblaciones)[j]->getIndividualList()->getElemento(i),
-                                             _random->randRange(*(*idMatriz)[j+j],*(*idMatriz)[j+j+1]));
+        {
+            int idFigura = _random->randRange(*(*idMatriz)[j+j],*(*idMatriz)[j+j+1]);
+            Individuals* individualMatriz = (*pPoblaciones)[j]->getIndividualList()->getElemento(i);
+            individualMatriz->setFigureID(idFigura);
+            Map::getInstance()->anadirObjeto(posicionImatriz,posicionJmatriz,individualMatriz,idFigura);
         }
         pthread_mutex_unlock(&mutex);
         usleep(100);
@@ -196,6 +201,8 @@ void MainLogic::mainGame()
 
 void MainLogic::iniciarFight()
 {
+        pthread_mutex_lock(&mutex);
+        Vector<int>* posiblesLuchadores = new Vector<int>(4,2);
         int posicionIRaza1 = _random->randRange(1,10);
         int posicionJRaza1 = _random->randRange(1,7);
 
@@ -208,10 +215,11 @@ void MainLogic::iniciarFight()
         int posicionIRaza4 = _random->randRange(17,23);
         int posicionJRaza4 = _random->randRange(19,23);
 
-        /*Map::getInstance()->(*getObjectMatriz())[posicionIRaza1][posicionJRaza1]->findPath(8,0,12,0);
-        Map::getInstance()->(*getObjectMatriz())[posicionIRaza2][posicionJRaza2]->findPath(18,0,13,0);
-        Map::getInstance()->(*getObjectMatriz())[posicionIRaza3][posicionJRaza3]->findPath(8,20,12,23);
-        Map::getInstance()->(*getObjectMatriz())[posicionIRaza4][posicionJRaza4]->findPath(18,20,13,23);*/
+        Map::getInstance()->getObjectMatriz()[posicionIRaza1][posicionJRaza1]->findPath(8,0,12,0);
+        Map::getInstance()->getObjectMatriz()[posicionIRaza2][posicionJRaza2]->findPath(18,0,13,0);
+        Map::getInstance()->getObjectMatriz()[posicionIRaza3][posicionJRaza3]->findPath(8,20,12,23);
+        Map::getInstance()->getObjectMatriz()[posicionIRaza4][posicionJRaza4]->findPath(18,20,13,23);
+        pthread_mutex_unlock(&mutex);
 
     }
 
@@ -290,6 +298,9 @@ Vector<int> *MainLogic::getPuebloInfo(int pPueblo)
 void MainLogic::fight(Individuals* individual1, Individuals* individual2){
     pthread_mutex_t mutex= PTHREAD_MUTEX_INITIALIZER;
     pthread_mutex_lock(&mutex);
+
+
+
     int sumaFit= *(individual1->getFitness())+*(individual2->getFitness());
     std::cout<<"fitness i1 "<<*(individual1->getFitness())<<std::endl;
     std::cout<<"fitness i2 "<<*(individual2->getFitness())<<std::endl;

@@ -160,7 +160,5 @@ void Population::isPopBirthDay()
         tmpIndividual->getDato()->isMyBirthDay();
         tmpIndividual = tmpIndividual->getSiguiente();
     }
-
 }
-
 
