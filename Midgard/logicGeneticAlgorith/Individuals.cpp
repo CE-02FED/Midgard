@@ -1,7 +1,7 @@
 #include "Individuals.h"
 
 Vector<int>* Individuals::_movimiento;
-Pathfinding* Individuals::_encontrarCamino;
+//Pathfinding* Individuals::_encontrarCamino;
 
 bool Individuals::termino =false;
 int Individuals::figuraID=1;
@@ -152,50 +152,35 @@ int Individuals::getMadre()
     return this->_MotherID;
 }
 
-bool Individuals::findPath( int posicionInicialI,int posicionInicialJ,
+Vector<int>* Individuals::findPath( int posicionInicialI,int posicionInicialJ,
                                 int posicionFinalI,int posicionFinalJ)
 {
     cout << "entre findPath"<<endl;
 
     _encontrarCamino = new Pathfinding();
 
-
-
     _movimiento = _encontrarCamino->calcularRuta(posicionInicialI,posicionInicialJ,posicionFinalI,posicionFinalJ);
 
-
-
-    CrazyThread* movimientoThread = new CrazyThread((void*)moverIndividuo,nullptr);
-
-    movimientoThread->run();
-
-    moverIndividuo();
-
-
-   while (!termino)
-    {
-    }
-    termino =false;
-    return true;
+    return _movimiento;
 }
 
-void Individuals::moverIndividuo()
+void* Individuals::moverIndividuo(void* pParametro)
 {
+    Vector<int>* d = (Vector<int>*) pParametro;
+    cout <<"pum pum pra pra pra pra" << endl;
 
-
-    for(int i =0; i< _movimiento->getHeight(); i++)
+    for(int i =0; i< d->getHeight(); i++)
     {
-        Map::anadirObjeto((*_movimiento)[i][0],(*_movimiento)[i][1],new Individuals(),figuraID);
+        cout << "entro a esta porqueria"<<endl;
+        Map::anadirObjeto((*d)[i][0],(*d)[i][1],new Individuals(),figuraID);
         if (i>1)
         {
-        Map::anadirObjeto((*_movimiento)[i-1][0],(*_movimiento)[i-1][1],new Individuals(),0);
+        Map::anadirObjeto((*d)[i-1][0],(*d)[i-1][1],new Individuals(),0);
         }
-        sleep(1);
+        sleep(2);
     }
-
     cout << "true"<< endl;
     termino = true;
-
 }
 
 void Individuals::setFigureID(int pNumber)

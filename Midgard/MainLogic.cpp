@@ -63,10 +63,8 @@ void MainLogic::runLogic()
     matrizThread->run();
 
 
-    /*CrazyThread* fightThread = new CrazyThread((void*)iniciarFight,nullptr);
-    fightThread->run();*/
-
-    iniciarFight();
+    CrazyThread* fightThread = new CrazyThread((void*)iniciarFight,nullptr);
+    fightThread->run();
 
 }
 
@@ -230,10 +228,29 @@ void MainLogic::iniciarFight()
         Individuals* individual3  = _ElvesPopulation->getIndividualList()->getElemento(randIndividuo3);
         Individuals* individual4  = _DwarvesPopulation->getIndividualList()->getElemento(randIndividuo4);
 
-        bool llegoIndividuo1 = individual1->findPath(6,0,13,23);
-        bool llegoIndividuo2 = individual2->findPath(20,0,14,23);
-        bool llegoIndividuo3=individual3->findPath(6,19,13,3);
-        bool llegoIndividuo4= individual4->findPath(20,19,14,3);
+        Vector<int>* llegoIndividuo1 = individual1->findPath(6,0,13,23);
+        Vector<int>* llegoIndividuo2 = individual2->findPath(20,0,14,23);
+        Vector<int>* llegoIndividuo3=individual3->findPath(6,19,13,3);
+        Vector<int>* llegoIndividuo4= individual4->findPath(20,19,14,3);
+
+
+
+        CrazyThread* indivThread1 = new CrazyThread((void*)individual1->moverIndividuo,(void*)llegoIndividuo1);
+
+        CrazyThread* indivThread2 = new CrazyThread((void*)individual2->moverIndividuo,nullptr);
+        CrazyThread* indivThread3 = new CrazyThread((void*)individual3->moverIndividuo,nullptr);
+        CrazyThread* indivThread4 = new CrazyThread((void*)individual4->moverIndividuo,nullptr);
+
+        indivThread1->run();
+        indivThread2->run();
+        indivThread3->run();
+        indivThread4->run();
+
+        while(true)
+        {
+            sleep(10);
+            break;
+        }
 
         //findPath(8,0,13,3) -- >findPath(18,0,14,3)
         if ( llegoIndividuo1 && llegoIndividuo2 )

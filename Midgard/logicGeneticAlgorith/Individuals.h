@@ -26,9 +26,10 @@ protected:
     BitVector* _Genes;
     int cantidadCualidades;    
     bool veriBase(size_t pNum);
-    static Pathfinding* _encontrarCamino;
+    Pathfinding* _encontrarCamino;
     static int figuraID;
     static bool termino;
+    static Vector<int>* _movimiento;
 
 
 
@@ -44,7 +45,7 @@ public:
     int getPadre();
     int getMadre();
 
-    static Vector<int>* _movimiento;
+
 
     void generateCromosoma();
     void createIndividual();
@@ -55,8 +56,8 @@ public:
     int getCantidadCualidades();
     void isMyBirthDay();
 
-    bool findPath(int posicionInicialI, int posicionInicialJ, int posicionFinalI, int posicionFinalJ);
-    static void moverIndividuo();
+    Vector<int> *findPath(int posicionInicialI, int posicionInicialJ, int posicionFinalI, int posicionFinalJ);
+    static void *moverIndividuo(void *pParametro);
     static void setFigureID(int pNumber);
     bool getTermino();
     void setTermino(bool value);
