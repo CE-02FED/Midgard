@@ -13,8 +13,6 @@ LIBS += -ljsoncpp
 SOURCES += main.cpp \
     DataAccess/docXML.cpp \
     DataAccess/pugixml.cpp \
-    DataAccess/socketcliente.cpp \
-    DataAccess/socketserver.cpp \
     libs/jsonWriter.cpp \
     logicFacade/LogicFacade.cpp \
     logicGame/GameIndividual.cpp \
@@ -38,7 +36,12 @@ SOURCES += main.cpp \
     DataAccess/jsonwritercpp.cpp \
     res/Constants.cpp \
     res/Random.cpp \
-    logicGame/Map.cpp
+    logicGame/Map.cpp \
+    DataAccess/clientsocket.cpp \
+    DataAccess/serversocket.cpp \
+    DataAccess/socket.cpp \
+    DataAccess/connection.cpp \
+    res/thread.cpp
 
 
 
@@ -79,11 +82,8 @@ HEADERS += \
     logicRazas/Elves.h \
     logicRazas/Giants.h \
     res/BitVector.h \
-    res/Cola.h \
     res/Constants.h \
     res/crazythread.h \
-    res/lista_enlazada.h \
-    res/nodo.h \
     res/nodoMatriz.h \
     res/priorityQueue.h \
     res/pugiconfig.hpp \
@@ -100,7 +100,13 @@ HEADERS += \
     res/Random.h \
     Random/arduino.h \
     Random/randomNumbers.h \
-    logicGame/Map.h
+    logicGame/Map.h \
+    DataAccess/clientsocket.h \
+    DataAccess/serversocket.h \
+    DataAccess/socket.h \
+    DataAccess/SocketException.h \
+    DataAccess/connection.h \
+    res/thread.h
 
 OTHER_FILES += \
     res/MidgardConstants.xml

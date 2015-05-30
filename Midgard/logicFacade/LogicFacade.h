@@ -1,8 +1,11 @@
 #ifndef LOGICFACADE_H
 #define LOGICFACADE_H
 
-#include "../DataAccess/socketcliente.h"
-#include "../DataAccess/socketserver.h"
+#include "../DataAccess/serversocket.h"
+#include "../DataAccess/clientsocket.h"
+#include"../DataAccess/serversocket.h"
+#include "../DataAccess/SocketException.h"
+#include"../DataAccess/connection.h"
 #include "../res/crazythread.h"
 #include "iostream"
 #include "../MainLogic.h"
@@ -26,27 +29,27 @@
 using namespace std;
 
 
-class SocketServer;
+class connection;
 class LogicFacade
 {
 public:
-    void receiveDataFromSocket(string pMensaje);
+    string receiveDataFromSocket(string pMensaje);
     static LogicFacade* getInstance();
     void runLogic(MainLogic* pMainLogic);
-    void getMap();
+    string getMap();
 
 private:
     static LogicFacade* _facade;
-    SocketCliente* _socketCliente;
-    SocketServer* _socketServer;
+    ClientSocket* _socketCliente;
+    connection* _socketServer;
     MainLogic* _MainLogic;
     jsonWriterCpp* crearJson;
     jsonReaderCpp* Reader;
 
     LogicFacade();
-    void leerJson(string pMensaje);
-    void getGenealogia(Vector<int> *pDatos);
-    void getPuebloInfo(string pPueblo);
+    string leerJson(string pMensaje);
+    string getGenealogia(Vector<int> *pDatos);
+    string getPuebloInfo(string pPueblo);
 };
 
 #endif // LOGICFACADE_H

@@ -7,7 +7,7 @@
 #include "pugixml.hpp"
 
 //home/david/Documents/Midgard26-05-2015/res/MidgardConstants.xml";
-static constexpr const char* xmlPath = "/home/david/Documents/Midgard-ESTEE/Midgard/res/MidgardConstants.xml";
+static constexpr const char* xmlPath = "/home/javier/WorkspaceQT/Midgard-ESTEE/Midgard/res/MidgardConstants.xml";
 
 
 using namespace std ;

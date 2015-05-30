@@ -11,7 +11,8 @@ LogicFacade::LogicFacade()
 void LogicFacade::runLogic(MainLogic* pMainLogic)
 {
     _MainLogic = pMainLogic;    
-    _socketServer = new SocketServer();    
+    _socketServer = new connection();
+    _socketServer->start();
 
     //receiveDataFromSocket("{\"type\":\"1\"}");
 //{"type":"1"}"{\"type\":\"1\"}"
@@ -22,23 +23,23 @@ void LogicFacade::runLogic(MainLogic* pMainLogic)
  * Recibe el dato por socket y lo interpreta mediante el metodo leerJson
  * @param pMensaje: Mensaje recibido por socket
  */
-void LogicFacade::receiveDataFromSocket(string pMensaje)
+string LogicFacade::receiveDataFromSocket(string pMensaje)
 {
-    leerJson(pMensaje);
+    return leerJson(pMensaje);
 }
 
 /**
  * @brief LogicFacade::getMap
  * Se le envia el json del tipo mapa por socket
  */
-void LogicFacade::getMap()
+string LogicFacade::getMap()
 {
 
     crearJson = new jsonWriterCpp();
 
     cout << "llegoGetMap Logic" << endl;
     cout << "manda mapa from logic" << endl;    
-    _socketServer->setMensaje(crearJson->writeMap((_MainLogic->getMap())).c_str());
+    return (crearJson->writeMap((_MainLogic->getMap())).c_str());
 
 }
 
@@ -47,7 +48,7 @@ void LogicFacade::getMap()
  * @param pClase: Del individuo al que se desea saber su genealogia
  * @param pID: El ID del individuo
  */
-void LogicFacade::getGenealogia(Vector<int>* pDatos)
+string LogicFacade::getGenealogia(Vector<int>* pDatos)
 {
      crearJson = new jsonWriterCpp();
      Vector<int>* padres = new Vector<int>(3);
@@ -59,10 +60,10 @@ void LogicFacade::getGenealogia(Vector<int>* pDatos)
      //crearJson->writeFamily((*padres)[Padre],(*padres)[Madre], (*padres)[indvFitness],pArreglo); // Le agrega el string que contiene el ID de ambos padres de pID
      //crearJson->writeFamily((*padres)[Padre],(*padres)[Madre], (*padres)[indvFitness]); // Le agrega el string que contiene el ID de ambos padres de pID
      cout << "creo el json en family" << endl;
-     _socketServer->setMensaje(crearJson->writeFamily(*(*padres)[Padre],*(*padres)[Madre], *(*padres)[indvFitness]).c_str());
+     return (crearJson->writeFamily(*(*padres)[Padre],*(*padres)[Madre], *(*padres)[indvFitness]).c_str());
 }
 
-void LogicFacade::getPuebloInfo(string pPueblo)
+string LogicFacade::getPuebloInfo(string pPueblo)
 {
     Reader = new jsonReaderCpp();
     Vector<int>* tipoPueblo =Reader->readPubloInfo(pPueblo);
@@ -71,7 +72,7 @@ void LogicFacade::getPuebloInfo(string pPueblo)
 
     tipoPueblo= _MainLogic->getPuebloInfo(*(*tipoPueblo)[0]);
 
-    _socketServer->setMensaje(crearJson->writePuebloInfo(*(*tipoPueblo)[1],*(*tipoPueblo)[0],*(*tipoPueblo)[2]).c_str());
+    return (crearJson->writePuebloInfo(*(*tipoPueblo)[1],*(*tipoPueblo)[0],*(*tipoPueblo)[2]).c_str());
 }
 
 
@@ -81,7 +82,7 @@ void LogicFacade::getPuebloInfo(string pPueblo)
  * @brief LogicFacade::leerJson
  * @param pMensaje
  */
-void LogicFacade::leerJson(string pMensaje)
+string LogicFacade::leerJson(string pMensaje)
 {
     cout << "llego al leer logica" << endl;
 
@@ -91,13 +92,13 @@ void LogicFacade::leerJson(string pMensaje)
         {
         case GetMap:
             cout << "paso getMap logic" << endl;
-            getMap();
+             return getMap();
             break;
         case Genealogia:
-            getGenealogia(Reader->readFamilyFromGUI(pMensaje));
+            return getGenealogia(Reader->readFamilyFromGUI(pMensaje));
             break;
         case PuebloInfo:
-            getPuebloInfo(pMensaje);
+            return getPuebloInfo(pMensaje);
             break;
 
         default:
