@@ -41,10 +41,6 @@ Population& Evolution:: evolvePopulation(Population &pPopulation)
 
         Mutation(pPopulation.getIndividualbyIndex(i));
     }
-    while((pPopulation.getPopulationSize()-Constants::getInstance()->MAXPOPULATION)!=cero){
-        pPopulation.deleteIndividualList(pPopulation.getFitless());
-        pPopulation.downPopulation();
-    }
     return pPopulation;
 }
 
@@ -77,7 +73,9 @@ Individuals* Evolution::fathersSelection(Population pPopulation)
             if(j!=(pPopulation.getPopulationSize()-1)){
             j++;
             }
+            if(i<pPopulation.getPopulationSize()){
             redondeo=redondeo+round(((*(pPopulation.getIndividualbyIndex(j)->getFitness())+floatCero)/totalFitness)*cien);
+            }
         }
         fathers[i]=pPopulation.getIndividualbyIndex(j);
         i++;

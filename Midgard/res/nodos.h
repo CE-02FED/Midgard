@@ -25,7 +25,7 @@ template <typename datoGenerico> class nodo {
 			//cout <<&datoContenido << endl;
 			//free(&datoContenido);
 			//free(&siguiente);
-			return;
+
 		}
 
 		//sets y gets

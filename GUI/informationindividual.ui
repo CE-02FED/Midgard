@@ -129,7 +129,7 @@
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>../../Escritorio/knight.png</pixmap>
+     <pixmap>imagenes GUI/knight.png</pixmap>
     </property>
    </widget>
    <widget class="QLabel" name="fotoMadre">
@@ -145,7 +145,7 @@
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>../../Escritorio/wizardWoman.png</pixmap>
+     <pixmap>imagenes GUI/wizardWoman.png</pixmap>
     </property>
    </widget>
   </widget>

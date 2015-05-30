@@ -78,18 +78,18 @@ void MainLogic::actualizaMatriz()
     Vector<int>* columnasIniciales = new Vector<int>(4);
     *(*columnasIniciales)[0] = 0;
     *(*columnasIniciales)[1] = 0;
-    *(*columnasIniciales)[2] = 19;
-    *(*columnasIniciales)[3] = 19;
+    *(*columnasIniciales)[2] = 20;
+    *(*columnasIniciales)[3] = 20;
 
     Vector<int>* filasFinales = new Vector<int>(4);
-    *(*filasFinales)[0] = 10;
+    *(*filasFinales)[0] = 7;
     *(*filasFinales)[1] = 24;
-    *(*filasFinales)[2] = 10;
+    *(*filasFinales)[2] = 7;
     *(*filasFinales)[3] = 24;
 
     Vector<int>* columnasFinales = new Vector<int>(4);
-    *(*columnasFinales)[0] = 7;
-    *(*columnasFinales)[1] = 7;
+    *(*columnasFinales)[0] = 5;
+    *(*columnasFinales)[1] = 5;
     *(*columnasFinales)[2] = 24;
     *(*columnasFinales)[3] = 24;
     while(true)

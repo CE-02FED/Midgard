@@ -30,7 +30,7 @@ void GuiFacade::runGui(Scene* pMainGui)
 void* GuiFacade::askMap()
 {
     while(true){
-    cout << "estoy GetMapTHREAD" << endl;
+
 
     pthread_mutex_lock(&mutex);
     GuiFacade::getInstance()->getMap();
@@ -46,14 +46,12 @@ void GuiFacade::receiveDataFromSocket(string pMensaje)
 
 void GuiFacade::receiveMap(string pMensaje)
 {
-    cout << "receiveMap gui"  << endl;
     jsonReaderCpp* Reader = new jsonReaderCpp();
     Vector<int>* matrizMapa = new Vector<int>(MAP_SIZE,MAP_SIZE);
     matrizMapa->llenarMatriz(0);
     matrizMapa = Reader->readMap(pMensaje);
 
     _MainGui->setMap(matrizMapa);
-    cout<< "setio la matriz actual" <<endl;
 
 }
 
@@ -69,7 +67,6 @@ void GuiFacade::receiveGenealogia(string pMensaje)
     setTmpIdFather(*(*vectorFamilia)[Padre]);
     setTmpIdMother(*(*vectorFamilia)[Madre]);
     setTmpFitness(*(*vectorFamilia)[indvFitness]);
-    cout << "receivegenealogia"<< endl;
 
 }
 
@@ -80,7 +77,6 @@ void GuiFacade::receivePuebloInfo(string pMensaje)
     setAmountPeople(*(*vectorPuebloInfo)[Amount_People]);
     setFittest(*(*vectorPuebloInfo)[Fittest]);
     setWorstFitness(*(*vectorPuebloInfo)[Worst_Fitness]);
-    cout << "receivepuebloinfo"<< endl;
 }
 
 void GuiFacade::getGenealogia(int pRaza, int pIndviduoID)
@@ -158,7 +154,6 @@ void GuiFacade::getMap()
 
 void GuiFacade::leerJson(string pMensaje)
 {
-    cout << "llego al leer gui" << endl;
 
         jsonReaderCpp* Reader = new jsonReaderCpp();
 

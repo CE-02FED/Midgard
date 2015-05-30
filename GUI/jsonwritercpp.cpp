@@ -27,10 +27,8 @@ string jsonWriterCpp::writeMap(Vector<int> pMatriz)
 
            }
 
-        cout << "estoy aqui en json WRITE" << endl;
         pMe.append(newMatriz);
         pMe.append("\" }");
-        cout<<pMe<<endl;
         return pMe;
 }
 
@@ -44,7 +42,7 @@ string jsonWriterCpp::writePuebloInfo(int pPueblo)
            pMe.append("\""+type+"\" ,");
            pMe.append("\"pueblo\" : \""+pueblo+"\" }");
 
-           cout<<pMe<<endl;
+
            return pMe;
 }
 
@@ -65,7 +63,7 @@ string jsonWriterCpp::writeFamily(int pFather, int pMother, int pFitness)
 
 
         pMe.append(" }");
-        cout<<pMe<<endl;
+
         return pMe;
 }
 
@@ -76,12 +74,12 @@ string jsonWriterCpp::writeFight(int pPopulation1, int pPopulation2)
            string Population1=to_string(pPopulation1);
            string Population2=to_string(pPopulation2);
 
-           pMe.append("\""+type+"\ ,");
-           pMe.append("\"Raza1\" : \""+Population1+"\ ,");
-           pMe.append("\"Raza2\" : \""+Population2+"\ ");
+           pMe.append("\""+type+" ,");
+           pMe.append("\"Raza1\" : \""+Population1+" ,");
+           pMe.append("\"Raza2\" : \""+Population2+" ");
 
            pMe.append(" }");
-           cout<<pMe<<endl;
+
            return pMe;
 }
 
@@ -99,7 +97,7 @@ string jsonWriterCpp::writeFamilyFromGUI(int pRaza, int pIndividuoID)
            pMe.append("\"IndividuoID\" : \""+IndividuoID+"\" ");
 
            pMe.append(" }");
-           cout<<pMe<<endl;
+
            return pMe;
 }
 
@@ -111,6 +109,6 @@ string jsonWriterCpp::writeType(int pType)
            pMe.append("\""+type+"\" ");
 
            pMe.append(" }");
-           cout<<pMe<<endl;
+
            return pMe;
 }

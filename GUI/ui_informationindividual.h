@@ -80,11 +80,11 @@ public:
         fotoPadre = new QLabel(centralwidget);
         fotoPadre->setObjectName(QStringLiteral("fotoPadre"));
         fotoPadre->setGeometry(QRect(20, 60, 91, 181));
-        fotoPadre->setPixmap(QPixmap(QString::fromUtf8("/home/david/Documents/cLion-Projects/Midgard/GUI/imagenes GUI/knight.png")));
+        fotoPadre->setPixmap(QPixmap(QString::fromUtf8("imagenes GUI/knight.png")));
         fotoMadre = new QLabel(centralwidget);
         fotoMadre->setObjectName(QStringLiteral("fotoMadre"));
         fotoMadre->setGeometry(QRect(130, 80, 91, 141));
-        fotoMadre->setPixmap(QPixmap(QString::fromUtf8("/home/david/Documents/cLion-Projects/Midgard/GUI/imagenes GUI/wizardWoman.png")));
+        fotoMadre->setPixmap(QPixmap(QString::fromUtf8("imagenes GUI/wizardWoman.png")));
         informationIndividual->setCentralWidget(centralwidget);
         statusbar = new QStatusBar(informationIndividual);
         statusbar->setObjectName(QStringLiteral("statusbar"));

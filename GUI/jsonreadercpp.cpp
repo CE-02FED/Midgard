@@ -38,8 +38,6 @@ Vector<int>* jsonReaderCpp::readMap (string pJson)
                 numero += tmpMap[i];
             }
         }
-        newMatriz->print();
-        cout << "antes de enviar por return"<< endl;
   return newMatriz;
 }
 
@@ -157,7 +155,7 @@ int jsonReaderCpp::readType(string pJson)
         cout<<"Failed to parse configuration\n"
               << reader.getFormattedErrorMessages();
     }
-    cout<<root.toStyledString()<<endl;
+    //cout<<root.toStyledString()<<endl;
 
     int Type= stoi(root["type"].asString());
 
