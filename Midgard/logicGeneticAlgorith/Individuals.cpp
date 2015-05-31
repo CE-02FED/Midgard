@@ -73,6 +73,26 @@ void Individuals::setTermino(bool value)
 }
 
 
+
+Vector<int>* Individuals::getPosicionIndividual()
+{
+    Vector<int>* posiciones = new Vector<int>(2);
+    *(*posiciones)[0] =_posicionXmatriz;
+    *(*posiciones)[1] =_posicionYmatriz;
+    return posiciones;
+}
+
+void Individuals::setPosicionIndividual(int pPosicionX, int pPosicionY)
+{
+    _posicionXmatriz = pPosicionX;
+    _posicionYmatriz = pPosicionY;
+}
+
+void Individuals::setFitness(int pFitness)
+{
+    _Fitness = pFitness;
+}
+
 int Individuals::getId(){
     return _ID;
 }

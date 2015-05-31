@@ -54,12 +54,7 @@ string LogicFacade::getGenealogia(Vector<int>* pDatos)
      Vector<int>* padres = new Vector<int>(3);
 
      padres = _MainLogic->getParents((*pDatos)[Raza],(*pDatos)[individuoID]);
-     padres->print();
 
-
-     //crearJson->writeFamily((*padres)[Padre],(*padres)[Madre], (*padres)[indvFitness],pArreglo); // Le agrega el string que contiene el ID de ambos padres de pID
-     //crearJson->writeFamily((*padres)[Padre],(*padres)[Madre], (*padres)[indvFitness]); // Le agrega el string que contiene el ID de ambos padres de pID
-     cout << "creo el json en family" << endl;
      return (crearJson->writeFamily(*(*padres)[Padre],*(*padres)[Madre], *(*padres)[indvFitness]).c_str());
 }
 

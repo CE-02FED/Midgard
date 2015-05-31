@@ -23,8 +23,10 @@ private:
 
 public:
     static Map* getInstance();
+
     static void anadirObjeto(int pFila, int pColumna, Individuals *pObjeto, int pElemento);
     Vector<int> *getMapMatriz();
+    void restartMatriz();
     Vector<Individuals> *getObjectMatriz();
 
 

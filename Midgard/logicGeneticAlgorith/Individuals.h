@@ -17,6 +17,9 @@ class Pathfinding;
 class Individuals
 {
 protected:
+    int _posicionXmatriz;
+    int _posicionYmatriz;
+
     int _Fitness=0;
     Random* _random;
     int _ID;
@@ -35,6 +38,7 @@ protected:
 
 
 public:
+    void setFitness(int pFitness);
     int getId();
     int calculateFitness(BitVector* pIndividualGenes);
     Individuals();
@@ -61,6 +65,9 @@ public:
     static void setFigureID(int pNumber);
     bool getTermino();
     void setTermino(bool value);
+    Vector<int>* getPosicionIndividual();
+    void setPosicionIndividual(int pPosicionX, int pPosicionY);
+
 };
 
 #endif // INDIVIDUALS_H

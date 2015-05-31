@@ -53,6 +53,11 @@ Vector<int>* Map::getMapMatriz()
     return _mapMatriz;
 }
 
+void Map::restartMatriz()
+{
+    _mapMatriz = initMatriz();
+}
+
 Vector<Individuals>* Map::getObjectMatriz()
 {
     return _objectMatriz;

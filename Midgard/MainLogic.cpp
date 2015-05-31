@@ -99,7 +99,7 @@ void MainLogic::actualizaMatriz()
     *(*columnasFinales)[1] = 7;
     *(*columnasFinales)[2] = 24;
     *(*columnasFinales)[3] = 24;
-    while(true)
+    while(generationCount !=Constants::getInstance()->GENERATIONS-205)
     {        
          anadirAMatriz(poblaciones,filasIniciales,filasFinales,columnasIniciales,columnasFinales);  
 
@@ -156,7 +156,11 @@ void MainLogic::mainGame()
 {    
     bool EddaCaracteristicas = true;
     while(generationCount!= Constants::getInstance()->GENERATIONS)
-    {                
+    {
+        if(generationCount%200==0)
+        {
+            generationCount++;
+        }
 
         if (EddaActual ==EddaAntigua)
         {
@@ -184,13 +188,13 @@ void MainLogic::mainGame()
             EddaPazMundialMethod();
         }        
         sleep(1);
-
     }
+    pthread_exit(NULL);
 }
 
 void MainLogic::iniciarFight()
 {
-    while(true){
+    while(generationCount!= Constants::getInstance()->GENERATIONS){
         sleep(10);
         cout << "entro pelea" << endl;
         Vector<int>* posiblesLuchadores = new Vector<int>(4,2);
@@ -266,6 +270,7 @@ void MainLogic::iniciarFight()
             fight(individual3,individual4);
         }
     }
+    pthread_exit(NULL);
     }
 
 Vector<int>* MainLogic::getParents(int* pRaza, int* pIndividualID)
@@ -379,6 +384,9 @@ void MainLogic::fight(Individuals* individual1, Individuals* individual2){
     if(_ElvesPopulation->deleteIndividualList(individual2)){
         _ElvesPopulation->downPopulation();
     }
+        int fila = *(*individual2->getPosicionIndividual())[0];
+        int columna = *(*individual2->getPosicionIndividual())[1];
+        Map::anadirObjeto(fila,columna,individual2,0);
     }
     else{
         if(_ElvesPopulation2->deleteIndividualList(individual1)){
@@ -393,12 +401,15 @@ void MainLogic::fight(Individuals* individual1, Individuals* individual2){
         if(_ElvesPopulation->deleteIndividualList(individual1)){
             _ElvesPopulation->downPopulation();
         }
+        int fila = *(*individual1->getPosicionIndividual())[0];
+        int columna = *(*individual1->getPosicionIndividual())[1];
+        Map::anadirObjeto(fila,columna,individual1,0);
     }
 }
 
 void MainLogic::HappyNewYear()
 {    
-    while(EddaActual !=AtardecerDioses)
+    while( generationCount!=Constants::getInstance()->GENERATIONS)
     {                
         Age++;
         _DarkElvesPopulation->isPopBirthDay();
@@ -407,6 +418,7 @@ void MainLogic::HappyNewYear()
         _DwarvesPopulation->isPopBirthDay();        
         sleep(5);
     }
+    pthread_exit(NULL);
 }
 
 
@@ -429,7 +441,8 @@ void MainLogic::evolution()
         _ElvesPopulation2 = (Elves*)&_Evolution->evolvePopulation(*_ElvesPopulation);
 
         sleep(1);
-    }    
+    }
+    pthread_exit(NULL);
 }
 
 /**
@@ -672,6 +685,63 @@ void MainLogic::EddaPazMundialMethod()
         unionDePueblos->insertIndividualList(_ElvesPopulation->getIndividualList()->getElemento(i));
     }
 
-    return;
+    Map::getInstance()->restartMatriz();
+    Individuals* Guerrero1 = new Individuals();
+    Individuals* Guerrero2 = new Individuals();
+    Individuals* Guerrero3 = new Individuals();
+    Individuals* Guerrero4 = new Individuals();
 
+    int fitnessPromedio=0;
+
+    for (int i =0; i< unionDePueblos->getPopulationSize();i++)
+    {
+        fitnessPromedio += *unionDePueblos->getIndividualbyIndex(i)->getFitness();
+    }
+
+    Guerrero1->setFitness(fitnessPromedio/unionDePueblos->getPopulationSize());
+    Guerrero2->setFitness(fitnessPromedio/unionDePueblos->getPopulationSize());
+    Guerrero3->setFitness(fitnessPromedio/unionDePueblos->getPopulationSize());
+    Guerrero4->setFitness(fitnessPromedio/unionDePueblos->getPopulationSize());
+
+    Map::anadirObjeto(4,12,Guerrero1,60);
+    Guerrero1->setPosicionIndividual(4,12);
+
+    Map::anadirObjeto(4,13,Guerrero2,60);
+    Guerrero1->setPosicionIndividual(4,13);
+
+    Map::anadirObjeto(4,14,Guerrero3,60);
+    Guerrero1->setPosicionIndividual(4,14);
+
+    Map::anadirObjeto(4,15,Guerrero4,60);
+    Guerrero1->setPosicionIndividual(4,15);
+
+    Individuals* God1 = new Individuals();
+    Individuals* God2 = new Individuals();
+    Individuals* God3 = new Individuals();
+    Individuals* God4 = new Individuals();
+
+    God1->setFitness(_random->randRange(3000,6000));
+    God2->setFitness(_random->randRange(3000,6000));
+    God3->setFitness(_random->randRange(3000,6000));
+    God4->setFitness(_random->randRange(3000,6000));
+
+
+    Map::anadirObjeto(6,12,God1,52);
+    God1->setPosicionIndividual(6,12);
+
+    Map::anadirObjeto(6,13,God2,53);
+    God2->setPosicionIndividual(6,13);
+
+    Map::anadirObjeto(6,14,God3,54);
+    God3->setPosicionIndividual(6,14);
+
+    Map::anadirObjeto(6,15,God4,55);
+    God4->setPosicionIndividual(6,15);
+
+    fight(Guerrero1,God1);
+    fight(Guerrero2,God2);
+    fight(Guerrero3,God3);
+    fight(Guerrero4,God4);
+    return;
+    pthread_exit(NULL);
 }
