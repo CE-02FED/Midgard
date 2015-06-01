@@ -1,7 +1,5 @@
 #ifndef GUIFACADE_H
 #define GUIFACADE_H
-#include "socketcliente.h"
-#include "socketserver.h"
 
 #include "serversocket.h"
 #include "clientsocket.h"
@@ -12,16 +10,18 @@
 #include "jsonreadercpp.h"
 #include "jsonwritercpp.h"
 #include "vector.h"
+#include "mythread.h"
 
-#define IP "192.168.1.113"
-
+#define IP "localhost"
 #define puerto 9090
+
 #define cantFamilia 3
 #define Padre 0
 #define Madre 1
 #define indvFitness 2
 #define GetMap 1
 #define Genealogia 2
+#define Pueblo 3
 #define Raza 0
 #define individuoID 1
 #define MAP_SIZE 25

@@ -21,10 +21,26 @@
 #define MIN_DWARVES 16
 #define MAX_DARKELVES 15
 #define MIN_DARKELVES 4
-#define DARK_ELVES_IMG 60
-#define DWARVES_IMG 61
-#define ELVES_IMG 62
-#define GIANTS_IMG 63
+///////////////////////////////////////
+#define MIN_FIGHTER 4
+#define MAX_FIGHTER 46
+#define MIN_MONK 5
+#define MAX_MONK 47
+#define MIN_RED_MAGE 6
+#define MAX_RED_MAGE 48
+#define MIN_BLACK_MAGE 7
+#define MAX_BLACK_MAGE 49
+#define MIN_WHITE_MAGE 8
+#define MAX_WHITE_MAGE 50
+#define MIN_THIEF 9
+#define MAX_THIEF 51
+///////////////////////////////////////
+#define FIGHTER_IMG 60
+#define MONK_IMG 61
+#define RED_MAGE_IMG 62
+#define BLACK_MAGE_IMG 63
+#define WHITE_MAGE_IMG 64
+#define THIEF_IMG 65
 
 class GuiFacade;
 class ObjectsGui : public QGraphicsPixmapItem{

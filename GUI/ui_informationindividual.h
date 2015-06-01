@@ -34,8 +34,7 @@ public:
     QLabel *IdFather;
     QLabel *IdMother;
     QLabel *Fitness;
-    QLabel *fotoPadre;
-    QLabel *fotoMadre;
+    QLabel *imageInd;
     QStatusBar *statusbar;
     QMenuBar *menuBar;
     QMenu *menuMidgard;
@@ -44,7 +43,7 @@ public:
     {
         if (informationIndividual->objectName().isEmpty())
             informationIndividual->setObjectName(QStringLiteral("informationIndividual"));
-        informationIndividual->resize(260, 454);
+        informationIndividual->resize(260, 505);
         QFont font;
         font.setPointSize(12);
         font.setBold(true);
@@ -58,33 +57,28 @@ public:
         centralwidget->setObjectName(QStringLiteral("centralwidget"));
         label = new QLabel(centralwidget);
         label->setObjectName(QStringLiteral("label"));
-        label->setGeometry(QRect(20, 280, 81, 21));
+        label->setGeometry(QRect(20, 300, 81, 21));
         label_2 = new QLabel(centralwidget);
         label_2->setObjectName(QStringLiteral("label_2"));
-        label_2->setGeometry(QRect(20, 330, 91, 17));
+        label_2->setGeometry(QRect(20, 350, 91, 17));
         label_3 = new QLabel(centralwidget);
         label_3->setObjectName(QStringLiteral("label_3"));
-        label_3->setGeometry(QRect(20, 380, 71, 17));
+        label_3->setGeometry(QRect(20, 400, 71, 17));
         label_4 = new QLabel(centralwidget);
         label_4->setObjectName(QStringLiteral("label_4"));
         label_4->setGeometry(QRect(20, 10, 221, 41));
         IdFather = new QLabel(centralwidget);
         IdFather->setObjectName(QStringLiteral("IdFather"));
-        IdFather->setGeometry(QRect(130, 280, 91, 17));
+        IdFather->setGeometry(QRect(130, 300, 91, 17));
         IdMother = new QLabel(centralwidget);
         IdMother->setObjectName(QStringLiteral("IdMother"));
-        IdMother->setGeometry(QRect(130, 330, 81, 17));
+        IdMother->setGeometry(QRect(130, 350, 81, 17));
         Fitness = new QLabel(centralwidget);
         Fitness->setObjectName(QStringLiteral("Fitness"));
-        Fitness->setGeometry(QRect(130, 380, 81, 17));
-        fotoPadre = new QLabel(centralwidget);
-        fotoPadre->setObjectName(QStringLiteral("fotoPadre"));
-        fotoPadre->setGeometry(QRect(20, 60, 91, 181));
-        fotoPadre->setPixmap(QPixmap(QString::fromUtf8("imagenes GUI/knight.png")));
-        fotoMadre = new QLabel(centralwidget);
-        fotoMadre->setObjectName(QStringLiteral("fotoMadre"));
-        fotoMadre->setGeometry(QRect(130, 80, 91, 141));
-        fotoMadre->setPixmap(QPixmap(QString::fromUtf8("imagenes GUI/wizardWoman.png")));
+        Fitness->setGeometry(QRect(130, 400, 81, 17));
+        imageInd = new QLabel(centralwidget);
+        imageInd->setObjectName(QStringLiteral("imageInd"));
+        imageInd->setGeometry(QRect(40, 60, 141, 201));
         informationIndividual->setCentralWidget(centralwidget);
         statusbar = new QStatusBar(informationIndividual);
         statusbar->setObjectName(QStringLiteral("statusbar"));
@@ -113,9 +107,8 @@ public:
         IdFather->setText(QApplication::translate("informationIndividual", "TextLabel", 0));
         IdMother->setText(QApplication::translate("informationIndividual", "TextLabel", 0));
         Fitness->setText(QApplication::translate("informationIndividual", "TextLabel", 0));
-        fotoPadre->setText(QString());
-        fotoMadre->setText(QString());
-        menuMidgard->setTitle(QApplication::translate("informationIndividual", "Midgard", 0));
+        imageInd->setText(QApplication::translate("informationIndividual", "TextLabel", 0));
+        menuMidgard->setTitle(QApplication::translate("informationIndividual", "IndividualInfo", 0));
     } // retranslateUi
 
 };

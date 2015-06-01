@@ -4,6 +4,9 @@
 #include <QMainWindow>
 #include <string>
 #include <QString>
+#include "Constants.h"
+#include <QMovie>
+
 using namespace std;
 
 namespace Ui {
@@ -15,7 +18,7 @@ class informationIndividual : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit informationIndividual(int pIdFather,int pIdMother,int pIndvFitness, QWidget *parent = 0);
+    explicit informationIndividual(int pIdFather,int pIdMother,int pIndvFitness, int pIdImage, QWidget *parent = 0);
     ~informationIndividual();
 
 private:
