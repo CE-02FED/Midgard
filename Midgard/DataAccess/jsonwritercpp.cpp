@@ -33,8 +33,8 @@ string jsonWriterCpp::writeMap(Vector<int>* pMatriz)
         cout << "estoy aqui en json WRITE" << endl;
         pMe.append(newMatriz);
         pMe.append("\" }");
-        pMatriz->print();
-        cout<<pMe<<endl;        
+        //pMatriz->print();
+        //cout<<pMe<<endl;
         return pMe;
 }
 
@@ -78,13 +78,15 @@ string jsonWriterCpp::writeFight(int pPopulation1, int pPopulation2)
 
 string jsonWriterCpp::writePuebloInfo(int pLowestFitness, int pHighestFitnesss, int pAmountPeople)
 {
-    string pMe="{";
+    string pMe="{\"type\" : ";
+    string type=to_string(3);
            string lowestFitness=to_string(pLowestFitness);
            string highestFitness=to_string(pHighestFitnesss);
            string peopleAmount=to_string(pAmountPeople);
+           pMe.append("\""+type+"\" ,");
            pMe.append("\"Fittest\" : \""+highestFitness+"\" ,");
            pMe.append("\"worstFitness\" : \""+lowestFitness+"\" ,");
-           pMe.append("\"amountPeople\" : \""+peopleAmount+"\" }");
+           pMe.append("\"amountPeople\" : \""+peopleAmount+"\" }");                                 
 
 
         //pMe.append(" }");

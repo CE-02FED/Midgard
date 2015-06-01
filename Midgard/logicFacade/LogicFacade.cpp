@@ -37,7 +37,6 @@ string LogicFacade::getMap()
 
     crearJson = new jsonWriterCpp();
 
-    cout << "llegoGetMap Logic" << endl;
     cout << "manda mapa from logic" << endl;    
     return (crearJson->writeMap((_MainLogic->getMap())).c_str());
 
@@ -61,13 +60,14 @@ string LogicFacade::getGenealogia(Vector<int>* pDatos)
 string LogicFacade::getPuebloInfo(string pPueblo)
 {
     Reader = new jsonReaderCpp();
-    Vector<int>* tipoPueblo =Reader->readPubloInfo(pPueblo);
+    int tipoPueblo =Reader->readPubloInfo(pPueblo);
 
     crearJson = new jsonWriterCpp();
 
-    tipoPueblo= _MainLogic->getPuebloInfo(*(*tipoPueblo)[0]);
+    Vector<int>* tipoPuebloVector = new Vector<int>(3);
+    tipoPuebloVector= _MainLogic->getPuebloInfo(tipoPueblo);
 
-    return (crearJson->writePuebloInfo(*(*tipoPueblo)[1],*(*tipoPueblo)[0],*(*tipoPueblo)[2]).c_str());
+    return (crearJson->writePuebloInfo(*(*tipoPuebloVector)[1],*(*tipoPuebloVector)[0],*(*tipoPuebloVector)[2]).c_str());
 }
 
 

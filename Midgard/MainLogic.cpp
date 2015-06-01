@@ -62,7 +62,6 @@ void MainLogic::runLogic()
     CrazyThread* matrizThread = new CrazyThread((void*)actualizaMatriz,nullptr);
     matrizThread->run();
 
-
     CrazyThread* fightThread = new CrazyThread((void*)iniciarFight,nullptr);
     fightThread->run();
 
@@ -104,6 +103,7 @@ void MainLogic::actualizaMatriz()
         anadirAMatriz(poblaciones,filasIniciales,filasFinales,columnasIniciales,columnasFinales);
 
     }
+    pthread_exit(NULL);
 }
 
 
@@ -133,7 +133,7 @@ void MainLogic::anadirAMatriz(Vector<Population>* pPoblaciones,Vector<int>* pFil
             int posicionJmatriz =  _random->randRange(*(*pColumnasIniciales)[j],*(*pColumnasFinales)[j]);
 
             if(i < (*pPoblaciones)[j]->getPopulationSize())
-            {
+            {                
                 int idFigura = _random->randRange(*(*idMatriz)[j+j],*(*idMatriz)[j+j+1]);
                 Individuals* individualMatriz = (*pPoblaciones)[j]->getIndividualList()->getElemento(i);
                 individualMatriz->setFigureID(idFigura);
@@ -156,7 +156,7 @@ void MainLogic::mainGame()
 {
     bool EddaCaracteristicas = true;
     while(generationCount!= Constants::getInstance()->GENERATIONS)
-    {
+    {        
         if(generationCount%200==0)
         {
             generationCount++;
@@ -187,9 +187,11 @@ void MainLogic::mainGame()
 
             EddaPazMundialMethod();
         }
-        sleep(1);
+        generationCount++;
+        sleep(1);        
     }
     pthread_exit(NULL);
+    cout << "termino la progra" << endl;
 }
 
 void MainLogic::iniciarFight()
@@ -207,10 +209,10 @@ void MainLogic::iniciarFight()
         Individuals* individual3  = _ElvesPopulation->getIndividualList()->getElemento(randIndividuo3);
         Individuals* individual4  = _DwarvesPopulation->getIndividualList()->getElemento(randIndividuo4);
 
-        Vector<int>* llegoIndividuo1 = individual1->findPath(6,0,13,23);
-        Vector<int>* llegoIndividuo2 = individual2->findPath(20,0,14,23);
-        Vector<int>* llegoIndividuo3=individual3->findPath(6,19,13,3);
-        Vector<int>* llegoIndividuo4= individual4->findPath(20,19,14,3);
+        Vector<int>* llegoIndividuo1 = individual1->findPath(5,0,13,23);
+        Vector<int>* llegoIndividuo2 = individual2->findPath(19,0,14,23);
+        Vector<int>* llegoIndividuo3=individual3->findPath(5,19,13,3);
+        Vector<int>* llegoIndividuo4= individual4->findPath(19,19,14,3);
 
 
         pthread_t indHilo1, indHilo2, indHilo3, indHilo4;
@@ -236,7 +238,9 @@ void MainLogic::iniciarFight()
         {
             fight(individual3,individual4);
         }
+        sleep(3);
     }
+    pthread_exit(NULL);
 }
 
 Vector<int>* MainLogic::getParents(int* pRaza, int* pIndividualID)
@@ -381,8 +385,9 @@ void MainLogic::HappyNewYear()
         _DarkElvesPopulation->isPopBirthDay();
         _ElvesPopulation->isPopBirthDay();
         _ElvesPopulation2->isPopBirthDay();
-        _DwarvesPopulation->isPopBirthDay();
+        _DwarvesPopulation->isPopBirthDay();        
         sleep(5);
+
     }
     pthread_exit(NULL);
 }
@@ -391,22 +396,21 @@ void MainLogic::HappyNewYear()
 
 
 void MainLogic::evolution()
-{
-    srand(time(0));
+{    
     // Evolve our population until we reach an optimum solution
 
 
     while (generationCount != Constants::getInstance()->GENERATIONS)
-    {
+    {        
 
-        generationCount++;
         _DarkElvesPopulation = (DarkElves*)&(_Evolution->evolvePopulation(*_DarkElvesPopulation));
         //_GiantsPopulation = (Giants*)&_Evolution->evolvePopulation(*_GiantsPopulation);
         _DwarvesPopulation = ((Dwarves*)&_Evolution->evolvePopulation(*_DwarvesPopulation));
         _ElvesPopulation = (Elves*)&_Evolution->evolvePopulation(*_ElvesPopulation);
         _ElvesPopulation2 = (Elves*)&_Evolution->evolvePopulation(*_ElvesPopulation);
-
+        generationCount++;
         sleep(1);
+
     }
     pthread_exit(NULL);
 }

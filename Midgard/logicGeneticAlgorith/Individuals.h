@@ -19,18 +19,19 @@ class Individuals
 protected:
     int _posicionXmatriz;
     int _posicionYmatriz;
+    static int contadorID;
 
     int _Fitness=0;
     Random* _random;
     int _ID;
     int _Age=0;
-    int _MotherID = -1; // si es < 0 significa que estos son la primera generacion
-    int _FatherID = -1;    
+    int _MotherID = 0; // si es < 0 significa que estos son la primera generacion
+    int _FatherID = 0;
     BitVector* _Genes;
     int cantidadCualidades;    
     bool veriBase(size_t pNum);
     Pathfinding* _encontrarCamino;
-    static int figuraID;
+    static int figuraID;    
     static bool termino;
     static Vector<int>* _movimiento;
 
