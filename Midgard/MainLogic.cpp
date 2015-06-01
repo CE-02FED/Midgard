@@ -49,9 +49,9 @@ MainLogic::MainLogic()
  * Corre los main threads
  */
 void MainLogic::runLogic()
-{    
+{
     CrazyThread* runThread = new CrazyThread((void*)evolution, nullptr);
-    runThread->run();    
+    runThread->run();
 
     CrazyThread* ageThread = new CrazyThread((void*)HappyNewYear, nullptr);
     ageThread->run();
@@ -100,8 +100,8 @@ void MainLogic::actualizaMatriz()
     *(*columnasFinales)[2] = 24;
     *(*columnasFinales)[3] = 24;
     while(generationCount !=Constants::getInstance()->GENERATIONS-205)
-    {        
-         anadirAMatriz(poblaciones,filasIniciales,filasFinales,columnasIniciales,columnasFinales);  
+    {
+        anadirAMatriz(poblaciones,filasIniciales,filasFinales,columnasIniciales,columnasFinales);
 
     }
 }
@@ -126,20 +126,20 @@ void MainLogic::anadirAMatriz(Vector<Population>* pPoblaciones,Vector<int>* pFil
     for(int j=0; j< cantVectores;j++)
     {
         for(int i=0; i<limiteFiguras; i++)
-        {        
-        _random->start();
-
-        int posicionImatriz = _random->randRange( *(*pFilasIniciales)[j],*(*pFilasFinales)[j]);
-        int posicionJmatriz =  _random->randRange(*(*pColumnasIniciales)[j],*(*pColumnasFinales)[j]);
-
-        if(i < (*pPoblaciones)[j]->getPopulationSize())
         {
-            int idFigura = _random->randRange(*(*idMatriz)[j+j],*(*idMatriz)[j+j+1]);
-            Individuals* individualMatriz = (*pPoblaciones)[j]->getIndividualList()->getElemento(i);
-            individualMatriz->setFigureID(idFigura);
-            Map::getInstance()->anadirObjeto(posicionImatriz,posicionJmatriz,individualMatriz,idFigura);
-        }        
-        usleep(100);
+            _random->start();
+
+            int posicionImatriz = _random->randRange( *(*pFilasIniciales)[j],*(*pFilasFinales)[j]);
+            int posicionJmatriz =  _random->randRange(*(*pColumnasIniciales)[j],*(*pColumnasFinales)[j]);
+
+            if(i < (*pPoblaciones)[j]->getPopulationSize())
+            {
+                int idFigura = _random->randRange(*(*idMatriz)[j+j],*(*idMatriz)[j+j+1]);
+                Individuals* individualMatriz = (*pPoblaciones)[j]->getIndividualList()->getElemento(i);
+                individualMatriz->setFigureID(idFigura);
+                Map::getInstance()->anadirObjeto(posicionImatriz,posicionJmatriz,individualMatriz,idFigura);
+            }
+            usleep(100);
         }
     }
 
@@ -153,7 +153,7 @@ void MainLogic::anadirAMatriz(Vector<Population>* pPoblaciones,Vector<int>* pFil
  *
  */
 void MainLogic::mainGame()
-{    
+{
     bool EddaCaracteristicas = true;
     while(generationCount!= Constants::getInstance()->GENERATIONS)
     {
@@ -186,7 +186,7 @@ void MainLogic::mainGame()
         {
 
             EddaPazMundialMethod();
-        }        
+        }
         sleep(1);
     }
     pthread_exit(NULL);
@@ -196,31 +196,6 @@ void MainLogic::iniciarFight()
 {
     while(generationCount!= Constants::getInstance()->GENERATIONS){
         sleep(10);
-        cout << "entro pelea" << endl;
-        Vector<int>* posiblesLuchadores = new Vector<int>(4,2);
-
-        /*int posicionIRaza1 = _random->randRange(1,10);
-        int posicionJRaza1 = _random->randRange(1,7);       
-
-        int posicionIRaza2 = _random->randRange(17,23);
-        int posicionJRaza2 = _random->randRange(1,7);       
-
-        int posicionIRaza3 = _random->randRange(17,10);
-        int posicionJRaza3 = _random->randRange(19,23);
-
-        int posicionIRaza4 = _random->randRange(17,23);
-        int posicionJRaza4 = _random->randRange(19,23);
-
-        */
-
-
-        /*
-        Individuals* individual1 =Map::getInstance()->getObjectMatriz()[posicionIRaza1][posicionJRaza1];
-        Individuals* individual2 =Map::getInstance()->getObjectMatriz()[posicionIRaza2][posicionJRaza2];
-        Individuals* individual3 =Map::getInstance()->getObjectMatriz()[posicionIRaza3][posicionJRaza3];
-        cout << "se cae"<< endl;
-        Individuals* individual4 =Map::getInstance()->getObjectMatriz()[posicionIRaza4][posicionJRaza4];
-        */
 
         int randIndividuo1 = _random->getRandom(_DarkElvesPopulation->getPopulationSize());
         int randIndividuo2 = _random->getRandom( _ElvesPopulation2->getPopulationSize());
@@ -238,17 +213,11 @@ void MainLogic::iniciarFight()
         Vector<int>* llegoIndividuo4= individual4->findPath(20,19,14,3);
 
 
-
-        CrazyThread* indivThread1 = new CrazyThread((void*)individual1->moverIndividuo,(void*)llegoIndividuo1);
-
-        CrazyThread* indivThread2 = new CrazyThread((void*)individual2->moverIndividuo,nullptr);
-        CrazyThread* indivThread3 = new CrazyThread((void*)individual3->moverIndividuo,nullptr);
-        CrazyThread* indivThread4 = new CrazyThread((void*)individual4->moverIndividuo,nullptr);
-
-        indivThread1->run();
-        indivThread2->run();
-        indivThread3->run();
-        indivThread4->run();
+        pthread_t indHilo1, indHilo2, indHilo3, indHilo4;
+        pthread_create(&indHilo1, 0, individual1->moverIndividuo, llegoIndividuo1);
+        pthread_create(&indHilo2, 0, individual2->moverIndividuo, llegoIndividuo2);
+        pthread_create(&indHilo3, 0, individual3->moverIndividuo, llegoIndividuo3);
+        pthread_create(&indHilo4, 0, individual4->moverIndividuo, llegoIndividuo4);
 
         while(true)
         {
@@ -259,55 +228,52 @@ void MainLogic::iniciarFight()
         //findPath(8,0,13,3) -- >findPath(18,0,14,3)
         if ( llegoIndividuo1 && llegoIndividuo2 )
         {
-            cout << "paso"<< endl;
             fight(individual1,individual2);
 
         }
 
         if (llegoIndividuo3 && llegoIndividuo4 )
         {
-            cout << "fight"<< endl;
             fight(individual3,individual4);
         }
     }
-    pthread_exit(NULL);
-    }
+}
 
 Vector<int>* MainLogic::getParents(int* pRaza, int* pIndividualID)
 {
     contador++;
     Vector<int>* Family = new Vector<int>(3);
     switch (*pRaza) {
-    case darkElves:
-        *(*Family)[0] = _DarkElvesPopulation->getIndividualbyIndex(contador)->getPadre();
-        *(*Family)[1] = _DarkElvesPopulation->getIndividualbyIndex(contador)->getMadre();
-        *(*Family)[2] = *_DarkElvesPopulation->getIndividualbyIndex(contador)->getFitness();
-        break;
+        case darkElves:
+            *(*Family)[0] = _DarkElvesPopulation->getIndividualbyIndex(contador)->getPadre();
+            *(*Family)[1] = _DarkElvesPopulation->getIndividualbyIndex(contador)->getMadre();
+            *(*Family)[2] = *_DarkElvesPopulation->getIndividualbyIndex(contador)->getFitness();
+            break;
 
-    case elves:
-        *(*Family)[0] = _ElvesPopulation->getIndividualbyIndex(contador)->getPadre();
-        *(*Family)[1] = _ElvesPopulation->getIndividualbyIndex(contador)->getMadre();
-        *(*Family)[2] = *_ElvesPopulation->getIndividualbyIndex(contador)->getFitness();
-        break;
+        case elves:
+            *(*Family)[0] = _ElvesPopulation->getIndividualbyIndex(contador)->getPadre();
+            *(*Family)[1] = _ElvesPopulation->getIndividualbyIndex(contador)->getMadre();
+            *(*Family)[2] = *_ElvesPopulation->getIndividualbyIndex(contador)->getFitness();
+            break;
 
-    case dwarves:
-        *(*Family)[0] = _DwarvesPopulation->getIndividualbyIndex(contador)->getPadre();
-        *(*Family)[1] = _DwarvesPopulation->getIndividualbyIndex(contador)->getMadre();
-        *(*Family)[2] = *_DwarvesPopulation->getIndividualbyIndex(contador)->getFitness();
-        break;
-    case giants:
-        *(*Family)[0] = _ElvesPopulation2->getIndividualbyIndex(contador)->getPadre();
-        *(*Family)[1] = _ElvesPopulation2->getIndividualbyIndex(contador)->getMadre();
-        *(*Family)[2] = *_ElvesPopulation2->getIndividualbyIndex(contador)->getFitness();
-        break;
-    default:
-        break;
-    }    
+        case dwarves:
+            *(*Family)[0] = _DwarvesPopulation->getIndividualbyIndex(contador)->getPadre();
+            *(*Family)[1] = _DwarvesPopulation->getIndividualbyIndex(contador)->getMadre();
+            *(*Family)[2] = *_DwarvesPopulation->getIndividualbyIndex(contador)->getFitness();
+            break;
+        case giants:
+            *(*Family)[0] = _ElvesPopulation2->getIndividualbyIndex(contador)->getPadre();
+            *(*Family)[1] = _ElvesPopulation2->getIndividualbyIndex(contador)->getMadre();
+            *(*Family)[2] = *_ElvesPopulation2->getIndividualbyIndex(contador)->getFitness();
+            break;
+        default:
+            break;
+    }
     return Family;
 }
 
 Vector<int>* MainLogic::getMap()
-{        
+{
     return Map::getInstance()->getMapMatriz();
 }
 
@@ -316,30 +282,30 @@ Vector<int> *MainLogic::getPuebloInfo(int pPueblo)
     Vector<int>* puebloInfo = new Vector<int>(3);
 
     switch (pPueblo) {
-    case darkElves:
-        *(*puebloInfo)[0]= *(_DarkElvesPopulation->getFittest()->getFitness());
-        *(*puebloInfo)[1]= *(_DarkElvesPopulation->getFitless()->getFitness());
-        *(*puebloInfo)[2]= _DarkElvesPopulation->getPopulationSize();
-        break;
-    case elves:
-        *(*puebloInfo)[0]= *(_ElvesPopulation->getFittest()->getFitness());
-        *(*puebloInfo)[1]= *(_ElvesPopulation->getFitless()->getFitness());
-        *(*puebloInfo)[2]= _ElvesPopulation->getPopulationSize();
+        case darkElves:
+            *(*puebloInfo)[0]= *(_DarkElvesPopulation->getFittest()->getFitness());
+            *(*puebloInfo)[1]= *(_DarkElvesPopulation->getFitless()->getFitness());
+            *(*puebloInfo)[2]= _DarkElvesPopulation->getPopulationSize();
+            break;
+        case elves:
+            *(*puebloInfo)[0]= *(_ElvesPopulation->getFittest()->getFitness());
+            *(*puebloInfo)[1]= *(_ElvesPopulation->getFitless()->getFitness());
+            *(*puebloInfo)[2]= _ElvesPopulation->getPopulationSize();
 
-        break;
-    case dwarves:
-        *(*puebloInfo)[0]= *(_DwarvesPopulation->getFittest()->getFitness());
-        *(*puebloInfo)[1]= *(_DwarvesPopulation->getFitless()->getFitness());
-        *(*puebloInfo)[2]= _DwarvesPopulation->getPopulationSize();
+            break;
+        case dwarves:
+            *(*puebloInfo)[0]= *(_DwarvesPopulation->getFittest()->getFitness());
+            *(*puebloInfo)[1]= *(_DwarvesPopulation->getFitless()->getFitness());
+            *(*puebloInfo)[2]= _DwarvesPopulation->getPopulationSize();
 
-        break;
-    case giants:
-        *(*puebloInfo)[0]= *(_ElvesPopulation2->getFittest()->getFitness());
-        *(*puebloInfo)[1]= *(_ElvesPopulation2->getFitless()->getFitness());
-        *(*puebloInfo)[2]= _ElvesPopulation2->getPopulationSize();
-        break;
-    default:
-        break;
+            break;
+        case giants:
+            *(*puebloInfo)[0]= *(_ElvesPopulation2->getFittest()->getFitness());
+            *(*puebloInfo)[1]= *(_ElvesPopulation2->getFitless()->getFitness());
+            *(*puebloInfo)[2]= _ElvesPopulation2->getPopulationSize();
+            break;
+        default:
+            break;
     }
 
     return puebloInfo;
@@ -353,7 +319,7 @@ void MainLogic::fight(Individuals* individual1, Individuals* individual2){
     std::cout<<"sumafit "<<sumaFit<<std::endl;
     Individuals* probabilidad[cien];
     int redondeo=round(((*(individual1->getFitness())+floatCero)/sumaFit)*cien);
-       std::cout<<"redondeo "<<redondeo<<std::endl;
+    std::cout<<"redondeo "<<redondeo<<std::endl;
     for(int i=cero;i<cien;i++){
         if(redondeo<=i){
             probabilidad[i]=individual1;
@@ -372,18 +338,18 @@ void MainLogic::fight(Individuals* individual1, Individuals* individual2){
 
     if(survivor->getId()==individual1->getId()){
 
-    if(_ElvesPopulation2->deleteIndividualList(individual2)){
-        _ElvesPopulation2->downPopulation();
-    }
-    if(_DarkElvesPopulation->deleteIndividualList(individual2)){
-        _DarkElvesPopulation->downPopulation();
-    }
-    if(_DwarvesPopulation->deleteIndividualList(individual2)){
-        _DwarvesPopulation->downPopulation();
-    }
-    if(_ElvesPopulation->deleteIndividualList(individual2)){
-        _ElvesPopulation->downPopulation();
-    }
+        if(_ElvesPopulation2->deleteIndividualList(individual2)){
+            _ElvesPopulation2->downPopulation();
+        }
+        if(_DarkElvesPopulation->deleteIndividualList(individual2)){
+            _DarkElvesPopulation->downPopulation();
+        }
+        if(_DwarvesPopulation->deleteIndividualList(individual2)){
+            _DwarvesPopulation->downPopulation();
+        }
+        if(_ElvesPopulation->deleteIndividualList(individual2)){
+            _ElvesPopulation->downPopulation();
+        }
         int fila = *(*individual2->getPosicionIndividual())[0];
         int columna = *(*individual2->getPosicionIndividual())[1];
         Map::anadirObjeto(fila,columna,individual2,0);
@@ -408,14 +374,14 @@ void MainLogic::fight(Individuals* individual1, Individuals* individual2){
 }
 
 void MainLogic::HappyNewYear()
-{    
+{
     while( generationCount!=Constants::getInstance()->GENERATIONS)
-    {                
+    {
         Age++;
         _DarkElvesPopulation->isPopBirthDay();
         _ElvesPopulation->isPopBirthDay();
         _ElvesPopulation2->isPopBirthDay();
-        _DwarvesPopulation->isPopBirthDay();        
+        _DwarvesPopulation->isPopBirthDay();
         sleep(5);
     }
     pthread_exit(NULL);
@@ -426,15 +392,15 @@ void MainLogic::HappyNewYear()
 
 void MainLogic::evolution()
 {
-    srand(time(0));    
+    srand(time(0));
     // Evolve our population until we reach an optimum solution
 
 
     while (generationCount != Constants::getInstance()->GENERATIONS)
-    {       
+    {
 
         generationCount++;
-        _DarkElvesPopulation = (DarkElves*)&(_Evolution->evolvePopulation(*_DarkElvesPopulation));        
+        _DarkElvesPopulation = (DarkElves*)&(_Evolution->evolvePopulation(*_DarkElvesPopulation));
         //_GiantsPopulation = (Giants*)&_Evolution->evolvePopulation(*_GiantsPopulation);
         _DwarvesPopulation = ((Dwarves*)&_Evolution->evolvePopulation(*_DwarvesPopulation));
         _ElvesPopulation = (Elves*)&_Evolution->evolvePopulation(*_ElvesPopulation);
@@ -455,27 +421,27 @@ Vector<int> *MainLogic::initMatriz()
     int Width = archivoXML->getMatrizWidth();
     Vector<int>* newMatriz = new Vector<int>(Width,Height);
     string tmpMap = archivoXML->getMatriz();
-        string numero = "";
+    string numero = "";
 
-        int index = 0, jindex = 0;
-        for (int i = 0; i < tmpMap.length(); i++) {
-            if (index >= Height) {
-                break;
-            }
-            if (jindex >= Width) {
-                jindex = 0;
-                index++;
-            }
-            if (tmpMap[i] == '#') {
-                (*newMatriz)[index][jindex] = stoi(numero);
-                jindex++;
-                numero = "";
-            }
-            else {
-                numero += tmpMap[i];
-            }
+    int index = 0, jindex = 0;
+    for (int i = 0; i < tmpMap.length(); i++) {
+        if (index >= Height) {
+            break;
         }
-  return newMatriz;
+        if (jindex >= Width) {
+            jindex = 0;
+            index++;
+        }
+        if (tmpMap[i] == '#') {
+            (*newMatriz)[index][jindex] = stoi(numero);
+            jindex++;
+            numero = "";
+        }
+        else {
+            numero += tmpMap[i];
+        }
+    }
+    return newMatriz;
 
 }
 
@@ -483,23 +449,23 @@ bool MainLogic::EddaAntiguaMethod(bool pImprovePopulation)
 {
     if(pImprovePopulation)
     {
-    Vector<int>* newSkills= new Vector<int>(10);
+        Vector<int>* newSkills= new Vector<int>(10);
 
-    *(*newSkills)[vida]= despreciable;
-    *(*newSkills)[inteligencia]= despreciable;
-    *(*newSkills)[ataque]= alto;
-    *(*newSkills)[defensa]= alto;
-    *(*newSkills)[velAtaque]= despreciable;
-    *(*newSkills)[magia]= despreciable;
-    *(*newSkills)[energiaVital]= despreciable;
-    *(*newSkills)[supersticion]= despreciable;
-    *(*newSkills)[invocacion]= despreciable;
+        *(*newSkills)[vida]= despreciable;
+        *(*newSkills)[inteligencia]= despreciable;
+        *(*newSkills)[ataque]= alto;
+        *(*newSkills)[defensa]= alto;
+        *(*newSkills)[velAtaque]= despreciable;
+        *(*newSkills)[magia]= despreciable;
+        *(*newSkills)[energiaVital]= despreciable;
+        *(*newSkills)[supersticion]= despreciable;
+        *(*newSkills)[invocacion]= despreciable;
 
 
-    _DarkElvesPopulation->CambioEdda(*newSkills);
-    _ElvesPopulation->CambioEdda(*newSkills);
-    _ElvesPopulation2->CambioEdda(*newSkills);
-    _DwarvesPopulation->CambioEdda(*newSkills);
+        _DarkElvesPopulation->CambioEdda(*newSkills);
+        _ElvesPopulation->CambioEdda(*newSkills);
+        _ElvesPopulation2->CambioEdda(*newSkills);
+        _DwarvesPopulation->CambioEdda(*newSkills);
     }
 
     if(_DarkElvesPopulation->getFittest()->getGenes()->getByIndex(supersticion)>= limiteEdda)
@@ -529,22 +495,22 @@ bool MainLogic::EddaReligiosaMethod( bool pImprovePopulation)
 {
     if(pImprovePopulation)
     {
-    Vector<int>* newSkills= new Vector<int>(10);
+        Vector<int>* newSkills= new Vector<int>(10);
 
-    *(*newSkills)[vida]= alto;
-    *(*newSkills)[inteligencia]= despreciable;
-    *(*newSkills)[ataque]= alto;
-    *(*newSkills)[defensa]= alto;
-    *(*newSkills)[velAtaque]= alto;
-    *(*newSkills)[magia]= alto;
-    *(*newSkills)[energiaVital]= alto;
-    *(*newSkills)[supersticion]= alto;
-    *(*newSkills)[invocacion]= alto;
+        *(*newSkills)[vida]= alto;
+        *(*newSkills)[inteligencia]= despreciable;
+        *(*newSkills)[ataque]= alto;
+        *(*newSkills)[defensa]= alto;
+        *(*newSkills)[velAtaque]= alto;
+        *(*newSkills)[magia]= alto;
+        *(*newSkills)[energiaVital]= alto;
+        *(*newSkills)[supersticion]= alto;
+        *(*newSkills)[invocacion]= alto;
 
-    _DarkElvesPopulation->CambioEdda(*newSkills);
-    _ElvesPopulation->CambioEdda(*newSkills);
-    _ElvesPopulation2->CambioEdda(*newSkills);
-    _DwarvesPopulation->CambioEdda(*newSkills);
+        _DarkElvesPopulation->CambioEdda(*newSkills);
+        _ElvesPopulation->CambioEdda(*newSkills);
+        _ElvesPopulation2->CambioEdda(*newSkills);
+        _DwarvesPopulation->CambioEdda(*newSkills);
     }
 
     if(_DarkElvesPopulation->getFittest()->getGenes()->getByIndex(inteligencia)>= limiteEdda)
@@ -574,22 +540,22 @@ bool MainLogic::EddaCienciaTecnologiaMethod(bool pImprovePopulation)
 {
     if(pImprovePopulation)
     {
-    Vector<int>* newSkills= new Vector<int>(10);
+        Vector<int>* newSkills= new Vector<int>(10);
 
-    *(*newSkills)[vida]= noCambia;
-    *(*newSkills)[inteligencia]= alto;
-    *(*newSkills)[ataque]= alto;
-    *(*newSkills)[defensa]= alto;
-    *(*newSkills)[velAtaque]= noCambia;
-    *(*newSkills)[magia]= noCambia;
-    *(*newSkills)[energiaVital]= noCambia;
-    *(*newSkills)[supersticion]= noCambia;
-    *(*newSkills)[invocacion]= noCambia;
+        *(*newSkills)[vida]= noCambia;
+        *(*newSkills)[inteligencia]= alto;
+        *(*newSkills)[ataque]= alto;
+        *(*newSkills)[defensa]= alto;
+        *(*newSkills)[velAtaque]= noCambia;
+        *(*newSkills)[magia]= noCambia;
+        *(*newSkills)[energiaVital]= noCambia;
+        *(*newSkills)[supersticion]= noCambia;
+        *(*newSkills)[invocacion]= noCambia;
 
-    _DarkElvesPopulation->CambioEdda(*newSkills);
-    _ElvesPopulation->CambioEdda(*newSkills);
-    _ElvesPopulation2->CambioEdda(*newSkills);
-    _DwarvesPopulation->CambioEdda(*newSkills);
+        _DarkElvesPopulation->CambioEdda(*newSkills);
+        _ElvesPopulation->CambioEdda(*newSkills);
+        _ElvesPopulation2->CambioEdda(*newSkills);
+        _DwarvesPopulation->CambioEdda(*newSkills);
     }
 
     if(_DarkElvesPopulation->getFittest()->getGenes()->getByIndex(inteligencia)>= limiteEdda)
@@ -619,22 +585,22 @@ bool MainLogic::EddaSupremaciaMethod(bool pImprovePopulation)
 {
     if(pImprovePopulation)
     {
-    Vector<int>* newSkills= new Vector<int>(10);
+        Vector<int>* newSkills= new Vector<int>(10);
 
-    *(*newSkills)[vida]= alto;
-    *(*newSkills)[inteligencia]= alto;
-    *(*newSkills)[ataque]= alto;
-    *(*newSkills)[defensa]= alto;
-    *(*newSkills)[velAtaque]= alto;
-    *(*newSkills)[magia]= alto;
-    *(*newSkills)[energiaVital]= alto;
-    *(*newSkills)[supersticion]= alto;
-    *(*newSkills)[invocacion]= alto;
+        *(*newSkills)[vida]= alto;
+        *(*newSkills)[inteligencia]= alto;
+        *(*newSkills)[ataque]= alto;
+        *(*newSkills)[defensa]= alto;
+        *(*newSkills)[velAtaque]= alto;
+        *(*newSkills)[magia]= alto;
+        *(*newSkills)[energiaVital]= alto;
+        *(*newSkills)[supersticion]= alto;
+        *(*newSkills)[invocacion]= alto;
 
-    _DarkElvesPopulation->CambioEdda(*newSkills);
-    _ElvesPopulation->CambioEdda(*newSkills);
-    _ElvesPopulation2->CambioEdda(*newSkills);
-    _DwarvesPopulation->CambioEdda(*newSkills);
+        _DarkElvesPopulation->CambioEdda(*newSkills);
+        _ElvesPopulation->CambioEdda(*newSkills);
+        _ElvesPopulation2->CambioEdda(*newSkills);
+        _DwarvesPopulation->CambioEdda(*newSkills);
     }
 
     if(_DarkElvesPopulation->getFittest()->getFitness() == _DarkElvesPopulation->getFitless()->getFitness())
