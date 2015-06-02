@@ -1,16 +1,23 @@
 #include "Individuals.h"
 
+Vector<int>* Individuals::_movimiento;
+//Pathfinding* Individuals::_encontrarCamino;
+
+bool Individuals::termino =false;
+int Individuals::figuraID=1;
+int Individuals::contadorID=0;
+
 
 
 Individuals::Individuals()
 {
-    _random = new Random();
-    static int generadorID=cero;
+    _random = new Random();    
     this->cantidadCualidades = Constants::SKILLSQUANTITY;
     _Genes = new BitVector(cantidadCualidades);
-    this->_ID=generadorID++;
+    this->_ID=contadorID;
     this->createIndividual();
     this->_Fitness=cero;
+    contadorID++;
 }
 
 Individuals::Individuals(int pID)
@@ -21,6 +28,7 @@ Individuals::Individuals(int pID)
     this->_ID = pID;
     this->createIndividual();
     this->_Fitness=cero;
+    contadorID++;
 }
 int Individuals::calculateFitness(BitVector* pIndividualGenes) // VERIFICAR BIEN
 {
@@ -53,6 +61,38 @@ void Individuals::createIndividual()
 {
     generateCromosoma();
 
+}
+
+
+bool Individuals::getTermino()
+{
+    return termino;
+}
+
+void Individuals::setTermino(bool value)
+{
+    termino = value;
+}
+
+
+
+Vector<int>* Individuals::getPosicionIndividual()
+{
+    Vector<int>* posiciones = new Vector<int>(2);
+    *(*posiciones)[0] =_posicionXmatriz;
+    *(*posiciones)[1] =_posicionYmatriz;
+    return posiciones;
+}
+
+void Individuals::setPosicionIndividual(int pPosicionX, int pPosicionY)
+{
+    _posicionXmatriz = pPosicionX;
+    _posicionYmatriz = pPosicionY;
+}
+
+void Individuals::setFitness(int pFitness)
+{
+    _Fitness = pFitness;
 }
 
 int Individuals::getId(){
@@ -137,7 +177,37 @@ int Individuals::getMadre()
 Vector<int>* Individuals::findPath( int posicionInicialI,int posicionInicialJ,
                                 int posicionFinalI,int posicionFinalJ)
 {
-    return _encontrarCamino->calcularRuta(posicionInicialI,posicionInicialJ,posicionFinalI,posicionFinalJ);
+
+
+    _encontrarCamino = new Pathfinding();
+
+    _movimiento = _encontrarCamino->calcularRuta(posicionInicialI,posicionInicialJ,posicionFinalI,posicionFinalJ);
+
+    return _movimiento;
+}
+
+void* Individuals::moverIndividuo(void* pParametro)
+{
+    Vector<int>* posiciones = (Vector<int>*) pParametro;
+        int tmpFiguraID = 20;
+        tmpFiguraID = (*Map::getInstance()->getMapMatriz())[(*posiciones)[0][0]][(*posiciones)[0][1]];
+    for(int i =0; i< posiciones->getHeight(); i++)
+    {
+
+        Map::anadirObjeto((*posiciones)[i][0],(*posiciones)[i][1],new Individuals(),tmpFiguraID);
+        if (i!=0)
+        {
+        Map::anadirObjeto((*posiciones)[i-1][0],(*posiciones)[i-1][1],new Individuals(),0);
+        }
+        sleep(3);
+    }
+
+    termino = true;
+}
+
+void Individuals::setFigureID(int pNumber)
+{
+    figuraID = pNumber;
 
 }
 

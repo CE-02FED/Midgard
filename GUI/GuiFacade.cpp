@@ -35,7 +35,7 @@ void* GuiFacade::askMap()
     pthread_mutex_lock(&mutex);
     GuiFacade::getInstance()->getMap();
     pthread_mutex_unlock(&mutex);
-    sleep(5);
+    sleep(3);
     }
 }
 
@@ -73,7 +73,11 @@ void GuiFacade::receiveGenealogia(string pMensaje)
 void GuiFacade::receivePuebloInfo(string pMensaje)
 {
     jsonReaderCpp* Reader = new jsonReaderCpp();
-    Vector<int>* vectorPuebloInfo = Reader->readPueblo(pMensaje);
+    Vector<int>* vectorPuebloInfo = new Vector<int>(cantFamilia);
+    vectorPuebloInfo->llenarMatriz(0);
+    vectorPuebloInfo = Reader->readPueblo(pMensaje);
+    vectorPuebloInfo->print();
+
     setAmountPeople(*(*vectorPuebloInfo)[Amount_People]);
     setFittest(*(*vectorPuebloInfo)[Fittest]);
     setWorstFitness(*(*vectorPuebloInfo)[Worst_Fitness]);
@@ -165,6 +169,9 @@ void GuiFacade::leerJson(string pMensaje)
             break;
         case Genealogia:
             receiveGenealogia(pMensaje);
+            break;
+        case Pueblo:
+            receivePuebloInfo(pMensaje);
             break;
         default:
             break;

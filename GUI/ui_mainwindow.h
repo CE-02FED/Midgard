@@ -21,6 +21,8 @@
 #include <QtWidgets/QWidget>
 #include "QHBoxLayout"
 #include "iostream"
+#include <QUrl>
+#include <QFileInfo>
 using namespace std;
 
 
@@ -52,8 +54,9 @@ public:
 
         label = new QLabel(centralWidget);
         label->setObjectName(QStringLiteral("label"));
-        label->setGeometry(QRect(0, 0, 500, 375));
-        QPixmap menuBackground("/home/javier/WorkspaceQT/GUI/imagenes GUI/menu.jpg");
+        label->setGeometry(QRect(0, 0, 500, 375));        
+        QPixmap menuBackground("imagenes GUI/menu.jpg");
+
         label->setPixmap(menuBackground);
 
         start = new QPushButton(centralWidget);

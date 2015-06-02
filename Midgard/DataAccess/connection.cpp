@@ -17,7 +17,7 @@ void connection::goRun()
                 string data;
                 socketToConnect >> data;
                 socketToConnect << (LogicFacade::getInstance()->receiveDataFromSocket(data));
-                sleep(2);
+                sleep(3);
 
             }
         }

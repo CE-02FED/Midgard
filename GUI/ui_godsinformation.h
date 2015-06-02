@@ -37,6 +37,7 @@ public:
     QLabel *label_8;
     QLabel *label_9;
     QLabel *label_10;
+    QLabel *label_11;
     QMenuBar *menubar;
     QMenu *menuGods_Info;
     QStatusBar *statusbar;
@@ -102,12 +103,16 @@ public:
         label_8->setFont(font3);
         label_9 = new QLabel(centralwidget);
         label_9->setObjectName(QStringLiteral("label_9"));
-        label_9->setGeometry(QRect(20, 310, 421, 21));
+        label_9->setGeometry(QRect(20, 300, 421, 21));
         label_9->setFont(font1);
         label_10 = new QLabel(centralwidget);
         label_10->setObjectName(QStringLiteral("label_10"));
-        label_10->setGeometry(QRect(20, 350, 361, 21));
+        label_10->setGeometry(QRect(20, 320, 361, 21));
         label_10->setFont(font1);
+        label_11 = new QLabel(centralwidget);
+        label_11->setObjectName(QStringLiteral("label_11"));
+        label_11->setGeometry(QRect(20, 340, 281, 21));
+        label_11->setFont(font1);
         godsInformation->setCentralWidget(centralwidget);
         menubar = new QMenuBar(godsInformation);
         menubar->setObjectName(QStringLiteral("menubar"));
@@ -138,7 +143,8 @@ public:
         label_7->setText(QApplication::translate("godsInformation", "CHARACTERS", 0));
         label_8->setText(QApplication::translate("godsInformation", "DESCRIPTION", 0));
         label_9->setText(QApplication::translate("godsInformation", "to destroy any opponent who crosses their paths . ", 0));
-        label_10->setText(QApplication::translate("godsInformation", "There is little chance of beating them.", 0));
+        label_10->setText(QApplication::translate("godsInformation", "There is just a little chance to destroy them.", 0));
+        label_11->setText(QApplication::translate("godsInformation", "Are you the chosen one?", 0));
         menuGods_Info->setTitle(QApplication::translate("godsInformation", "Gods Info", 0));
     } // retranslateUi
 

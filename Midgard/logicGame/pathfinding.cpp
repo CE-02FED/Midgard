@@ -8,16 +8,18 @@ Pathfinding::Pathfinding() {
     _map = Map::getInstance()->getMapMatriz();
     _height = _map->getHeight();
     _width = _map->getWidth();
-	_listaAbierta = new Vector<short>(_height, _width);
-	_listaCerrada = new Vector<short>(_height, _width);
-	_listaDireccion = new Vector<short>(_height, _width);
+    _listaAbierta = new Vector<int>(_height, _width);
+    _listaCerrada = new Vector<int>(_height, _width);
+    _listaDireccion = new Vector<int>(_height, _width);
 
 }
 
 Vector<int>* Pathfinding::calcularRuta(int pXInicio, int pYInicio,
 						 	 	 	 	 int pXFinal, int pYFinal) {
+
 	string rutaString = this->find( pXInicio, pYInicio,
 									pXFinal, pYFinal);
+
 	Vector<int>* ruta = obtenerRuta(rutaString, pXInicio, pYInicio);
 	return ruta;
 }
@@ -30,19 +32,25 @@ string Pathfinding::find(int pXInicio, int pYInicio,
 	NodoMatriz* nodoPadre;
 	NodoMatriz* nodoHijo;
 	//int posHorizontal =
-	int x=59, y=59, xdx, ydy;
+    int x=_height-1, y=_width-1, xdx, ydy;
 	int dir = 8;
 	char c;
+
+
 
 	_listaAbierta->llenarMatriz(0);
 	_listaCerrada->llenarMatriz(0);
 
 	nodoPadre = new NodoMatriz(pXInicio, pYInicio, 0, 0);
 	nodoPadre->updatePrioridad(pXFinal, pYFinal);
+
+
 	_cola[indiceCola].push(*nodoPadre);
-	(*_listaAbierta)[x][y] = nodoPadre->getPrioridad();
+
+	(*_listaAbierta)[x][y] = nodoPadre->getPrioridad();    
 
 	while (!_cola[indiceCola].empty()) {
+
 		nodoPadre = new NodoMatriz(_cola[indiceCola].top().getPosX(),
 								   _cola[indiceCola].top().getPosY(),
 								   _cola[indiceCola].top().getNivel(),

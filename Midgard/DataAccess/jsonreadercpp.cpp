@@ -65,7 +65,7 @@ Vector<int>* jsonReaderCpp::readFight(string pJson)
 
 }
 
-Vector<int> *jsonReaderCpp::readPubloInfo(string pJson)
+int jsonReaderCpp::readPubloInfo(string pJson)
 {
     Json::Value root;
     Json::Reader reader;
@@ -81,11 +81,8 @@ Vector<int> *jsonReaderCpp::readPubloInfo(string pJson)
     int pueblo= stoi(root["pueblo"].asString());
     cout << "estoy readPuebloInfo" << endl;
 
-    Vector<int>* puebloVector = new Vector<int>(2);
 
-    *(*puebloVector)[0] = pueblo;
-
-    return puebloVector;
+    return pueblo;
 
 }
 

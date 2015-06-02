@@ -114,13 +114,8 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_printsupport.pri \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_printsupport_private.pri \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_qml.pri \
-		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_qml_private.pri \
-		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_qmldevtools_private.pri \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_qmltest.pri \
-		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_qmltest_private.pri \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_quick.pri \
-		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_quick_private.pri \
-		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_quickparticles_private.pri \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_sql.pri \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_sql_private.pri \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_testlib.pri \
@@ -214,13 +209,8 @@ Makefile: GUI.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64/qmake.conf 
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_printsupport.pri \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_printsupport_private.pri \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_qml.pri \
-		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_qml_private.pri \
-		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_qmldevtools_private.pri \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_qmltest.pri \
-		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_qmltest_private.pri \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_quick.pri \
-		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_quick_private.pri \
-		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_quickparticles_private.pri \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_sql.pri \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_sql_private.pri \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_testlib.pri \
@@ -287,13 +277,8 @@ Makefile: GUI.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64/qmake.conf 
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_printsupport.pri:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_printsupport_private.pri:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_qml.pri:
-/usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_qml_private.pri:
-/usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_qmldevtools_private.pri:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_qmltest.pri:
-/usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_qmltest_private.pri:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_quick.pri:
-/usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_quick_private.pri:
-/usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_quickparticles_private.pri:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_sql.pri:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_sql_private.pri:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_testlib.pri:
@@ -480,6 +465,24 @@ moc_mainmenu.cpp: /usr/include/qt5/QtWidgets/QMainWindow \
 		/usr/include/qt5/QtWidgets/qdesktopwidget.h \
 		/usr/include/qt5/QtGui/qguiapplication.h \
 		/usr/include/qt5/QtGui/qinputmethod.h \
+		/usr/include/qt5/QtMultimedia/QMediaPlaylist \
+		/usr/include/qt5/QtMultimedia/qmediaplaylist.h \
+		/usr/include/qt5/QtMultimedia/qmediacontent.h \
+		/usr/include/qt5/QtMultimedia/qmediaresource.h \
+		/usr/include/qt5/QtNetwork/qnetworkrequest.h \
+		/usr/include/qt5/QtCore/QSharedDataPointer \
+		/usr/include/qt5/QtCore/QString \
+		/usr/include/qt5/QtCore/QUrl \
+		/usr/include/qt5/QtCore/QVariant \
+		/usr/include/qt5/QtMultimedia/qtmultimediadefs.h \
+		/usr/include/qt5/QtMultimedia/qmediaobject.h \
+		/usr/include/qt5/QtMultimedia/qmultimedia.h \
+		/usr/include/qt5/QtMultimedia/qmediabindableinterface.h \
+		/usr/include/qt5/QtMultimedia/qmediaenumdebug.h \
+		/usr/include/qt5/QtCore/qmetaobject.h \
+		/usr/include/qt5/QtMultimedia/QMediaPlayer \
+		/usr/include/qt5/QtMultimedia/qmediaplayer.h \
+		/usr/include/qt5/QtNetwork/qnetworkconfiguration.h \
 		GuiFacade.h \
 		socketcliente.h \
 		socketserver.h \
@@ -506,23 +509,17 @@ moc_mainmenu.cpp: /usr/include/qt5/QtWidgets/QMainWindow \
 		/usr/include/qt5/QtWidgets/QGraphicsSceneMouseEvent \
 		/usr/include/qt5/QtWidgets/qgraphicssceneevent.h \
 		informationindividual.h \
-		/usr/include/qt5/QtCore/QString \
+		/usr/include/qt5/QtGui/QMovie \
+		/usr/include/qt5/QtGui/qmovie.h \
+		/usr/include/qt5/QtGui/qimagereader.h \
+		/usr/include/qt5/QtGui/qimageiohandler.h \
+		/usr/include/qt5/QtCore/qplugin.h \
+		/usr/include/qt5/QtCore/qpointer.h \
+		/usr/include/qt5/QtCore/qjsonobject.h \
+		/usr/include/qt5/QtCore/qjsonvalue.h \
+		/usr/include/qt5/QtCore/qfactoryinterface.h \
 		godsinformation.h \
 		puebloinformation.h \
-		/usr/include/qt5/QtMultimedia/QMediaPlaylist \
-		/usr/include/qt5/QtMultimedia/qmediaplaylist.h \
-		/usr/include/qt5/QtMultimedia/qmediacontent.h \
-		/usr/include/qt5/QtMultimedia/qmediaresource.h \
-		/usr/include/qt5/QtNetwork/qnetworkrequest.h \
-		/usr/include/qt5/QtCore/QSharedDataPointer \
-		/usr/include/qt5/QtCore/QUrl \
-		/usr/include/qt5/QtCore/QVariant \
-		/usr/include/qt5/QtMultimedia/qtmultimediadefs.h \
-		/usr/include/qt5/QtMultimedia/qmediaobject.h \
-		/usr/include/qt5/QtMultimedia/qmultimedia.h \
-		/usr/include/qt5/QtMultimedia/qmediabindableinterface.h \
-		/usr/include/qt5/QtMultimedia/qmediaenumdebug.h \
-		/usr/include/qt5/QtCore/qmetaobject.h \
 		vector.h \
 		jsonreadercpp.h \
 		jsonwritercpp.h \
@@ -641,6 +638,16 @@ moc_informationindividual.cpp: /usr/include/qt5/QtWidgets/QMainWindow \
 		/usr/include/qt5/QtWidgets/qtabwidget.h \
 		/usr/include/qt5/QtGui/qicon.h \
 		/usr/include/qt5/QtCore/QString \
+		Constants.h \
+		/usr/include/qt5/QtGui/QMovie \
+		/usr/include/qt5/QtGui/qmovie.h \
+		/usr/include/qt5/QtGui/qimagereader.h \
+		/usr/include/qt5/QtGui/qimageiohandler.h \
+		/usr/include/qt5/QtCore/qplugin.h \
+		/usr/include/qt5/QtCore/qpointer.h \
+		/usr/include/qt5/QtCore/qjsonobject.h \
+		/usr/include/qt5/QtCore/qjsonvalue.h \
+		/usr/include/qt5/QtCore/qfactoryinterface.h \
 		informationindividual.h
 	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) $(INCPATH) -I/usr/include/c++/4.8 -I/usr/include/x86_64-linux-gnu/c++/4.8 -I/usr/include/c++/4.8/backward -I/usr/lib/gcc/x86_64-linux-gnu/4.8/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/4.8/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include informationindividual.h -o moc_informationindividual.cpp
 
@@ -1019,6 +1026,24 @@ main.o: main.cpp mainmenu.h \
 		/usr/include/qt5/QtWidgets/qdesktopwidget.h \
 		/usr/include/qt5/QtGui/qguiapplication.h \
 		/usr/include/qt5/QtGui/qinputmethod.h \
+		/usr/include/qt5/QtMultimedia/QMediaPlaylist \
+		/usr/include/qt5/QtMultimedia/qmediaplaylist.h \
+		/usr/include/qt5/QtMultimedia/qmediacontent.h \
+		/usr/include/qt5/QtMultimedia/qmediaresource.h \
+		/usr/include/qt5/QtNetwork/qnetworkrequest.h \
+		/usr/include/qt5/QtCore/QSharedDataPointer \
+		/usr/include/qt5/QtCore/QString \
+		/usr/include/qt5/QtCore/QUrl \
+		/usr/include/qt5/QtCore/QVariant \
+		/usr/include/qt5/QtMultimedia/qtmultimediadefs.h \
+		/usr/include/qt5/QtMultimedia/qmediaobject.h \
+		/usr/include/qt5/QtMultimedia/qmultimedia.h \
+		/usr/include/qt5/QtMultimedia/qmediabindableinterface.h \
+		/usr/include/qt5/QtMultimedia/qmediaenumdebug.h \
+		/usr/include/qt5/QtCore/qmetaobject.h \
+		/usr/include/qt5/QtMultimedia/QMediaPlayer \
+		/usr/include/qt5/QtMultimedia/qmediaplayer.h \
+		/usr/include/qt5/QtNetwork/qnetworkconfiguration.h \
 		GuiFacade.h \
 		socketcliente.h \
 		socketserver.h \
@@ -1045,23 +1070,17 @@ main.o: main.cpp mainmenu.h \
 		/usr/include/qt5/QtWidgets/QGraphicsSceneMouseEvent \
 		/usr/include/qt5/QtWidgets/qgraphicssceneevent.h \
 		informationindividual.h \
-		/usr/include/qt5/QtCore/QString \
+		/usr/include/qt5/QtGui/QMovie \
+		/usr/include/qt5/QtGui/qmovie.h \
+		/usr/include/qt5/QtGui/qimagereader.h \
+		/usr/include/qt5/QtGui/qimageiohandler.h \
+		/usr/include/qt5/QtCore/qplugin.h \
+		/usr/include/qt5/QtCore/qpointer.h \
+		/usr/include/qt5/QtCore/qjsonobject.h \
+		/usr/include/qt5/QtCore/qjsonvalue.h \
+		/usr/include/qt5/QtCore/qfactoryinterface.h \
 		godsinformation.h \
 		puebloinformation.h \
-		/usr/include/qt5/QtMultimedia/QMediaPlaylist \
-		/usr/include/qt5/QtMultimedia/qmediaplaylist.h \
-		/usr/include/qt5/QtMultimedia/qmediacontent.h \
-		/usr/include/qt5/QtMultimedia/qmediaresource.h \
-		/usr/include/qt5/QtNetwork/qnetworkrequest.h \
-		/usr/include/qt5/QtCore/QSharedDataPointer \
-		/usr/include/qt5/QtCore/QUrl \
-		/usr/include/qt5/QtCore/QVariant \
-		/usr/include/qt5/QtMultimedia/qtmultimediadefs.h \
-		/usr/include/qt5/QtMultimedia/qmediaobject.h \
-		/usr/include/qt5/QtMultimedia/qmultimedia.h \
-		/usr/include/qt5/QtMultimedia/qmediabindableinterface.h \
-		/usr/include/qt5/QtMultimedia/qmediaenumdebug.h \
-		/usr/include/qt5/QtCore/qmetaobject.h \
 		vector.h \
 		jsonreadercpp.h \
 		jsonwritercpp.h
@@ -1200,6 +1219,15 @@ Scene.o: Scene.cpp Scene.h \
 		/usr/include/qt5/QtWidgets/qtabwidget.h \
 		/usr/include/qt5/QtGui/qicon.h \
 		/usr/include/qt5/QtCore/QString \
+		/usr/include/qt5/QtGui/QMovie \
+		/usr/include/qt5/QtGui/qmovie.h \
+		/usr/include/qt5/QtGui/qimagereader.h \
+		/usr/include/qt5/QtGui/qimageiohandler.h \
+		/usr/include/qt5/QtCore/qplugin.h \
+		/usr/include/qt5/QtCore/qpointer.h \
+		/usr/include/qt5/QtCore/qjsonobject.h \
+		/usr/include/qt5/QtCore/qjsonvalue.h \
+		/usr/include/qt5/QtCore/qfactoryinterface.h \
 		GuiFacade.h \
 		socketcliente.h \
 		socketserver.h \
@@ -1213,20 +1241,23 @@ Scene.o: Scene.cpp Scene.h \
 		jsonwritercpp.h \
 		godsinformation.h \
 		puebloinformation.h \
-		/usr/include/qt5/QtMultimedia/QMediaPlaylist \
-		/usr/include/qt5/QtMultimedia/qmediaplaylist.h \
+		/usr/include/qt5/QtMultimedia/QMediaPlayer \
+		/usr/include/qt5/QtMultimedia/qmediaplayer.h \
+		/usr/include/qt5/QtMultimedia/qmediaobject.h \
+		/usr/include/qt5/QtMultimedia/qtmultimediadefs.h \
+		/usr/include/qt5/QtMultimedia/qmultimedia.h \
 		/usr/include/qt5/QtMultimedia/qmediacontent.h \
 		/usr/include/qt5/QtMultimedia/qmediaresource.h \
 		/usr/include/qt5/QtNetwork/qnetworkrequest.h \
 		/usr/include/qt5/QtCore/QSharedDataPointer \
 		/usr/include/qt5/QtCore/QUrl \
 		/usr/include/qt5/QtCore/QVariant \
-		/usr/include/qt5/QtMultimedia/qtmultimediadefs.h \
-		/usr/include/qt5/QtMultimedia/qmediaobject.h \
-		/usr/include/qt5/QtMultimedia/qmultimedia.h \
-		/usr/include/qt5/QtMultimedia/qmediabindableinterface.h \
 		/usr/include/qt5/QtMultimedia/qmediaenumdebug.h \
-		/usr/include/qt5/QtCore/qmetaobject.h
+		/usr/include/qt5/QtCore/qmetaobject.h \
+		/usr/include/qt5/QtNetwork/qnetworkconfiguration.h \
+		/usr/include/qt5/QtMultimedia/QMediaPlaylist \
+		/usr/include/qt5/QtMultimedia/qmediaplaylist.h \
+		/usr/include/qt5/QtMultimedia/qmediabindableinterface.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Scene.o Scene.cpp
 
 GuiFacade.o: GuiFacade.cpp GuiFacade.h \
@@ -1367,22 +1398,34 @@ GuiFacade.o: GuiFacade.cpp GuiFacade.h \
 		/usr/include/qt5/QtWidgets/qtabwidget.h \
 		/usr/include/qt5/QtGui/qicon.h \
 		/usr/include/qt5/QtCore/QString \
+		/usr/include/qt5/QtGui/QMovie \
+		/usr/include/qt5/QtGui/qmovie.h \
+		/usr/include/qt5/QtGui/qimagereader.h \
+		/usr/include/qt5/QtGui/qimageiohandler.h \
+		/usr/include/qt5/QtCore/qplugin.h \
+		/usr/include/qt5/QtCore/qpointer.h \
+		/usr/include/qt5/QtCore/qjsonobject.h \
+		/usr/include/qt5/QtCore/qjsonvalue.h \
+		/usr/include/qt5/QtCore/qfactoryinterface.h \
 		godsinformation.h \
 		puebloinformation.h \
-		/usr/include/qt5/QtMultimedia/QMediaPlaylist \
-		/usr/include/qt5/QtMultimedia/qmediaplaylist.h \
+		/usr/include/qt5/QtMultimedia/QMediaPlayer \
+		/usr/include/qt5/QtMultimedia/qmediaplayer.h \
+		/usr/include/qt5/QtMultimedia/qmediaobject.h \
+		/usr/include/qt5/QtMultimedia/qtmultimediadefs.h \
+		/usr/include/qt5/QtMultimedia/qmultimedia.h \
 		/usr/include/qt5/QtMultimedia/qmediacontent.h \
 		/usr/include/qt5/QtMultimedia/qmediaresource.h \
 		/usr/include/qt5/QtNetwork/qnetworkrequest.h \
 		/usr/include/qt5/QtCore/QSharedDataPointer \
 		/usr/include/qt5/QtCore/QUrl \
 		/usr/include/qt5/QtCore/QVariant \
-		/usr/include/qt5/QtMultimedia/qtmultimediadefs.h \
-		/usr/include/qt5/QtMultimedia/qmediaobject.h \
-		/usr/include/qt5/QtMultimedia/qmultimedia.h \
-		/usr/include/qt5/QtMultimedia/qmediabindableinterface.h \
 		/usr/include/qt5/QtMultimedia/qmediaenumdebug.h \
 		/usr/include/qt5/QtCore/qmetaobject.h \
+		/usr/include/qt5/QtNetwork/qnetworkconfiguration.h \
+		/usr/include/qt5/QtMultimedia/QMediaPlaylist \
+		/usr/include/qt5/QtMultimedia/qmediaplaylist.h \
+		/usr/include/qt5/QtMultimedia/qmediabindableinterface.h \
 		vector.h \
 		jsonreadercpp.h \
 		jsonwritercpp.h
@@ -1526,22 +1569,34 @@ socketcliente.o: socketcliente.cpp socketcliente.h \
 		/usr/include/qt5/QtWidgets/qtabwidget.h \
 		/usr/include/qt5/QtGui/qicon.h \
 		/usr/include/qt5/QtCore/QString \
+		/usr/include/qt5/QtGui/QMovie \
+		/usr/include/qt5/QtGui/qmovie.h \
+		/usr/include/qt5/QtGui/qimagereader.h \
+		/usr/include/qt5/QtGui/qimageiohandler.h \
+		/usr/include/qt5/QtCore/qplugin.h \
+		/usr/include/qt5/QtCore/qpointer.h \
+		/usr/include/qt5/QtCore/qjsonobject.h \
+		/usr/include/qt5/QtCore/qjsonvalue.h \
+		/usr/include/qt5/QtCore/qfactoryinterface.h \
 		godsinformation.h \
 		puebloinformation.h \
-		/usr/include/qt5/QtMultimedia/QMediaPlaylist \
-		/usr/include/qt5/QtMultimedia/qmediaplaylist.h \
+		/usr/include/qt5/QtMultimedia/QMediaPlayer \
+		/usr/include/qt5/QtMultimedia/qmediaplayer.h \
+		/usr/include/qt5/QtMultimedia/qmediaobject.h \
+		/usr/include/qt5/QtMultimedia/qtmultimediadefs.h \
+		/usr/include/qt5/QtMultimedia/qmultimedia.h \
 		/usr/include/qt5/QtMultimedia/qmediacontent.h \
 		/usr/include/qt5/QtMultimedia/qmediaresource.h \
 		/usr/include/qt5/QtNetwork/qnetworkrequest.h \
 		/usr/include/qt5/QtCore/QSharedDataPointer \
 		/usr/include/qt5/QtCore/QUrl \
 		/usr/include/qt5/QtCore/QVariant \
-		/usr/include/qt5/QtMultimedia/qtmultimediadefs.h \
-		/usr/include/qt5/QtMultimedia/qmediaobject.h \
-		/usr/include/qt5/QtMultimedia/qmultimedia.h \
-		/usr/include/qt5/QtMultimedia/qmediabindableinterface.h \
 		/usr/include/qt5/QtMultimedia/qmediaenumdebug.h \
 		/usr/include/qt5/QtCore/qmetaobject.h \
+		/usr/include/qt5/QtNetwork/qnetworkconfiguration.h \
+		/usr/include/qt5/QtMultimedia/QMediaPlaylist \
+		/usr/include/qt5/QtMultimedia/qmediaplaylist.h \
+		/usr/include/qt5/QtMultimedia/qmediabindableinterface.h \
 		vector.h \
 		jsonreadercpp.h \
 		jsonwritercpp.h
@@ -1670,6 +1725,15 @@ objectsGui.o: objectsGui.cpp objectsGui.h \
 		/usr/include/qt5/QtWidgets/qtabwidget.h \
 		/usr/include/qt5/QtGui/qicon.h \
 		/usr/include/qt5/QtCore/QString \
+		/usr/include/qt5/QtGui/QMovie \
+		/usr/include/qt5/QtGui/qmovie.h \
+		/usr/include/qt5/QtGui/qimagereader.h \
+		/usr/include/qt5/QtGui/qimageiohandler.h \
+		/usr/include/qt5/QtCore/qplugin.h \
+		/usr/include/qt5/QtCore/qpointer.h \
+		/usr/include/qt5/QtCore/qjsonobject.h \
+		/usr/include/qt5/QtCore/qjsonvalue.h \
+		/usr/include/qt5/QtCore/qfactoryinterface.h \
 		GuiFacade.h \
 		socketcliente.h \
 		socketserver.h \
@@ -1689,20 +1753,23 @@ objectsGui.o: objectsGui.cpp objectsGui.h \
 		/usr/include/qt5/QtWidgets/qframe.h \
 		/usr/include/qt5/QtWidgets/qgraphicsscene.h \
 		/usr/include/qt5/QtWidgets/QGraphicsScene \
-		/usr/include/qt5/QtMultimedia/QMediaPlaylist \
-		/usr/include/qt5/QtMultimedia/qmediaplaylist.h \
+		/usr/include/qt5/QtMultimedia/QMediaPlayer \
+		/usr/include/qt5/QtMultimedia/qmediaplayer.h \
+		/usr/include/qt5/QtMultimedia/qmediaobject.h \
+		/usr/include/qt5/QtMultimedia/qtmultimediadefs.h \
+		/usr/include/qt5/QtMultimedia/qmultimedia.h \
 		/usr/include/qt5/QtMultimedia/qmediacontent.h \
 		/usr/include/qt5/QtMultimedia/qmediaresource.h \
 		/usr/include/qt5/QtNetwork/qnetworkrequest.h \
 		/usr/include/qt5/QtCore/QSharedDataPointer \
 		/usr/include/qt5/QtCore/QUrl \
 		/usr/include/qt5/QtCore/QVariant \
-		/usr/include/qt5/QtMultimedia/qtmultimediadefs.h \
-		/usr/include/qt5/QtMultimedia/qmediaobject.h \
-		/usr/include/qt5/QtMultimedia/qmultimedia.h \
-		/usr/include/qt5/QtMultimedia/qmediabindableinterface.h \
 		/usr/include/qt5/QtMultimedia/qmediaenumdebug.h \
 		/usr/include/qt5/QtCore/qmetaobject.h \
+		/usr/include/qt5/QtNetwork/qnetworkconfiguration.h \
+		/usr/include/qt5/QtMultimedia/QMediaPlaylist \
+		/usr/include/qt5/QtMultimedia/qmediaplaylist.h \
+		/usr/include/qt5/QtMultimedia/qmediabindableinterface.h \
 		vector.h \
 		jsonreadercpp.h \
 		jsonwritercpp.h \
@@ -1839,6 +1906,24 @@ mainmenu.o: mainmenu.cpp mainmenu.h \
 		/usr/include/qt5/QtWidgets/qdesktopwidget.h \
 		/usr/include/qt5/QtGui/qguiapplication.h \
 		/usr/include/qt5/QtGui/qinputmethod.h \
+		/usr/include/qt5/QtMultimedia/QMediaPlaylist \
+		/usr/include/qt5/QtMultimedia/qmediaplaylist.h \
+		/usr/include/qt5/QtMultimedia/qmediacontent.h \
+		/usr/include/qt5/QtMultimedia/qmediaresource.h \
+		/usr/include/qt5/QtNetwork/qnetworkrequest.h \
+		/usr/include/qt5/QtCore/QSharedDataPointer \
+		/usr/include/qt5/QtCore/QString \
+		/usr/include/qt5/QtCore/QUrl \
+		/usr/include/qt5/QtCore/QVariant \
+		/usr/include/qt5/QtMultimedia/qtmultimediadefs.h \
+		/usr/include/qt5/QtMultimedia/qmediaobject.h \
+		/usr/include/qt5/QtMultimedia/qmultimedia.h \
+		/usr/include/qt5/QtMultimedia/qmediabindableinterface.h \
+		/usr/include/qt5/QtMultimedia/qmediaenumdebug.h \
+		/usr/include/qt5/QtCore/qmetaobject.h \
+		/usr/include/qt5/QtMultimedia/QMediaPlayer \
+		/usr/include/qt5/QtMultimedia/qmediaplayer.h \
+		/usr/include/qt5/QtNetwork/qnetworkconfiguration.h \
 		GuiFacade.h \
 		socketcliente.h \
 		socketserver.h \
@@ -1865,23 +1950,17 @@ mainmenu.o: mainmenu.cpp mainmenu.h \
 		/usr/include/qt5/QtWidgets/QGraphicsSceneMouseEvent \
 		/usr/include/qt5/QtWidgets/qgraphicssceneevent.h \
 		informationindividual.h \
-		/usr/include/qt5/QtCore/QString \
+		/usr/include/qt5/QtGui/QMovie \
+		/usr/include/qt5/QtGui/qmovie.h \
+		/usr/include/qt5/QtGui/qimagereader.h \
+		/usr/include/qt5/QtGui/qimageiohandler.h \
+		/usr/include/qt5/QtCore/qplugin.h \
+		/usr/include/qt5/QtCore/qpointer.h \
+		/usr/include/qt5/QtCore/qjsonobject.h \
+		/usr/include/qt5/QtCore/qjsonvalue.h \
+		/usr/include/qt5/QtCore/qfactoryinterface.h \
 		godsinformation.h \
 		puebloinformation.h \
-		/usr/include/qt5/QtMultimedia/QMediaPlaylist \
-		/usr/include/qt5/QtMultimedia/qmediaplaylist.h \
-		/usr/include/qt5/QtMultimedia/qmediacontent.h \
-		/usr/include/qt5/QtMultimedia/qmediaresource.h \
-		/usr/include/qt5/QtNetwork/qnetworkrequest.h \
-		/usr/include/qt5/QtCore/QSharedDataPointer \
-		/usr/include/qt5/QtCore/QUrl \
-		/usr/include/qt5/QtCore/QVariant \
-		/usr/include/qt5/QtMultimedia/qtmultimediadefs.h \
-		/usr/include/qt5/QtMultimedia/qmediaobject.h \
-		/usr/include/qt5/QtMultimedia/qmultimedia.h \
-		/usr/include/qt5/QtMultimedia/qmediabindableinterface.h \
-		/usr/include/qt5/QtMultimedia/qmediaenumdebug.h \
-		/usr/include/qt5/QtCore/qmetaobject.h \
 		vector.h \
 		jsonreadercpp.h \
 		jsonwritercpp.h \
@@ -1916,7 +1995,9 @@ mainmenu.o: mainmenu.cpp mainmenu.h \
 		/usr/include/qt5/QtWidgets/qboxlayout.h \
 		/usr/include/qt5/QtWidgets/qlayout.h \
 		/usr/include/qt5/QtWidgets/qlayoutitem.h \
-		/usr/include/qt5/QtWidgets/qgridlayout.h
+		/usr/include/qt5/QtWidgets/qgridlayout.h \
+		/usr/include/qt5/QtCore/QFileInfo \
+		/usr/include/qt5/QtCore/qfileinfo.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainmenu.o mainmenu.cpp
 
 informationindividual.o: informationindividual.cpp informationindividual.h \
@@ -2032,6 +2113,16 @@ informationindividual.o: informationindividual.cpp informationindividual.h \
 		/usr/include/qt5/QtWidgets/qtabwidget.h \
 		/usr/include/qt5/QtGui/qicon.h \
 		/usr/include/qt5/QtCore/QString \
+		Constants.h \
+		/usr/include/qt5/QtGui/QMovie \
+		/usr/include/qt5/QtGui/qmovie.h \
+		/usr/include/qt5/QtGui/qimagereader.h \
+		/usr/include/qt5/QtGui/qimageiohandler.h \
+		/usr/include/qt5/QtCore/qplugin.h \
+		/usr/include/qt5/QtCore/qpointer.h \
+		/usr/include/qt5/QtCore/qjsonobject.h \
+		/usr/include/qt5/QtCore/qjsonvalue.h \
+		/usr/include/qt5/QtCore/qfactoryinterface.h \
 		ui_informationindividual.h \
 		/usr/include/qt5/QtCore/QVariant \
 		/usr/include/qt5/QtWidgets/QAction \

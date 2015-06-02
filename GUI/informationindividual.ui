@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>260</width>
-    <height>454</height>
+    <height>505</height>
    </rect>
   </property>
   <property name="font">
@@ -29,7 +29,7 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>280</y>
+      <y>300</y>
       <width>81</width>
       <height>21</height>
      </rect>
@@ -42,7 +42,7 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>330</y>
+      <y>350</y>
       <width>91</width>
       <height>17</height>
      </rect>
@@ -55,7 +55,7 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>380</y>
+      <y>400</y>
       <width>71</width>
       <height>17</height>
      </rect>
@@ -81,7 +81,7 @@
     <property name="geometry">
      <rect>
       <x>130</x>
-      <y>280</y>
+      <y>300</y>
       <width>91</width>
       <height>17</height>
      </rect>
@@ -94,7 +94,7 @@
     <property name="geometry">
      <rect>
       <x>130</x>
-      <y>330</y>
+      <y>350</y>
       <width>81</width>
       <height>17</height>
      </rect>
@@ -107,7 +107,7 @@
     <property name="geometry">
      <rect>
       <x>130</x>
-      <y>380</y>
+      <y>400</y>
       <width>81</width>
       <height>17</height>
      </rect>
@@ -116,36 +116,17 @@
      <string>TextLabel</string>
     </property>
    </widget>
-   <widget class="QLabel" name="fotoPadre">
+   <widget class="QLabel" name="imageInd">
     <property name="geometry">
      <rect>
-      <x>20</x>
+      <x>40</x>
       <y>60</y>
-      <width>91</width>
-      <height>181</height>
+      <width>141</width>
+      <height>201</height>
      </rect>
     </property>
     <property name="text">
-     <string/>
-    </property>
-    <property name="pixmap">
-     <pixmap>imagenes GUI/knight.png</pixmap>
-    </property>
-   </widget>
-   <widget class="QLabel" name="fotoMadre">
-    <property name="geometry">
-     <rect>
-      <x>130</x>
-      <y>80</y>
-      <width>91</width>
-      <height>141</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="pixmap">
-     <pixmap>imagenes GUI/wizardWoman.png</pixmap>
+     <string>TextLabel</string>
     </property>
    </widget>
   </widget>
@@ -161,7 +142,7 @@
    </property>
    <widget class="QMenu" name="menuMidgard">
     <property name="title">
-     <string>Midgard</string>
+     <string>IndividualInfo</string>
     </property>
    </widget>
    <addaction name="menuMidgard"/>

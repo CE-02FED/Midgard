@@ -10,17 +10,17 @@ Map::Map()
         _mapMatriz = new Vector<int>(Constants::getInstance()->WIDTH, Constants::getInstance()->HEIGHT);
         _mapMatriz->llenarMatriz(0);
         _objectMatriz = new Vector<Individuals>(Constants::getInstance()->WIDTH, Constants::getInstance()->HEIGHT);
-        _mapMatriz = initMatriz();
-        _mapMatriz->print();       
+
+        _mapMatriz = initMatriz();              
 }
 
 Vector<int> *Map::initMatriz()
 {
+   // pthread_mutex_lock(&mutex);
     int Height = Constants::getInstance()->HEIGHT;
     int Width = Constants::getInstance()->WIDTH;
 
-    string tmpMap=Constants::getInstance()->MATRIZ;
-    cout << tmpMap << endl;
+    string tmpMap=Constants::getInstance()->MATRIZ;    
 
     Vector<int>* newMatriz = new Vector<int>(Height, Width) ;
 
@@ -43,6 +43,7 @@ Vector<int> *Map::initMatriz()
                 numero += tmpMap[i];
             }
         }
+   //pthread_mutex_unlock(&mutex);
   return newMatriz;
 
 }
@@ -50,6 +51,11 @@ Vector<int> *Map::initMatriz()
 Vector<int>* Map::getMapMatriz()
 {
     return _mapMatriz;
+}
+
+void Map::restartMatriz()
+{
+    _mapMatriz = initMatriz();
 }
 
 Vector<Individuals>* Map::getObjectMatriz()
@@ -62,14 +68,17 @@ Map *Map::getInstance()
     pthread_mutex_lock(&mutex);
     if(_matrizInstance == 0)
         _matrizInstance = new Map();
+
     pthread_mutex_unlock(&mutex);
     return _matrizInstance;
 }
 
 void Map::anadirObjeto(int pFila, int pColumna, Individuals* pObjeto, int pElemento)
-{            
+{
+    pthread_mutex_lock(&mutex);
     (*_mapMatriz)[pFila][pColumna]=pElemento;        
     (*_objectMatriz)[pFila][pColumna] = *pObjeto;
+    pthread_mutex_unlock(&mutex);
 }
 
 

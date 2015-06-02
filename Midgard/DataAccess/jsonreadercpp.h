@@ -12,7 +12,7 @@ public:
     int readType (string pJson);
     Vector<int> *readFamily(string pJson);
     Vector<int>* readFight (string pJson);
-    Vector<int> *readPubloInfo(string pJson);
+    int readPubloInfo(string pJson);
 
     //Logic
     Vector<int>* readFamilyFromGUI(string pJson);

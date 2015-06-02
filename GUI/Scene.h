@@ -3,6 +3,8 @@
 
 #include <QGraphicsView>
 #include <QGraphicsScene>
+#include <QUrl>
+#include <QFileInfo>
 #include "objectsGui.h"
 #include "string.h"
 #include "time.h"

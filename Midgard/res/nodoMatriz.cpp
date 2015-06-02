@@ -7,19 +7,19 @@ NodoMatriz::NodoMatriz(int pPosX, int pPosY, int pNivel, int pPrioridad) {
 	prioridad = pPrioridad;
 }
 
-short NodoMatriz::getNivel() {
+int NodoMatriz::getNivel() {
 	return nivel;
 }
 
-short NodoMatriz::getPosX() {
+int NodoMatriz::getPosX() {
 	return posX;
 }
 
-short NodoMatriz::getPosY() {
+int NodoMatriz::getPosY() {
 	return posY;
 }
 
-short NodoMatriz::getPrioridad() {
+int NodoMatriz::getPrioridad() {
 	return prioridad;
 }
 
@@ -54,7 +54,7 @@ void NodoMatriz::elegirDiagonal(int pDireccion) {
  * 	@param pPosYDestino Posicion vertical final
  * 	@return Distancia aproximada hasta el destino
  */
-short NodoMatriz::calcularDistancia(int pPosXDestino, int pPosYDestino) {
+int NodoMatriz::calcularDistancia(int pPosXDestino, int pPosYDestino) {
 	static int tmpX, tmpY, distancia;
 	tmpX = pPosXDestino - posX;
 	tmpY = pPosYDestino - posY;

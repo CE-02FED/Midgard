@@ -12,8 +12,8 @@ Scene::Scene() : QGraphicsView()
     playlist = new QMediaPlaylist;
     for(int i = 0; i < 5; i++)
     {
-        playlist->addMedia(QUrl::fromLocalFile("/home/javier/WorkspaceQT/GUI/medieval2.mp3"));
-        playlist->addMedia(QUrl::fromLocalFile("/home/javier/WorkspaceQT/GUI/medieval2.mp3"));
+        playlist->addMedia(QUrl::fromLocalFile(QFileInfo("imagenes GUI/medieval.mp3").absoluteFilePath()));
+        playlist->addMedia(QUrl::fromLocalFile(QFileInfo("imagenes GUI/medieval2.mp3").absoluteFilePath()));
 
     }
     playlist->setCurrentIndex(1);
@@ -22,13 +22,13 @@ Scene::Scene() : QGraphicsView()
     playScene->setVolume(15);
     playScene->play();
 
-    _guiMap = new Vector<int>(WIDTH_MAP,HEIGHT_MAP);
+    _guiMap = new Vector<int>(HEIGHT_MAP,WIDTH_MAP);
     _guiMap->llenarMatriz(0);
-    _objectMap = new Vector<ObjectsGui*>(WIDTH_MAP,HEIGHT_MAP);
+    _objectMap = new Vector<ObjectsGui*>(HEIGHT_MAP,WIDTH_MAP);
 
 
-    scene = new QGraphicsScene(0,0,WIDTH_POS,HEIGHT_POS);
-    QPixmap _background("/home/javier/WorkspaceQT/GUI/imagenes GUI/grass.png");
+    scene = new QGraphicsScene(0,0,HEIGHT_POS,WIDTH_POS);
+    QPixmap _background("imagenes GUI/grass.png");
 
 
     setScene(scene);
@@ -72,20 +72,20 @@ void Scene::setMap(Vector<int> *pMatrix)
 void Scene::clearScreen(){
     pthread_mutex_t    mutex= PTHREAD_MUTEX_INITIALIZER;
 
-    for(int i=0; i < _guiMap->getWidth(); i++)
+    for(int i=0; i < _guiMap->getHeight(); i++)
     {
-        for(int j=0; j< _guiMap->getHeight();j++)
+        for(int j=0; j< _guiMap->getWidth();j++)
         {
             pthread_mutex_lock(&mutex);
 
             if((*_guiMap)[i][j] != 0 )
             {
                 if(((i == 0  && j == 0) || (i==0 && j==24) || (i==24&& j==0) || (i==24 && j==24) ));
-
                 else
                 {
-                    if((*_objectMap)[i][j]){
+                    if((*_objectMap)[i][j]){                        
                     scene->removeItem((*_objectMap)[i][j]);
+                    usleep(100);
                     }
                     else{
                         cout<<"null"<<endl;
@@ -107,10 +107,11 @@ void Scene::clearScreen(){
 void *Scene::paintMap()
 {
     pthread_mutex_t    mutex= PTHREAD_MUTEX_INITIALIZER;
+    _guiMap->print();
 
-    for(int i=0; i < _guiMap->getWidth(); i++)
+    for(int i=0; i < _guiMap->getHeight(); i++)
     {
-        for(int j=0; j< _guiMap->getHeight();j++)
+        for(int j=0; j< _guiMap->getWidth();j++)
         {
             pthread_mutex_lock(&mutex);
 
@@ -124,8 +125,9 @@ void *Scene::paintMap()
                     if(_guiObject){
                         _guiObject->setId(_IdIndividual);
                         _IdIndividual++;
-                        _guiObject->setPos(((i*PIXELS_POS)), ((j*PIXELS_POS)));
+                        _guiObject->setPos(((j*PIXELS_POS)), ((i*PIXELS_POS)));
                         scene->addItem(_guiObject);
+                        usleep(100);
                         (*_objectMap)[i][j] = _guiObject;
                     }
                     else{

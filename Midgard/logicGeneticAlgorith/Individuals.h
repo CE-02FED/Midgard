@@ -11,24 +11,35 @@
 
 #define maxSkill 255
 #define cero 0
+#define cantPosiciones
 //class FitnessCalculation;
 class Pathfinding;
 class Individuals
 {
 protected:
+    int _posicionXmatriz;
+    int _posicionYmatriz;
+    static int contadorID;
+
     int _Fitness=0;
     Random* _random;
     int _ID;
     int _Age=0;
-    int _MotherID = -1; // si es < 0 significa que estos son la primera generacion
-    int _FatherID = -1;    
+    int _MotherID = 0; // si es < 0 significa que estos son la primera generacion
+    int _FatherID = 0;
     BitVector* _Genes;
     int cantidadCualidades;    
     bool veriBase(size_t pNum);
     Pathfinding* _encontrarCamino;
+    static int figuraID;    
+    static bool termino;
+    static Vector<int>* _movimiento;
+
+
 
 
 public:
+    void setFitness(int pFitness);
     int getId();
     int calculateFitness(BitVector* pIndividualGenes);
     Individuals();
@@ -38,6 +49,7 @@ public:
     void setFathers(int pIDFather, int pIDMother);
     int getPadre();
     int getMadre();
+
 
 
     void generateCromosoma();
@@ -50,6 +62,13 @@ public:
     void isMyBirthDay();
 
     Vector<int> *findPath(int posicionInicialI, int posicionInicialJ, int posicionFinalI, int posicionFinalJ);
+    static void *moverIndividuo(void *pParametro);
+    static void setFigureID(int pNumber);
+    bool getTermino();
+    void setTermino(bool value);
+    Vector<int>* getPosicionIndividual();
+    void setPosicionIndividual(int pPosicionX, int pPosicionY);
+
 };
 
 #endif // INDIVIDUALS_H

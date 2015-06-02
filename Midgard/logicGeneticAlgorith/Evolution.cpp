@@ -19,7 +19,7 @@ Population& Evolution:: evolvePopulation(Population &pPopulation)
 
     for (int i =0;i<((Constants::getInstance()->MAXPOPULATION)*porcentajeNatalidad);i++)
     {
-        //std::cout<<"interacion: "<<i<<endl;
+
         Individuals* FatherA = fathersSelection(pPopulation);
 
         Individuals* FatherB = fathersSelection(pPopulation);
@@ -27,7 +27,6 @@ Population& Evolution:: evolvePopulation(Population &pPopulation)
             FatherB = fathersSelection(pPopulation);}
 
         lista<Individuals>* newIndividualsList = CrossOver(*FatherA, *FatherB);
-
 
         pPopulation.insertIndividualList(newIndividualsList->getElemento(primerElemento));
         pPopulation.upPopulation();
@@ -41,14 +40,7 @@ Population& Evolution:: evolvePopulation(Population &pPopulation)
 
         Mutation(pPopulation.getIndividualbyIndex(i));
     }
-    if(pPopulation.getPopulationSize()>cien){
-        while(pPopulation.getPopulationSize()>cien){
-            if(pPopulation.getFitless()){
-                pPopulation.deleteIndividualList(pPopulation.getFitless());
-                pPopulation.downPopulation();
-            }
-        }
-    }
+
     return pPopulation;
 }
 
@@ -73,8 +65,6 @@ Individuals* Evolution::fathersSelection(Population pPopulation)
     int i=cero;
     int redondeo=round(((*(pPopulation.getIndividualbyIndex(primerElemento)->getFitness())+floatCero)/totalFitness)*cien);
     while(i<porcentajePadres){
-
-
 
         if((redondeo)==i){
 

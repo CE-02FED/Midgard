@@ -13,9 +13,10 @@ class Constants{
         const static size_t DEFAULTELEMENTSIZE = 8;
         const static int START = 0;
         const static int GENERATIONS=100;
-        static constexpr const char*  IMAGEN = "/home/javier/WorkspaceQT/GUI/imagenes GUI/imagen";
+        static constexpr const char*  IMAGEN = "imagenes GUI/imagen";
 
         static constexpr const char* IMAGEN_FORMATO = ".png";
+        static constexpr const char* IMAGEN_FORMATO_GIF = ".gif";
 
 };
 
