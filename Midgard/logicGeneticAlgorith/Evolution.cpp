@@ -41,6 +41,14 @@ Population& Evolution:: evolvePopulation(Population &pPopulation)
 
         Mutation(pPopulation.getIndividualbyIndex(i));
     }
+    if(pPopulation.getPopulationSize()>cien){
+        while(pPopulation.getPopulationSize()>cien){
+            if(pPopulation.getFitless()){
+                pPopulation.deleteIndividualList(pPopulation.getFitless());
+                pPopulation.downPopulation();
+            }
+        }
+    }
     return pPopulation;
 }
 
